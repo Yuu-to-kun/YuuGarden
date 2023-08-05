@@ -5,15 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FpPS4_Garden.Pages"
       mc:Ignorable="d" 
-      Height="650" 
-      Width="1000"
-      Title="FreshInstall">
+      Title="FreshInstall" Height="650" Width="1000">
 
 
-    <Grid Background="#101112">
-        <Grid Margin="55,131,85,131">
-            <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Text="Welcome to fpPS4 Garden" Panel.ZIndex="2" FontWeight="Bold" FontSize="40"/>
-            <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="30" Text="The all in one fpPS4 installer"/>
+    <Grid Background="#101112" Height="650" Width="1000">
+        <Grid Margin="70,122,70,140">
+            <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="40">
+                <Run Text="Welcome to"/>
+                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4"/>
+                <Run Text="Garden"/>
+            </TextBlock>
+            <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="30">
+                <Run Text="The all in one"/>
+                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 installer"/>
+            </TextBlock>
         </Grid>
         <Button Margin="840,300,110,300" Width="50" Height="50" Background="#FF2F3134">
             <Button.Template>
@@ -26,7 +31,7 @@
             </Button.Template>
             <Image Source="/Assets/Images/arrow_forward.png" Width="35" Height="35" />
         </Button>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,186,0,-186">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,550,0,0">
             <Ellipse Width="10" Height="10" Fill="white" Margin="5"/>
             <Ellipse Width="10" Height="10" Fill="Gray" Margin="5"/>
             <Ellipse Width="10" Height="10" Fill="Gray" Margin="5"/>

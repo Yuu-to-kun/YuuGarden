@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FpPS4_Garden"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="682" Width="1000" WindowStartupLocation="CenterScreen">
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <!--<Setter Property="ResizeMode" Value="NoResize"/>-->
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="26"
+                                  ResizeBorderThickness="5"
+                                  GlassFrameThickness="0"
+                                  CornerRadius="15"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid Background="#26272a" Height="32" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="3" Source="/Assets/Images/close.png" Width="22" Height="22" HorizontalAlignment="Right" Margin="0 0 10 0"/>
+            <Image Grid.Column="2" Source="/Assets/Images/square.png" Width="20" Height="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
+            <Image Grid.Column="1" Source="/Assets/Images/imageedit.png" Width="22" Height="22" HorizontalAlignment="Right"  Margin="0 0 10 0"/>
+            <TextBlock Text="fpPS4 Garden" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik"/>
+        </Grid>
+
+        <!-- Content :o-->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0"/>
     </Grid>
 </Window>

@@ -11,7 +11,11 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\Rubik.ttf" />
     <None Remove="Assets\Images\arrow_forward.png" />
-    <None Remove="Assets\Images\arrow_forward.svg" />
+    <None Remove="Assets\Images\close.png" />
+    <None Remove="Assets\Images\imageedit.png" />
+    <None Remove="Assets\Images\maximize.png" />
+    <None Remove="Assets\Images\minimize.png" />
+    <None Remove="Assets\Images\square.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +25,16 @@
     <Resource Include="Assets\Images\arrow_forward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\Images\arrow_forward.svg">
+    <Resource Include="Assets\Images\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\imageedit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\maximize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\square.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
