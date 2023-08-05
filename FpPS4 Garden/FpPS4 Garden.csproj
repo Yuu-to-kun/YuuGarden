@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
     <RootNamespace>FpPS4_Garden</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <FileVersion></FileVersion>
+	<Version>0.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +24,7 @@
     <Content Include="Assets\Fonts\Rubik.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <Resource Include="Assets\Images\arrow_forward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
