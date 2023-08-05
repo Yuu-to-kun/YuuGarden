@@ -21,7 +21,7 @@
             </Setter>
         </Style>
     </Window.Style>
-    <Grid>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Grid Background="#26272a" Height="32" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Button"  Grid.Column="3" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Content="Button"  Grid.Column="3" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -59,7 +59,7 @@
                 <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
             </Button>-->
 
-            <Button Content="Button" Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Content="Button" Grid.Column="2" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="MaximizeButtonClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -67,7 +67,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}">
-                                        <Image Source="/Assets/Images/Square.png" Width="20" Height="20"/>
+                                        <Image Source="/Assets/Images/Square.png" Width="16" Height="18"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -88,7 +88,7 @@
                 <Image Source="/Assets/Images/square.png" Width="20" Height="20"/>
             </Button>-->
 
-            <Button Content="Button" Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="29" Click="MinimizeButtonClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -96,7 +96,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}">
-                                        <Image Source="/Assets/Images/imageedit.png" Width="22" Height="22"/>
+                                        <Image Source="/Assets/Images/imageedit.png" Width="18" Height="20"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -116,7 +116,7 @@
                 </Button.BorderBrush>
                 <Image Source="/Assets/Images/imageedit.png" Width="22" Height="22"/>
             </Button>-->
-            
+
             <TextBlock Text="fpPS4 Garden" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik"/>
         </Grid>
 
