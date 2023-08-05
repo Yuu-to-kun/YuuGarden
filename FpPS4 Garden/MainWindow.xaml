@@ -13,7 +13,7 @@
             <!--<Setter Property="ResizeMode" Value="NoResize"/>-->
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
-                    <WindowChrome CaptionHeight="26"
+                    <WindowChrome CaptionHeight="0"
                                   ResizeBorderThickness="5"
                                   GlassFrameThickness="0"
                                   CornerRadius="15"/>
@@ -30,9 +30,93 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="3" Source="/Assets/Images/close.png" Width="22" Height="22" HorizontalAlignment="Right" Margin="0 0 10 0"/>
-            <Image Grid.Column="2" Source="/Assets/Images/square.png" Width="20" Height="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
-            <Image Grid.Column="1" Source="/Assets/Images/imageedit.png" Width="22" Height="22" HorizontalAlignment="Right"  Margin="0 0 10 0"/>
+            <Button Content="Button"  Grid.Column="3" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#393b3e"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!--<Button Name="ButtonClos2e"  Grid.Column="3" Margin="0 0 10 0" HorizontalAlignment="Right" Background="Transparent" Panel.ZIndex="5">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.BorderBrush>
+                <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
+            </Button>-->
+
+            <Button Content="Button" Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <Image Source="/Assets/Images/Square.png" Width="20" Height="20"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#393b3e"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!--<Button Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Right" Background="Transparent">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.BorderBrush>
+                <Image Source="/Assets/Images/square.png" Width="20" Height="20"/>
+            </Button>-->
+
+            <Button Content="Button" Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Right" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <Image Source="/Assets/Images/imageedit.png" Width="22" Height="22"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#393b3e"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!--<Button Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Right" Background="Transparent">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.BorderBrush>
+                <Image Source="/Assets/Images/imageedit.png" Width="22" Height="22"/>
+            </Button>-->
+            
             <TextBlock Text="fpPS4 Garden" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik"/>
         </Grid>
 

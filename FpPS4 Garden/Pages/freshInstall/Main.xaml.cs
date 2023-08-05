@@ -42,14 +42,14 @@ namespace FpPS4_Garden.Pages
             {
                 From = 0,
                 To = -slideDistance,
-                Duration = TimeSpan.FromSeconds(0.25)
+                Duration = TimeSpan.FromSeconds(0.2)
             };
 
             // Apply the animation to the Frame's content
             ContentFrame.RenderTransform = new TranslateTransform();
             ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideAnimation);
 
-            await Task.Delay(TimeSpan.FromSeconds(0.25)); // Adjust as needed
+            await Task.Delay(TimeSpan.FromSeconds(0.2)); // Adjust as needed
 
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
@@ -60,7 +60,7 @@ namespace FpPS4_Garden.Pages
             {
                 From = slideDistance,
                 To = 0,
-                Duration = TimeSpan.FromSeconds(0.25)
+                Duration = TimeSpan.FromSeconds(0.2)
             };
 
             // Apply the animation to the Frame's content

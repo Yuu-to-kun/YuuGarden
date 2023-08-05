@@ -11,13 +11,13 @@
         <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
             <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Installer"></Run>
         </TextBlock>
-        
-        <TextBlock Margin="204,237,204,390" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
+
+        <TextBlock Margin="204,267,204,360" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
                 <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden will install into the following folder."/>
         </TextBlock>
-        <TextBlock Text="If you want to select a diffrent folder, click browse." Margin="204,265,199,362" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
-        
-        <Grid Margin="104,-10,104,10">
+        <TextBlock Text="If you want to select a diffrent folder, click browse." Margin="204,295,199,332" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
+
+        <Grid Margin="104,20,104,-20">
             <Border Height="32" CornerRadius="5" Background="#FF2F3134" BorderThickness="1" Margin="154,325,258,293">
                 <Border.BorderBrush>
                     <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
