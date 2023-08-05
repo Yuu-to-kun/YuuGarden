@@ -19,9 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Fonts\Rubik.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Assets\Images\arrow_forward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

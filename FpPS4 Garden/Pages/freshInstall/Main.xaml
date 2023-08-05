@@ -6,20 +6,14 @@
       xmlns:local="clr-namespace:FpPS4_Garden.Pages"
       mc:Ignorable="d" 
       Title="FreshInstall" Height="650" Width="1000">
-
-
+    <Page.Resources>
+        <Storyboard x:Key="PageTransition">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Page.Resources>
     <Grid x:Name="Content" Background="#101112" Height="650" Width="1000">
-        <Grid Margin="70,122,70,140">
-            <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="40">
-                <Run Text="Welcome to"/>
-                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4"/>
-                <Run Text="Garden"/>
-            </TextBlock>
-            <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="30">
-                <Run Text="The all in one"/>
-                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 installer"/>
-            </TextBlock>
-        </Grid>
+
+        <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
 
         <Button Margin="840,300,110,300" Width="50" Height="50" Background="#FF2F3134" Click="NextButtonClick">
             <Button.Template>
@@ -34,9 +28,9 @@
         </Button>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,550,0,0">
-            <Ellipse Width="10" Height="10" Fill="white" Margin="5"/>
-            <Ellipse Width="10" Height="10" Fill="Gray" Margin="5"/>
-            <Ellipse Width="10" Height="10" Fill="Gray" Margin="5"/>
+            <Ellipse x:Name="Indicator1" Width="10" Height="10" Fill="white" Margin="5"/>
+            <Ellipse x:Name="Indicator2" Width="10" Height="10" Fill="Gray" Margin="5"/>
+            <Ellipse x:Name="Indicator3" Width="10" Height="10" Fill="Gray" Margin="5"/>
         </StackPanel>
         
         <!--<Grid Panel.ZIndex="1" Width="500" Height="325" Background="#FF26272A">

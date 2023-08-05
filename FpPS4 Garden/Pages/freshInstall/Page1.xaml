@@ -1,0 +1,23 @@
+﻿<Page x:Class="FpPS4_Garden.Pages.freshInstall.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FpPS4_Garden.Pages.freshInstall"
+      mc:Ignorable="d" 
+      Title="FreshInstall" Height="650" Width="1000">
+
+    <Grid>
+        <Grid Margin="70,122,70,140">
+            <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" Panel.ZIndex="2" FontWeight="Bold" FontSize="40">
+                <Run Text="Welcome to"/>
+                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4"/>
+                <Run Text="Garden"/>
+            </TextBlock>
+            <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" Panel.ZIndex="2" FontWeight="Bold" FontSize="30">
+                <Run Text="The all in one"/>
+                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 installer"/>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</Page>
