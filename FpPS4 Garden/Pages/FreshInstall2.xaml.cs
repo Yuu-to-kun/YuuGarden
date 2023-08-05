@@ -18,9 +18,9 @@ namespace FpPS4_Garden.Pages
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class FreshInstall2 : Page
     {
-        public Page1()
+        public FreshInstall2()
         {
             InitializeComponent();
         }
