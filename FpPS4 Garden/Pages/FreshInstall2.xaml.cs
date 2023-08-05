@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace FpPS4_Garden.Pages
 {
     /// <summary>
-    /// Interaction logic for FreshInstall.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class FreshInstall : Page
+    public partial class Page1 : Page
     {
-        public FreshInstall()
+        public Page1()
         {
             InitializeComponent();
-        }
-
-        private void NextButtonClick(object sender, RoutedEventArgs e)
-        {
-            // Navigate to another page (e.g., SecondPage)
-            NavigationService?.Navigate(new Uri("SecondPage.xaml", UriKind.Relative));
         }
     }
 }
