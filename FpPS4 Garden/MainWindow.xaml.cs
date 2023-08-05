@@ -23,6 +23,10 @@ namespace FpPS4_Garden
         public MainWindow()
         {
             InitializeComponent();
+
+            // page :3
+            MainFrame.Navigate(new Uri("/pages/FreshInstall.xaml", UriKind.Relative));
+
         }
     }
 }

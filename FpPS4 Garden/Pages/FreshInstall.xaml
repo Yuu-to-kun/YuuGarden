@@ -9,7 +9,28 @@
       Width="1000"
       Title="FreshInstall">
 
-    <Grid>
-        
+
+    <Grid Background="#101112">
+        <Grid Margin="55,131,85,131">
+            <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Text="Welcome to fpPS4 Garden" Panel.ZIndex="2" FontWeight="Bold" FontSize="40"/>
+            <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="pack://application:,,,/FpPS4_Garden;component/Assets/Fonts/#Rubik" Panel.ZIndex="2" FontWeight="Bold" FontSize="30" Text="The all in one fpPS4 installer"/>
+        </Grid>
+        <Button Margin="820,300,130,300" Width="50" Height="50" Background="#FF2F3134">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+            <Image Source="/Assets/Images/arrow_forward.png" Width="30" Height="30" />
+        </Button>
+            <!--<Grid Panel.ZIndex="1" Width="500" Height="325" Background="#FF26272A">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.5" />
+            </Grid.Effect>
+            
+        </Grid>-->
     </Grid>
 </Page>
