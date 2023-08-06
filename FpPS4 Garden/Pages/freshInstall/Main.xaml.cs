@@ -53,7 +53,21 @@ namespace FpPS4_Garden.Pages
 
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
-            ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page2.xaml", UriKind.Relative));
+
+            if (ContentFrame.Content is FreshInstall2)
+            {
+                // Navigate back to the first page
+                Indicator1.Fill = new SolidColorBrush(Colors.White);
+                Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page1.xaml", UriKind.Relative));
+            }
+            else
+            {
+                Indicator1.Fill = new SolidColorBrush(Colors.Gray);
+                Indicator2.Fill = new SolidColorBrush(Colors.White);
+                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page2.xaml", UriKind.Relative));
+            }
+           
 
             // Create a slide-in animation for the new page
             var slideInAnimation = new DoubleAnimation
