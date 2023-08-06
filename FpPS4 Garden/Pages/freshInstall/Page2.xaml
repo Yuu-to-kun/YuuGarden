@@ -18,14 +18,24 @@
         <TextBlock Text="If you want to select a diffrent folder, click browse." Margin="204,295,199,332" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
 
         <Grid Margin="104,20,104,-20">
-            <Border Height="32" CornerRadius="5" Background="#FF2F3134" BorderThickness="1" Margin="154,325,258,293">
+            <Border x:Name="border" Height="32" CornerRadius="5" BorderThickness="1" Margin="154,325,258,293">
                 <Border.BorderBrush>
                     <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
                 </Border.BorderBrush>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FF2F3134"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#393b3e"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="C:\Users\Name\Documents\fpPS4 Garden" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="White" FontSize="16"/>
             </Border>
 
-            <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="539,325,0,0" Background="#FF2F3134" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16">
+            <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="539,325,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
                 </Button.BorderBrush>
@@ -36,6 +46,24 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2F3134"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#393b3e"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </Grid>
     </Grid>

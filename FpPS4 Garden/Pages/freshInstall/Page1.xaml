@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       Title="FreshInstall" Height="650" Width="1000">
 
-    <Grid>
+    <Grid Background="#101112" Height="650" Width="1000">
         <Grid Margin="70,122,70,140">
             <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" Panel.ZIndex="2" FontWeight="Bold" FontSize="40">
                 <Run Text="Welcome to"/>
