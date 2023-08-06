@@ -25,7 +25,7 @@
                 <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="C:\Users\Name\Documents\fpPS4 Garden" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="White" FontSize="16"/>
             </Border>
 
-            <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="539,325,0,0" Background="#FF2F3134" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16">
+            <Button x:Name="BrowseFolderButton" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="539,325,0,0" Background="#FF2F3134" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
                 </Button.BorderBrush>
