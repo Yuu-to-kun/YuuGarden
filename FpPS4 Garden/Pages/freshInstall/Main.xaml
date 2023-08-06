@@ -12,10 +12,28 @@
         </Storyboard>
     </Page.Resources>
     <Grid x:Name="Content" Background="#101112" Height="650" Width="1000">
-
+        
         <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
 
-        <Button Margin="840,300,110,300" Width="50" Height="50" Background="#FF2F3134" Click="NextButtonClick">
+        <Button Margin="840,300,110,300" Width="50" Height="50" Click="NextButtonClick" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF2F3134"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#393b3e"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
