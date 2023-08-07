@@ -11,5 +11,6 @@
         <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
             <Run Text="Installing"/>
         </TextBlock>
+        <ProgressBar x:Name="progressBar" Value="0" Minimum="0" Maximum="100" Width="380" Height="32"/>
     </Grid>
 </Page>

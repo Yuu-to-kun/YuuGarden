@@ -43,4 +43,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\Images\Unused\checkCircleFilled.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
