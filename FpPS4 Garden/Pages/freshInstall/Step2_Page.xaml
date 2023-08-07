@@ -12,8 +12,8 @@
             <RowDefinition Height="112*"/>
             <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
-        <TextBlock Margin="243,77,238,315" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
-            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Install Utility"></Run>
+        <TextBlock Margin="285,77,285,264" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Installation Utility"></Run>
         </TextBlock>
 
         <TextBlock Margin="204,267,204,156" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
