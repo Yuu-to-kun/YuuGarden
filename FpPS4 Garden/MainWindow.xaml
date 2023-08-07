@@ -21,8 +21,8 @@
             </Setter>
         </Style>
     </Window.Style>
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-        <Grid Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
+    <Grid>
+        <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
