@@ -45,7 +45,7 @@
             <Image Source="/Assets/Images/arrowForward.png" Margin="0,0,-5,0" Width="35" Height="35"/>
         </Button>
 
-        <Button Margin="110,300,840,300" Width="50" Height="50" Click="PrevButtonClick" Cursor="Hand">
+        <Button x:Name="PrevButton" Margin="110,300,840,300" Width="50" Height="50" Click="PrevButtonClick" Cursor="Hand">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF2F3134"/>

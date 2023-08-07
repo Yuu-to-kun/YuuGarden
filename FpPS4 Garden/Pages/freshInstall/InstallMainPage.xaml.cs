@@ -1,4 +1,6 @@
-﻿using FpPS4_Garden.Pages.freshInstall;
+﻿using FpPS4_Garden.Functions.NetworkWork.Github;
+using FpPS4_Garden.Models;
+using FpPS4_Garden.Pages.freshInstall;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +68,11 @@ namespace FpPS4_Garden.Pages
                     Indicator2.Fill = new SolidColorBrush(Colors.Gray);
                     Indicator3.Fill = new SolidColorBrush(Colors.White);
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
+
+                    // Start Installing
+                    fpPS4_Download download = new fpPS4_Download();
+                    download.Download(PrevButton);
+                    //
                     break;
                 case Step3_Page:
                     Indicator3.Fill = new SolidColorBrush(Colors.Gray);

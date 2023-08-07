@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using FpPS4_Garden.Models;
 
 namespace FpPS4_Garden.Pages
 {
@@ -28,7 +29,7 @@ namespace FpPS4_Garden.Pages
         {
             InitializeComponent();
 
-            FolderPathTextBox.Text = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"Fp_Garden");
+            FolderPathTextBox.Text = Misc.downloadPath;
         }
 
         private void BrowseInstallFolder_Click(object sender, RoutedEventArgs e)
@@ -42,8 +43,9 @@ namespace FpPS4_Garden.Pages
 
             if(result == DialogResult.OK)
             {
-                FolderPathTextBox.Text = installFolder;
+                FolderPathTextBox.Text = System.IO.Path.Combine(installFolder + "Fp_Garden");
             }
+            Misc.downloadPath = System.IO.Path.Combine(installFolder + "Fp_Garden");
         }
     }
 }
