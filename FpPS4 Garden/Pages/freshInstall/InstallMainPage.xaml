@@ -88,6 +88,7 @@
             <Ellipse x:Name="Indicator1" Width="10" Height="10" Fill="white" Margin="5"/>
             <Ellipse x:Name="Indicator2" Width="10" Height="10" Fill="Gray" Margin="5"/>
             <Ellipse x:Name="Indicator3" Width="10" Height="10" Fill="Gray" Margin="5"/>
+            <Ellipse x:Name="Indicator4" Width="10" Height="10" Fill="Gray" Margin="5"/>
         </StackPanel>
         
         <!--<Grid Panel.ZIndex="1" Width="500" Height="325" Background="#FF26272A">
