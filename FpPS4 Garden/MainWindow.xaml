@@ -22,7 +22,7 @@
         </Style>
     </Window.Style>
     <Grid>
-        <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="34" VerticalAlignment="Top" Width="1000">
+        <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
