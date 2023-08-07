@@ -60,7 +60,7 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                             PrevButton.IsEnabled = false;
                         });
 
-                        Thread.Sleep(2000);
+                        Thread.Sleep(2500);
                         Extract_FpPS4(filePath,fpPS4_Folder);
 
                         //Thread.Sleep(5000);
