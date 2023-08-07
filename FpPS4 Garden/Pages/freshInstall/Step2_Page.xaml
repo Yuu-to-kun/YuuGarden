@@ -8,8 +8,8 @@
       Title="FreshInstall2" Height="650" Width="1000">
 
     <Grid Background="#101112" Height="650" Width="1000">
-        <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
-            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Installer"></Run>
+        <TextBlock Margin="243,77,238,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Install Utility"></Run>
         </TextBlock>
 
         <TextBlock Margin="204,267,204,360" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
