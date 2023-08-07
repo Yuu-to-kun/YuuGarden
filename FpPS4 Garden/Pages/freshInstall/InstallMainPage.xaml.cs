@@ -55,25 +55,94 @@ namespace FpPS4_Garden.Pages
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
 
-            if (ContentFrame.Content is Step2_Page)
+            switch (ContentFrame.Content)
             {
-                // Navigate back to the first page
-                Indicator1.Fill = new SolidColorBrush(Colors.White);
-                Indicator2.Fill = new SolidColorBrush(Colors.Gray);
-                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
+                case Step1_Page:
+                    Indicator1.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator2.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
+                    break;
+                case Step2_Page:
+                    Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator3.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
+                    break;
+                case Step3_Page:
+                    Indicator3.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator1.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
+                    break;
             }
-            else
-            {
-                Indicator1.Fill = new SolidColorBrush(Colors.Gray);
-                Indicator2.Fill = new SolidColorBrush(Colors.White);
-                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
-            }
+
            
 
             // Create a slide-in animation for the new page
             var slideInAnimation = new DoubleAnimation
             {
                 From = slideDistance,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.2)
+            };
+
+            // Apply the animation to the Frame's content
+            ContentFrame.RenderTransform = new TranslateTransform();
+            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideInAnimation);
+
+            isAnimating = false;
+        }
+        private async void PrevButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (ContentFrame.Content is Step1_Page)
+            {
+                return;
+            }
+
+            if (isAnimating)
+                return;
+
+            isAnimating = true;
+
+            double slideDistance = 680;
+
+            // Create a slide animation to the left
+            var slideAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = slideDistance,
+                Duration = TimeSpan.FromSeconds(0.2)
+            };
+
+            // Apply the animation to the Frame's content
+            ContentFrame.RenderTransform = new TranslateTransform();
+            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideAnimation);
+
+            await Task.Delay(TimeSpan.FromSeconds(0.2)); // Adjust as needed
+
+            // After animation completion, navigate to the next page
+            ContentFrame.RenderTransform = null; // Reset the transform
+
+            switch (ContentFrame.Content)
+            {
+                case Step1_Page:
+                    break;
+                case Step2_Page:
+                    Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator1.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
+                    break;
+                case Step3_Page:
+                    Indicator3.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator2.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
+                    break;
+            }
+
+
+
+            // Create a slide-in animation for the new page
+            var slideInAnimation = new DoubleAnimation
+            {
+                From = -slideDistance,
                 To = 0,
                 Duration = TimeSpan.FromSeconds(0.2)
             };

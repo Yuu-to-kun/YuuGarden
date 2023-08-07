@@ -42,9 +42,48 @@
                     </Grid>
                 </ControlTemplate>
             </Button.Template>
-            <Image Source="/Assets/Images/arrow_forward.png" Width="35" Height="35"/>
+            <Image Source="/Assets/Images/arrow_forward.png" Margin="0,0,-5,0" Width="35" Height="35"/>
         </Button>
-        
+
+        <Button Margin="110,300,840,300" Width="50" Height="50" Click="PrevButtonClick" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF2F3134"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#393b3e"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+            <Image Source="/Assets/Images/arrow_forward.png" Width="35" Margin="0,0,5,0" Height="35" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,550,0,0">
             <Ellipse x:Name="Indicator1" Width="10" Height="10" Fill="white" Margin="5"/>
             <Ellipse x:Name="Indicator2" Width="10" Height="10" Fill="Gray" Margin="5"/>

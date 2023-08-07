@@ -16,7 +16,7 @@
                     <WindowChrome CaptionHeight="0"
                                   ResizeBorderThickness="5"
                                   GlassFrameThickness="0"
-                                  CornerRadius="15"/>
+                                  CornerRadius="0"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -51,7 +51,7 @@
                 </Button.Style>
             </Button>
 
-            <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="29" Click="MinimizeButtonClick" Height="32" Cursor="Hand">
+            <Button Content="Button" Grid.Column="1" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="MinimizeButtonClick" Cursor="Hand">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -59,7 +59,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}">
-                                        <Image Source="/Assets/Images/imageedit.png" Width="18" Height="20"/>
+                                        <Image Source="/Assets/Images/imageedit.png" Width="20" Height="20"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
