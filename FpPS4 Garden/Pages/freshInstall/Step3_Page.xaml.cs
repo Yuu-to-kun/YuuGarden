@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,6 +24,23 @@ namespace FpPS4_Garden.Pages.freshInstall
         public Step3_Page()
         {
             InitializeComponent();
+            StartLoadingAnimation();
+        }
+
+        private void StartLoadingAnimation()
+        {
+            DoubleAnimation rotateAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 360,
+                Duration = new Duration(TimeSpan.FromSeconds(2)),
+                RepeatBehavior = RepeatBehavior.Forever // Repeat indefinitely
+            };
+
+            RotateTransform rotateTransform = new RotateTransform();
+            loadingCanvas.RenderTransform = rotateTransform;
+
+            rotateTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
         }
     }
 }
