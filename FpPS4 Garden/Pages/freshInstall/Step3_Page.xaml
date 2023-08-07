@@ -55,5 +55,12 @@
             </ProgressBar.Style>
         </ProgressBar>
 
+        <!--<Ellipse Height="200" Width="200" Fill="white">
+            
+        </Ellipse>
+        <Ellipse Height="180" Width="180" Fill="Transparent">
+
+        </Ellipse>-->
+
     </Grid>
 </Page>

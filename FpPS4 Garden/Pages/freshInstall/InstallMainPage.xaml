@@ -11,8 +11,7 @@
             <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
         </Storyboard>
     </Page.Resources>
-    <Grid x:Name="Content" Background="#101112">
-        
+    <Grid Background="#101112">
         <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
 
         <Button Margin="840,300,110,300" Width="50" Height="50" Click="NextButtonClick" Cursor="Hand">
