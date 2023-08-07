@@ -77,6 +77,6 @@
         </Grid>
 
         <!-- Content :o-->
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
     </Grid>
 </Window>
