@@ -17,7 +17,7 @@ namespace FpPS4_Garden.Pages.freshInstall
     /// <summary>
     /// Interaction logic for Step4_Page.xaml
     /// </summary>
-    public partial class Step4_Page : Window
+    public partial class Step4_Page : Page
     {
         public Step4_Page()
         {

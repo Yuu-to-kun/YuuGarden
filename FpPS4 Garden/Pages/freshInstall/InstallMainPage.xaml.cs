@@ -69,6 +69,11 @@ namespace FpPS4_Garden.Pages
                     break;
                 case Step3_Page:
                     Indicator3.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator4.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
+                    break;
+                case Step4_Page:
+                    Indicator4.Fill = new SolidColorBrush(Colors.Gray);
                     Indicator1.Fill = new SolidColorBrush(Colors.White);
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
                     break;
@@ -134,6 +139,11 @@ namespace FpPS4_Garden.Pages
                     Indicator3.Fill = new SolidColorBrush(Colors.Gray);
                     Indicator2.Fill = new SolidColorBrush(Colors.White);
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
+                    break;
+                case Step4_Page:
+                    Indicator4.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator3.Fill = new SolidColorBrush(Colors.White);
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
                     break;
             }
 
