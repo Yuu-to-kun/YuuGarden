@@ -11,5 +11,59 @@
         <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
             <Run Text="Done!"/>
         </TextBlock>
+
+        <TextBlock Margin="255,209,255,387" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
+            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4"/>
+            <Run Text="Garden has Been installed succesfully in the following directory!"/>
+        </TextBlock>
+
+        <Border CornerRadius="5" Width="420" Height="32" Margin="240,305,340,315">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
+            </Border.BorderBrush>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#FF2F3134"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#393b3e"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock x:Name="InstallDirecory" Padding="5" Background="Transparent" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" Text="Install direcory here" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <Button x:Name="BrowseFolderButton" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="665,305,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand">
+            <Button.BorderBrush>
+                <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
+            </Button.BorderBrush>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF2F3134"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#393b3e"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
     </Grid>
 </Page>
