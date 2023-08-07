@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\Rubik.ttf" />
-    <None Remove="Assets\Images\arrow_forward.png" />
+    <None Remove="Assets\Images\arrowForward.png" />
     <None Remove="Assets\Images\checkCircleFilled.png" />
     <None Remove="Assets\Images\close.png" />
     <None Remove="Assets\Images\maximize.png" />
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <Resource Include="Assets\Images\arrow_forward.png">
+    <Resource Include="Assets\Images\arrowForward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\checkCircleFilled.png">
