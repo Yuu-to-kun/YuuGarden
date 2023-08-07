@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FpPS4_Garden.Pages.freshInstall"
         mc:Ignorable="d"
-        Title="FreshInstall4" Height="650" Width="1000">
+        Title="FreshInstall4" Height="652" Width="1000">
 
-    <Grid Background="#101112" Height="650" Width="1000">
+    <Grid Background="#101112">
         <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
             <Run Text="Done!"/>
         </TextBlock>
