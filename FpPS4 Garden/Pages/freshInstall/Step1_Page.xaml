@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FpPS4_Garden.Pages.freshInstall"
       mc:Ignorable="d" 
-      Title="FreshInstall" Height="650" Width="1000">
+      Title="FreshInstall1" Height="650" Width="1000">
 
     <Grid Background="#101112" Height="650" Width="1000">
         <Grid Margin="70,122,70,140">

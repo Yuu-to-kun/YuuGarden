@@ -59,7 +59,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}">
-                                        <Image Source="/Assets/Images/imageedit.png" Width="20" Height="20"/>
+                                        <Image Source="/Assets/Images/minimize.png" Width="20" Height="20"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>

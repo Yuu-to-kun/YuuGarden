@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FpPS4_Garden.Pages.freshInstall"
         mc:Ignorable="d"
-        Title="Step4_Page" Height="450" Width="800">
-    <Grid>
-        
+        Title="FreshInstall4" Height="650" Width="1000">
+
+    <Grid Background="#101112" Height="650" Width="1000">
+        <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+            <Run Text="Done!"/>
+        </TextBlock>
     </Grid>
 </Page>
