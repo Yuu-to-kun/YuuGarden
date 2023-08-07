@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FpPS4_Garden.Pages.freshInstall;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,16 +17,16 @@ using System.Windows.Shapes;
 
 namespace FpPS4_Garden.Pages
 {
-    public partial class FreshInstall : Page
+    public partial class InstallMainPage : Page
     {
         private bool isAnimating = false; // To prevent overlapping animations
 
-        public FreshInstall()
+        public InstallMainPage()
         {
             InitializeComponent();
 
             // Go to page one on start
-            ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page1.xaml", UriKind.Relative));
+            ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
         }
 
         private async void NextButtonClick(object sender, RoutedEventArgs e)
@@ -54,18 +55,18 @@ namespace FpPS4_Garden.Pages
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
 
-            if (ContentFrame.Content is FreshInstall2)
+            if (ContentFrame.Content is Step2_Page)
             {
                 // Navigate back to the first page
                 Indicator1.Fill = new SolidColorBrush(Colors.White);
                 Indicator2.Fill = new SolidColorBrush(Colors.Gray);
-                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page1.xaml", UriKind.Relative));
+                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
             }
             else
             {
                 Indicator1.Fill = new SolidColorBrush(Colors.Gray);
                 Indicator2.Fill = new SolidColorBrush(Colors.White);
-                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Page2.xaml", UriKind.Relative));
+                ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
             }
            
 

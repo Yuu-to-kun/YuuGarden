@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FpPS4_Garden.Pages.freshInstall
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for Step1_Page.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Step1_Page : Page
     {
-        public Page1()
+        public Step1_Page()
         {
             InitializeComponent();
         }

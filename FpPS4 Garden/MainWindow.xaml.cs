@@ -25,7 +25,7 @@ namespace FpPS4_Garden
             InitializeComponent();
 
             // page :3
-            MainFrame.Navigate(new Uri("/pages/Freshinstall/Main.xaml", UriKind.Relative));
+            MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
