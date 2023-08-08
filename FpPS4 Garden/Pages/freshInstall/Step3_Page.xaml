@@ -29,7 +29,7 @@
             <TextBlock x:Name="TerminalOutput" Padding="5" Background="Transparent" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" Text="Terminal output                                                            1/16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
-        <Ellipse x:Name="circleGoRound" Height="75" Width="75" Stroke="white"  StrokeDashArray="23 8" StrokeThickness="6.9" Margin="400,379,400,73" RenderTransformOrigin="0.5 0.5"/>
+        <Ellipse x:Name="circleGoRound" Height="75" Width="75" Stroke="white"  StrokeDashArray="25 8" StrokeThickness="6.9" Margin="400,379,400,73" RenderTransformOrigin="0.5 0.5"/>
         <!-- Stroke dash array should be calculated with the widht, height and strokethickness. standards: StrokeDashArray  = 235 78 | stroke thickness = 2 | height+widht = 200 -->
         
     </Grid>
