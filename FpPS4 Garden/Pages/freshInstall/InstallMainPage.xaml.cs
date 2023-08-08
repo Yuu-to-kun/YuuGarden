@@ -17,6 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.UI.Core.AnimationMetrics;
 
 namespace FpPS4_Garden.Pages
 {
@@ -77,6 +78,20 @@ namespace FpPS4_Garden.Pages
                         Indicator3.Fill = new SolidColorBrush(Colors.White);
 
                         ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
+
+                        DoubleAnimation buttonsOpacity = new DoubleAnimation {
+
+                            From = 1.0,
+                            To = 0.0,
+                            Duration = TimeSpan.FromSeconds(0.28),
+                            FillBehavior = FillBehavior.Stop
+                        };
+
+                        NextPageButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
+                        PrevButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
+
+                        await Task.Delay(buttonsOpacity.Duration.TimeSpan);
+
                         NextPageButton.Visibility = Visibility.Hidden;
                         PrevButton.Visibility = Visibility.Hidden;
                     }
