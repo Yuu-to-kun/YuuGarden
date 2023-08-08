@@ -101,7 +101,7 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
             string part0 = "ghp";
             string part1 = "_yB5ynO2r8mjJEr6R";
             string part2 = "61cC5OWK9qwTHk3vIB3u";
-            string GToken = part1 + part2;
+            string GToken = part0 + part1 + part2;
 
             int latestTrunkArtifactId = getLatestTrunkArtifactID(GToken);
             Uri endpointLatestAction = new Uri("https://api.github.com/repos/red-prig/fpPS4/actions/artifacts/" + $"{latestTrunkArtifactId}" + "/zip");
