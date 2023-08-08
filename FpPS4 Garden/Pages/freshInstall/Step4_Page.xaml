@@ -31,7 +31,7 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <TextBlock x:Name="InstallDirecory" Padding="5" Background="Transparent" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" Text="Install direcory here" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="InstallLocationTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" IsReadOnly="true" Text="Install Directory here"/>
         </Border>
 
         <Button x:Name="BrowseFolderButton" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="665,305,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand">
