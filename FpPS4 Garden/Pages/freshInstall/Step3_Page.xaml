@@ -29,38 +29,8 @@
             <TextBlock x:Name="TerminalOutput" Padding="5" Background="Transparent" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" Text="Terminal output                                                            1/16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
-        <ProgressBar x:Name="progressBar" Value="10" Minimum="0" Maximum="100" Width="380" Height="32"  Foreground="#eceff4" Margin="310,386,310,232">
-            <ProgressBar.Template>
-                <ControlTemplate TargetType="ProgressBar">
-                    <Grid>
-                        <Border x:Name="PART_Track" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                        <Border x:Name="PART_Indicator" CornerRadius="5" Background="{TemplateBinding Foreground}" HorizontalAlignment="Left">
-                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left"/>
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </ProgressBar.Template>
-            <ProgressBar.BorderBrush>
-                <SolidColorBrush Color="#FFE1E1E1" Opacity="0.0"/>
-            </ProgressBar.BorderBrush>
-            <ProgressBar.Style>
-                <Style TargetType="ProgressBar">
-                    <Setter Property="Background" Value="#FF2F3134"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#393b3e"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ProgressBar.Style>
-        </ProgressBar>
-
-        <!--<Ellipse Height="200" Width="200" Fill="white">
-            
-        </Ellipse>
-        <Ellipse Height="180" Width="180" Fill="Transparent">
-
-        </Ellipse>-->
-
+        <Ellipse x:Name="circleGoRound" Height="75" Width="75" Stroke="white"  StrokeDashArray="23 8" StrokeThickness="6.9" Margin="400,379,400,73" RenderTransformOrigin="0.5 0.5"/>
+        <!-- Stroke dash array should be calculated with the widht, height and strokethickness. standards: StrokeDashArray  = 235 78 | stroke thickness = 2 | height+widht = 200 -->
+        
     </Grid>
 </Page>

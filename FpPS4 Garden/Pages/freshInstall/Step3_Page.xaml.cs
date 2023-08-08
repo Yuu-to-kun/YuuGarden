@@ -24,6 +24,22 @@ namespace FpPS4_Garden.Pages.freshInstall
         public Step3_Page()
         {
             InitializeComponent();
+            StartLoadingAnimation();
         }
+
+        private void StartLoadingAnimation()
+        {
+            var rotateAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 360,
+                Duration = TimeSpan.FromSeconds(1.2),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+
+            circleGoRound.RenderTransform = new RotateTransform();
+            circleGoRound.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
+        }
+
     }
 }

@@ -36,7 +36,7 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" CaretBrush="#FFECEFF4"/>
+            <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" CaretBrush="#FFECEFF4" IsReadOnly="true"/>
         </Border>
 
         <Button x:Name="BrowseFolderButton" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="647,326,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand">
