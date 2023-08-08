@@ -14,7 +14,7 @@
     <Grid Background="#101112">
         <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
 
-        <Button Margin="840,300,110,300" Width="50" Height="50" Click="NextButtonClick" Cursor="Hand">
+        <Button x:Name="NextPageButton" Margin="840,300,110,300" Width="50" Height="50" Click="NextButtonClick" Cursor="Hand">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF2F3134"/>

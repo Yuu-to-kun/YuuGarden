@@ -25,6 +25,8 @@ namespace FpPS4_Garden.Pages.freshInstall
         {
             InitializeComponent();
             StartLoadingAnimation();
+
+            
         }
 
         private void StartLoadingAnimation()
@@ -51,7 +53,7 @@ namespace FpPS4_Garden.Pages.freshInstall
             circleGoRound.Stroke = gradientBrush;
 
             circleGoRound.RenderTransform = new RotateTransform();
-            //circleGoRound.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
+            circleGoRound.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
         }
 
     }

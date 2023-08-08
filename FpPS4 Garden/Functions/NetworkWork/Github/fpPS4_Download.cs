@@ -1,4 +1,5 @@
-﻿using FpPS4_Garden.Models;
+﻿using FpPS4_Garden.Functions.FileWork;
+using FpPS4_Garden.Models;
 using FpPS4_Garden.Pages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -20,19 +21,22 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
 {
     class fpPS4_Download
     {
-        public void Download(Button PrevButton)
+        public async Task Download(Button PrevButton)
         {
+
             string filePath = Path.Combine(Misc.downloadPath, "fpPS4.zip");
             string fpPS4_Folder = Path.Combine(Misc.downloadPath, "fpPS4");
 
+            ConfigFunctions configFunctions = new ConfigFunctions();
+            
             if (!File.Exists(Path.Combine(Misc.downloadPath, "fpPS4.zip")))
             {
-                _ = Task.Run(() =>
+                await Task.Run(() =>
                 {
-                    
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         PrevButton.IsEnabled = false;
+                        
                     });
                     if (!Directory.Exists(Misc.downloadPath))
                     {
@@ -53,7 +57,7 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                 if (!Directory.Exists(Path.Combine(Misc.downloadPath, "fpPS4")))
                 {
                     
-                    _ = Task.Run(() =>
+                    await Task.Run(() =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -77,6 +81,11 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                     Console.WriteLine("Already Extracted");
                 }
             }
+
+            var config = configFunctions.OpenConfig();
+            config.installPath = Misc.downloadPath;
+
+            configFunctions.SaveConfig(config);
         }
 
         public void Extract_FpPS4(string filePath, string fpPS4_Folder)

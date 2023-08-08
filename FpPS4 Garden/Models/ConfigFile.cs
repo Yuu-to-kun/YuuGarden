@@ -10,5 +10,6 @@ namespace FpPS4_Garden.Models
     {
         public string appVer;
         public string lang;
+        public string installPath;
     }
 }

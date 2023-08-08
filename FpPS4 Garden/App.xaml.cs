@@ -52,7 +52,7 @@ namespace FpPS4_Garden
                 Directory.CreateDirectory(LocalDataFolder);
                 configFunctions.CreateConfig();
             }
-            else if (Directory.Exists(LocalDataFolder) || !File.Exists(Path.Combine(LocalDataFolder,"config.json")))
+            else if (Directory.Exists(LocalDataFolder) && !File.Exists(Path.Combine(LocalDataFolder,"config.json")))
             {
                 configFunctions.CreateConfig();
             }

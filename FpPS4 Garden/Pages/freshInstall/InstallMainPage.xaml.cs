@@ -1,4 +1,5 @@
-﻿using FpPS4_Garden.Functions.NetworkWork.Github;
+﻿using FpPS4_Garden.Functions.FileWork;
+using FpPS4_Garden.Functions.NetworkWork.Github;
 using FpPS4_Garden.Models;
 using FpPS4_Garden.Pages.freshInstall;
 using System;
@@ -65,19 +66,47 @@ namespace FpPS4_Garden.Pages
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
                     break;
                 case Step2_Page:
-                    Indicator2.Fill = new SolidColorBrush(Colors.Gray);
-                    Indicator3.Fill = new SolidColorBrush(Colors.White);
-                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
 
-                    // Start Installing
                     fpPS4_Download download = new fpPS4_Download();
-                    download.Download(PrevButton);
+                    ConfigFunctions configFuncs = new ConfigFunctions();
+                    var config = configFuncs.OpenConfig();
+
+                    if (config.installPath.Equals("") || config.installPath.Equals(null))
+                    {
+                        Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                        Indicator3.Fill = new SolidColorBrush(Colors.White);
+
+                        ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
+                        NextPageButton.Visibility = Visibility.Hidden;
+                        PrevButton.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                        Indicator4.Fill = new SolidColorBrush(Colors.White);
+
+                        ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
+                        NextPageButton.Visibility = Visibility.Hidden;
+                        PrevButton.Visibility = Visibility.Hidden;
+                    }
+                    
+                    
+                    // Start Installing
+                    
+                    if (config.installPath == "" || config.installPath == null)
+                    {
+                        
+                        await download.Download(PrevButton);
+
+                        Indicator3.Fill = new SolidColorBrush(Colors.Gray);
+                        Indicator4.Fill = new SolidColorBrush(Colors.White);
+                        ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
+
+                    }
+
                     //
                     break;
                 case Step3_Page:
-                    Indicator3.Fill = new SolidColorBrush(Colors.Gray);
-                    Indicator4.Fill = new SolidColorBrush(Colors.White);
-                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
                     break;
                 case Step4_Page:
                     Indicator4.Fill = new SolidColorBrush(Colors.Gray);
