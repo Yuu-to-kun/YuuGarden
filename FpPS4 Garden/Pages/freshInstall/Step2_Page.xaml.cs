@@ -43,9 +43,9 @@ namespace FpPS4_Garden.Pages
 
             if(result == DialogResult.OK)
             {
-                FolderPathTextBox.Text = System.IO.Path.Combine(installFolder + "Fp_Garden");
+                FolderPathTextBox.Text = System.IO.Path.Combine(installFolder, "Fp_Garden");
             }
-            Misc.downloadPath = System.IO.Path.Combine(installFolder + "Fp_Garden");
+            Misc.downloadPath = System.IO.Path.Combine(installFolder, "Fp_Garden");
         }
     }
 }
