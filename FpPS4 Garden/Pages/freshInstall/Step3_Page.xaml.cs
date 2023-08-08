@@ -37,6 +37,17 @@ namespace FpPS4_Garden.Pages.freshInstall
                 RepeatBehavior = RepeatBehavior.Forever
             };
 
+            var gradientBrush = new LinearGradientBrush();
+            var gradientStops = gradientBrush.GradientStops;
+            gradientStops.Add(new GradientStop(Colors.Red, 0));
+            gradientStops.Add(new GradientStop(Colors.Orange, 0.2));
+            gradientStops.Add(new GradientStop(Colors.Yellow, 0.4));
+            gradientStops.Add(new GradientStop(Colors.Green, 0.6));
+            gradientStops.Add(new GradientStop(Colors.Blue, 0.8));
+            gradientStops.Add(new GradientStop(Colors.Violet, 1.0));
+
+            circleGoRound.Stroke = gradientBrush;
+
             circleGoRound.RenderTransform = new RotateTransform();
             circleGoRound.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
         }
