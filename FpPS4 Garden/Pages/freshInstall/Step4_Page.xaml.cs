@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FpPS4_Garden.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,37 @@ namespace FpPS4_Garden.Pages.freshInstall
         public Step4_Page()
         {
             InitializeComponent();
+        }
+
+        private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Star Process Information
+            ProcessStartInfo startinfo = new ProcessStartInfo { 
+                FileName = "explorer.exe",
+                Arguments = Misc.downloadPath,
+                WindowStyle = ProcessWindowStyle.Normal,
+            };
+            Process.Start(startinfo);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+           
+        }
+
+        private void FinishInstallationButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Finish Installation
+            if (LaunchOnClose.IsChecked == true)
+            {
+                Application.Current.Shutdown();
+                System.Windows.Forms.Application.Restart();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }

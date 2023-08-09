@@ -44,9 +44,11 @@ namespace FpPS4_Garden
         {
             InitializeJumpList();
 
+            //Declaring variables
             string LocalDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FP_Garden");
             ConfigFunctions configFunctions = new ConfigFunctions();
 
+            //Creating AppData Folder and config
             if (!Directory.Exists(LocalDataFolder))
             {
                 Directory.CreateDirectory(LocalDataFolder);

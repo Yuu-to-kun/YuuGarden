@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FpPS4_Garden.Functions.FileWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,24 @@ namespace FpPS4_Garden
             InitializeComponent();
 
             // page :3
-            MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
+
+            //Declaring variables
+            ConfigFunctions configFunctions = new ConfigFunctions();
+            var config = configFunctions.OpenConfig();
+
+            //Routing depending on freshinstall
+            if (config.installPath.Equals("") || config.installPath.Equals(null))
+            {
+                MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MainFrame.Navigate(new Uri("/pages/Garden_MainScreen.xaml", UriKind.Relative));
+            }
+                
         }
 
+        // Custom Top Bar Stuff
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();

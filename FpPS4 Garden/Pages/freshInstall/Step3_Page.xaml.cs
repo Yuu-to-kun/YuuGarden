@@ -31,6 +31,8 @@ namespace FpPS4_Garden.Pages.freshInstall
 
         private void StartLoadingAnimation()
         {
+            //Loading circle animation
+
             var rotateAnimation = new DoubleAnimation
             {
                 From = 0,

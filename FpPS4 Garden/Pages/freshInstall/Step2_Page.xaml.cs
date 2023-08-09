@@ -34,13 +34,12 @@ namespace FpPS4_Garden.Pages
 
         private void BrowseInstallFolder_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Declaring Variables
             FolderBrowserDialog installFolderDialog = new FolderBrowserDialog();
-
             DialogResult result = installFolderDialog.ShowDialog();
-
             var installFolder = installFolderDialog.SelectedPath;
 
+            // Browse Folder Dialog
             if(result == DialogResult.OK)
             {
                 FolderPathTextBox.Text = System.IO.Path.Combine(installFolder, "Fp_Garden");

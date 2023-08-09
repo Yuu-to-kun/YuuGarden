@@ -59,55 +59,50 @@ namespace FpPS4_Garden.Pages
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
 
+            // Page Movement
             switch (ContentFrame.Content)
             {
                 case Step1_Page:
+                    //Page Indicator Change
                     Indicator1.Fill = new SolidColorBrush(Colors.Gray);
                     Indicator2.Fill = new SolidColorBrush(Colors.White);
+
+                    //Routing
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
                     break;
                 case Step2_Page:
 
+                    //Decalaring variables
                     fpPS4_Download download = new fpPS4_Download();
                     ConfigFunctions configFuncs = new ConfigFunctions();
                     var config = configFuncs.OpenConfig();
 
-                    if (config.installPath.Equals("") || config.installPath.Equals(null))
-                    {
-                        Indicator2.Fill = new SolidColorBrush(Colors.Gray);
-                        Indicator3.Fill = new SolidColorBrush(Colors.White);
+                    //Page Indicator Change
+                    Indicator2.Fill = new SolidColorBrush(Colors.Gray);
+                    Indicator3.Fill = new SolidColorBrush(Colors.White);
 
-                        ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
+                    //Routing
+                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
 
-                        DoubleAnimation buttonsOpacity = new DoubleAnimation {
+                    //Animation for disapearing buttons
+                    DoubleAnimation buttonsOpacity = new DoubleAnimation {
 
-                            From = 1.0,
-                            To = 0.0,
-                            Duration = TimeSpan.FromSeconds(0.28),
-                            FillBehavior = FillBehavior.Stop
-                        };
+                        From = 1.0,
+                        To = 0.0,
+                        Duration = TimeSpan.FromSeconds(0.28),
+                        FillBehavior = FillBehavior.Stop
+                    };
 
-                        NextPageButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
-                        PrevButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
+                    NextPageButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
+                    PrevButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
 
-                        await Task.Delay(buttonsOpacity.Duration.TimeSpan);
+                    await Task.Delay(buttonsOpacity.Duration.TimeSpan);
 
-                        NextPageButton.Visibility = Visibility.Hidden;
-                        PrevButton.Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
-                        Indicator2.Fill = new SolidColorBrush(Colors.Gray);
-                        Indicator4.Fill = new SolidColorBrush(Colors.White);
-
-                        ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
-                        NextPageButton.Visibility = Visibility.Hidden;
-                        PrevButton.Visibility = Visibility.Hidden;
-                    }
+                    NextPageButton.Visibility = Visibility.Hidden;
+                    PrevButton.Visibility = Visibility.Hidden;
                     
-                    
+
                     // Start Installing
-                    
                     if (config.installPath == "" || config.installPath == null)
                     {
                         
@@ -116,17 +111,10 @@ namespace FpPS4_Garden.Pages
                         Indicator3.Fill = new SolidColorBrush(Colors.Gray);
                         Indicator4.Fill = new SolidColorBrush(Colors.White);
                         ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
-
+                           
                     }
-
-                    //
                     break;
                 case Step3_Page:
-                    break;
-                case Step4_Page:
-                    Indicator4.Fill = new SolidColorBrush(Colors.Gray);
-                    Indicator1.Fill = new SolidColorBrush(Colors.White);
-                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
                     break;
             }
 
@@ -177,24 +165,18 @@ namespace FpPS4_Garden.Pages
             // After animation completion, navigate to the next page
             ContentFrame.RenderTransform = null; // Reset the transform
 
+            //Page Movement
             switch (ContentFrame.Content)
             {
                 case Step1_Page:
                     break;
                 case Step2_Page:
+                    //Page Indicator Change
                     Indicator2.Fill = new SolidColorBrush(Colors.Gray);
                     Indicator1.Fill = new SolidColorBrush(Colors.White);
+
+                    //Routing
                     ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
-                    break;
-                case Step3_Page:
-                    Indicator3.Fill = new SolidColorBrush(Colors.Gray);
-                    Indicator2.Fill = new SolidColorBrush(Colors.White);
-                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step2_Page.xaml", UriKind.Relative));
-                    break;
-                case Step4_Page:
-                    Indicator4.Fill = new SolidColorBrush(Colors.Gray);
-                    Indicator3.Fill = new SolidColorBrush(Colors.White);
-                    ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
                     break;
             }
 
