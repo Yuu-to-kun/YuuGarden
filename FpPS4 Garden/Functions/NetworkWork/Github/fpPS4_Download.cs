@@ -5,11 +5,13 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,6 +51,33 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                     });
 
                     Extract_FpPS4(filePath,fpPS4_Folder);
+
+                    File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+
+                    string appPath = Process.GetCurrentProcess().MainModule.FileName;
+                    string startMenuPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Microsoft","Windows","Start Menu","Programs");
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                    string startMenuFolder = Path.Combine(startMenuPath, "Fp_Garden");
+
+                    if (!Directory.Exists(Path.Combine(startMenuPath,"Fp_Garden")))
+                    {
+                        Directory.CreateDirectory(startMenuFolder);
+
+
+                    }
+                    if (!File.Exists(Path.Combine(startMenuFolder, "FP Garden.lnk")))
+                    {
+                        CreateShortcut shortcut = new CreateShortcut();
+
+                        shortcut.startMenuShortcut(Path.Combine(startMenuFolder,"FP Garden.lnk"),appPath);
+                    }
+                    if (!File.Exists(Path.Combine(desktopPath, "FP Garden.lnk")))
+                    {
+                        CreateShortcut shortcut = new CreateShortcut();
+
+                        shortcut.startMenuShortcut(Path.Combine(desktopPath, "FP Garden.lnk"), appPath);
+                    }
+
                 });
             }
             else
@@ -66,7 +95,7 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
 
                         Thread.Sleep(2500);
                         Extract_FpPS4(filePath,fpPS4_Folder);
-
+                        File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
                         //Thread.Sleep(5000);
                         Application.Current.Dispatcher.Invoke(() =>
                         {
