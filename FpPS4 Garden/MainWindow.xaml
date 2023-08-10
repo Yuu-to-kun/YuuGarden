@@ -10,7 +10,6 @@
         <Style TargetType="Window">
             <Setter Property="WindowStyle" Value="None"/>
             <Setter Property="AllowsTransparency" Value="True"/>
-            <!--<Setter Property="ResizeMode" Value="NoResize"/>-->
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
                     <WindowChrome CaptionHeight="0"
