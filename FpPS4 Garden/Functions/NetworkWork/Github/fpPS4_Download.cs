@@ -29,58 +29,22 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
             string filePath = Path.Combine(Misc.downloadPath, "fpPS4.zip");
             string fpPS4_Folder = Path.Combine(Misc.downloadPath, "fpPS4");
 
-            ConfigFunctions configFunctions = new ConfigFunctions();
-            
             if (!File.Exists(Path.Combine(Misc.downloadPath, "fpPS4.zip")))
             {
-                await Task.Run(() =>
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        PrevButton.IsEnabled = false;
-                        
-                    });
-                    if (!Directory.Exists(Misc.downloadPath))
-                    {
-                        Directory.CreateDirectory(Misc.downloadPath);
-                    }
-                    Download_Latest_Trunk(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        PrevButton.IsEnabled = true;
-                    });
+                 await Task.Run(() =>
+                 {
+                     if (!Directory.Exists(Misc.downloadPath))
+                     {
+                         Directory.CreateDirectory(Misc.downloadPath);
+                     }
+                     Download_Latest_Trunk(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+                     Extract_FpPS4(filePath,fpPS4_Folder);
 
-                    Extract_FpPS4(filePath,fpPS4_Folder);
+                     File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
 
-                    File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
-
-                    string appPath = Process.GetCurrentProcess().MainModule.FileName;
-                    string startMenuPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Microsoft","Windows","Start Menu","Programs");
-                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                    string startMenuFolder = Path.Combine(startMenuPath, "Fp_Garden");
-
-                    if (!Directory.Exists(Path.Combine(startMenuPath,"Fp_Garden")))
-                    {
-                        Directory.CreateDirectory(startMenuFolder);
-
-
-                    }
-                    if (!File.Exists(Path.Combine(startMenuFolder, "FP Garden.lnk")))
-                    {
-                        CreateShortcut shortcut = new CreateShortcut();
-
-                        shortcut.startMenuShortcut(Path.Combine(startMenuFolder,"FP Garden.lnk"),appPath);
-                    }
-                    if (!File.Exists(Path.Combine(desktopPath, "FP Garden.lnk")))
-                    {
-                        CreateShortcut shortcut = new CreateShortcut();
-
-                        shortcut.startMenuShortcut(Path.Combine(desktopPath, "FP Garden.lnk"), appPath);
-                    }
-
-                });
-            }
-            else
+                 });
+             }
+             else
             {
                 Console.WriteLine("File Exists");
                 if (!Directory.Exists(Path.Combine(Misc.downloadPath, "fpPS4")))
@@ -111,10 +75,6 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                 }
             }
 
-            var config = configFunctions.OpenConfig();
-            config.installPath = Misc.downloadPath;
-
-            configFunctions.SaveConfig(config);
         }
 
         public void Extract_FpPS4(string filePath, string fpPS4_Folder)

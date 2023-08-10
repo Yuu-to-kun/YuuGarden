@@ -74,6 +74,7 @@ namespace FpPS4_Garden.Pages
 
                     //Decalaring variables
                     fpPS4_Download download = new fpPS4_Download();
+                    Installation_Process install = new Installation_Process();
                     ConfigFunctions configFuncs = new ConfigFunctions();
                     var config = configFuncs.OpenConfig();
 
@@ -93,20 +94,23 @@ namespace FpPS4_Garden.Pages
                         FillBehavior = FillBehavior.Stop
                     };
 
+                    buttonsOpacity.Completed += (sender, e) =>
+                    {
+                        NextPageButton.Visibility = Visibility.Hidden;
+                        PrevButton.Visibility = Visibility.Hidden;
+                    };
+
                     NextPageButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
                     PrevButton.BeginAnimation(UIElement.OpacityProperty, buttonsOpacity);
 
                     await Task.Delay(buttonsOpacity.Duration.TimeSpan);
-
-                    NextPageButton.Visibility = Visibility.Hidden;
-                    PrevButton.Visibility = Visibility.Hidden;
-                    
 
                     // Start Installing
                     if (config.installPath == "" || config.installPath == null)
                     {
                         
                         await download.Download(PrevButton);
+                        await install.Install();
 
                         Indicator3.Fill = new SolidColorBrush(Colors.Gray);
                         Indicator4.Fill = new SolidColorBrush(Colors.White);
