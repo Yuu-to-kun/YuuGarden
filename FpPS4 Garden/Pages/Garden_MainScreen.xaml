@@ -5,10 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FpPS4_Garden.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Garden_MainScreen">
+      Title="Garden_MainScreen" Height="652" Width="1000">
 
-    <Grid Background="#101112">
-        <TextBlock Foreground="White" TextAlignment="Center" FontSize="25" Margin="366,198,366,219">Hello</TextBlock>
+    <Grid>
+        <Border Background="#26272a" Width="50" HorizontalAlignment="Left">
+            <!-- Sidebar content goes here -->
+            <StackPanel>
+                <TextBlock Text="icon" Margin="10" Foreground="White"/>
+                <TextBlock Text="icon" Margin="10" Foreground="White"/>
+                <TextBlock Text="icon" Margin="10" Foreground="White"/>
+                <TextBlock Text="icon" Margin="10,460,10,10.3" Foreground="White"/>
+                <TextBlock Text="icon" Margin="10" Foreground="White"/>
+            </StackPanel>
+        </Border>
+        <Border Background="#101112" Margin="50,0,0,0">
+            <!-- Main content goes here -->
+            <TextBlock Text="Wowie content" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+        </Border>
     </Grid>
 </Page>
