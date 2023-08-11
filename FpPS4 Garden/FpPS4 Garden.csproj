@@ -13,12 +13,17 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\Rubik.ttf" />
+    <None Remove="Assets\Images\add.png" />
     <None Remove="Assets\Images\arrowForward.png" />
     <None Remove="Assets\Images\checkCircleFilled.png" />
     <None Remove="Assets\Images\close.png" />
     <None Remove="Assets\Images\maximize.png" />
     <None Remove="Assets\Images\minimize.png" />
+    <None Remove="Assets\Images\search.png" />
+    <None Remove="Assets\Images\settings.png" />
     <None Remove="Assets\Images\square.png" />
+    <None Remove="Assets\Images\update.png" />
+    <None Remove="Assets\Images\updateDisabled.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +40,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Resource Include="Assets\Images\add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\arrowForward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -50,15 +58,21 @@
     <Resource Include="Assets\Images\maximize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\square.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Assets\Images\Unused\checkCircleFilled.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Assets\Images\update.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\updateDisabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

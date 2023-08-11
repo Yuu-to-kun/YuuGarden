@@ -6,19 +6,37 @@
       xmlns:local="clr-namespace:FpPS4_Garden.Pages"
       mc:Ignorable="d" 
       Title="Garden_MainScreen" Height="652" Width="1000">
-
+    <Page.Resources>
+        <Style x:Key="HoverBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#393b3e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <Border Background="#26272a" Width="50" HorizontalAlignment="Left">
+        <Border Background="#26272a" Width="40" HorizontalAlignment="Left">
             <!-- Sidebar content goes here -->
             <StackPanel>
-                <TextBlock Text="icon" Margin="10" Foreground="White"/>
-                <TextBlock Text="icon" Margin="10" Foreground="White"/>
-                <TextBlock Text="icon" Margin="10" Foreground="White"/>
-                <TextBlock Text="icon" Margin="10,460,10,10.3" Foreground="White"/>
-                <TextBlock Text="icon" Margin="10" Foreground="White"/>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/add.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 450, 3, 8"  Padding="2">
+                    <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8"  Padding="2">
+                <Image Source="/Assets/Images/settings.png" Width="30" Height="30"/>
+                </Border>
             </StackPanel>
         </Border>
-        <Border Background="#101112" Margin="50,0,0,0">
+        <Border Background="#101112" Margin="40,0,0,0">
             <!-- Main content goes here -->
             <TextBlock Text="Wowie content" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
         </Border>
