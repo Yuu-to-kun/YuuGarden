@@ -5,11 +5,13 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,31 +29,22 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
             string filePath = Path.Combine(Misc.downloadPath, "fpPS4.zip");
             string fpPS4_Folder = Path.Combine(Misc.downloadPath, "fpPS4");
 
-            ConfigFunctions configFunctions = new ConfigFunctions();
-            
             if (!File.Exists(Path.Combine(Misc.downloadPath, "fpPS4.zip")))
             {
-                await Task.Run(() =>
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        PrevButton.IsEnabled = false;
-                        
-                    });
-                    if (!Directory.Exists(Misc.downloadPath))
-                    {
-                        Directory.CreateDirectory(Misc.downloadPath);
-                    }
-                    Download_Latest_Trunk(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        PrevButton.IsEnabled = true;
-                    });
+                 await Task.Run(() =>
+                 {
+                     if (!Directory.Exists(Misc.downloadPath))
+                     {
+                         Directory.CreateDirectory(Misc.downloadPath);
+                     }
+                     Download_Latest_Trunk(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+                     Extract_FpPS4(filePath,fpPS4_Folder);
 
-                    Extract_FpPS4(filePath,fpPS4_Folder);
-                });
-            }
-            else
+                     File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+
+                 });
+             }
+             else
             {
                 Console.WriteLine("File Exists");
                 if (!Directory.Exists(Path.Combine(Misc.downloadPath, "fpPS4")))
@@ -66,7 +59,7 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
 
                         Thread.Sleep(2500);
                         Extract_FpPS4(filePath,fpPS4_Folder);
-
+                        File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
                         //Thread.Sleep(5000);
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -82,10 +75,6 @@ namespace FpPS4_Garden.Functions.NetworkWork.Github
                 }
             }
 
-            var config = configFunctions.OpenConfig();
-            config.installPath = Misc.downloadPath;
-
-            configFunctions.SaveConfig(config);
         }
 
         public void Extract_FpPS4(string filePath, string fpPS4_Folder)
