@@ -61,7 +61,7 @@
         <Button x:Name="BrowseFolderButton" Content="Browse" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="647,326,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand"/>
 
         <Grid x:Name="installPopup"  Height="280" Width="400" Background="#222427" Visibility="Visible" Margin="302,186,298,186" Grid.RowSpan="2">
-            <TextBlock Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="17" FontWeight="Bold" Margin="0,62,0,0" Width="260">
+            <TextBlock TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="17" FontWeight="Bold" Margin="0,62,0,0" Width="260">
                     <Run Text="Are you sure you want to install"/>
                     <Run Foreground="#FFFFF53C" Text="fp"/><Run Text="PS4 Garden?"/>
             </TextBlock>
