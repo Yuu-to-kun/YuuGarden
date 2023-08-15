@@ -31,37 +31,26 @@ namespace FpPS4_Garden.Pages
         {
             InitializeComponent();
 
-            // Go to page one on start
+            ContentFrame.RenderTransform = new TranslateTransform();
             ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step1_Page.xaml", UriKind.Relative));
         }
 
         private async void NextButtonClick(object sender, RoutedEventArgs e)
         {
+            DoubleAnimation slideToR = new DoubleAnimation { To = -slideDistance, Duration = TimeSpan.FromSeconds(0.2) };
+            DoubleAnimation slideToL = new DoubleAnimation { From = slideDistance, To = 0, Duration = TimeSpan.FromSeconds(0.2) };
             if (!(ContentFrame.Content is Step2_Page))
             {
                 if (isAnimating)
+                {
                     return;
+                }
 
                 isAnimating = true;
 
                 
-
-                // Create a slide animation to the left
-                var slideAnimation = new DoubleAnimation
-                {
-                    From = 0,
-                    To = -slideDistance,
-                    Duration = TimeSpan.FromSeconds(0.2)
-                };
-
-                // Apply the animation to the Frame's content
-                ContentFrame.RenderTransform = new TranslateTransform();
-                ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideAnimation);
-
-                await Task.Delay(TimeSpan.FromSeconds(0.2)); // Adjust as needed
-
-                // After animation completion, navigate to the next page
-                ContentFrame.RenderTransform = null; // Reset the transform
+                ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideToR);
+                await Task.Delay(TimeSpan.FromSeconds(0.2));
             }
             
             // Page Movement
@@ -85,18 +74,8 @@ namespace FpPS4_Garden.Pages
 
             if (!(ContentFrame.Content is Step2_Page))
             {
-                // Create a slide-in animation for the new page
-                var slideInAnimation = new DoubleAnimation
-                {
-                    From = slideDistance,
-                    To = 0,
-                    Duration = TimeSpan.FromSeconds(0.2)
-                };
 
-                // Apply the animation to the Frame's content
-                ContentFrame.RenderTransform = new TranslateTransform();
-                ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideInAnimation);
-
+                ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideToL);
                 isAnimating = false;
             }
 
@@ -167,30 +146,26 @@ namespace FpPS4_Garden.Pages
 
         private async void proceedButton_Click(object sender, RoutedEventArgs e)
         {
+            DoubleAnimation slideToR = new DoubleAnimation { To = -slideDistance, Duration = TimeSpan.FromSeconds(0.2)};
+            DoubleAnimation slideToL = new DoubleAnimation { From = slideDistance, To = 0, Duration = TimeSpan.FromSeconds(0.2) };
+            DoubleAnimation buttonsOpacity = new DoubleAnimation { From = 1.0,To = 0.0,Duration = TimeSpan.FromSeconds(0.28),FillBehavior = FillBehavior.Stop};
             installPopup.Visibility = Visibility.Hidden;
+
             if (isAnimating)
+            {
                 return;
+            }
 
             isAnimating = true;
 
-            double slideDistance = 680;
-
-            // Create a slide animation to the left
-            var slideAnimation = new DoubleAnimation
-            {
-                From = 0,
-                To = -slideDistance,
-                Duration = TimeSpan.FromSeconds(0.2)
-            };
 
             // Apply the animation to the Frame's content
             ContentFrame.RenderTransform = new TranslateTransform();
-            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideAnimation);
+            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideToR);
 
             await Task.Delay(TimeSpan.FromSeconds(0.2)); // Adjust as needed
 
-            // After animation completion, navigate to the next page
-            ContentFrame.RenderTransform = null; // Reset the transform
+            ContentFrame.RenderTransform = null;
 
              //Decalaring variables
              fpPS4_Download download = new fpPS4_Download();
@@ -206,15 +181,6 @@ namespace FpPS4_Garden.Pages
              ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step3_Page.xaml", UriKind.Relative));
 
              //Animation for disapearing buttons
-             DoubleAnimation buttonsOpacity = new DoubleAnimation
-             {
-
-                 From = 1.0,
-                 To = 0.0,
-                 Duration = TimeSpan.FromSeconds(0.28),
-                 FillBehavior = FillBehavior.Stop
-             };
-
              buttonsOpacity.Completed += (sender, e) =>
              {
                  NextPageButton.Visibility = Visibility.Hidden;
@@ -238,18 +204,9 @@ namespace FpPS4_Garden.Pages
                  ContentFrame.NavigationService?.Navigate(new Uri("/Pages/Freshinstall/Step4_Page.xaml", UriKind.Relative));
 
              }
-            
-            // Create a slide-in animation for the new page
-            var slideInAnimation = new DoubleAnimation
-            {
-                From = slideDistance,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(0.2)
-            };
 
-            // Apply the animation to the Frame's content
             ContentFrame.RenderTransform = new TranslateTransform();
-            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideInAnimation);
+            ContentFrame.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideToL);
 
             isAnimating = false;
         }
