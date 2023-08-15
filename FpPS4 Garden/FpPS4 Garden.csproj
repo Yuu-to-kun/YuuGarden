@@ -16,6 +16,7 @@
     <None Remove="Assets\Images\add.png" />
     <None Remove="Assets\Images\arrowForward.png" />
     <None Remove="Assets\Images\checkCircleFilled.png" />
+    <None Remove="Assets\Images\ChickenNugget.png" />
     <None Remove="Assets\Images\close.png" />
     <None Remove="Assets\Images\maximize.png" />
     <None Remove="Assets\Images\minimize.png" />
@@ -47,6 +48,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\checkCircleFilled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\chickenNugget.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\close.png">

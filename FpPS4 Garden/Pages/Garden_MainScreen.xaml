@@ -17,28 +17,50 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-    </Page.Resources>
+        <Style x:Key="GameCardStyling" TargetType="Border">
+            <Setter Property="Background" Value="#26272a"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#393b3e"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Page.Resources>
     <Grid>
         <Border Background="#26272a" Width="40" HorizontalAlignment="Left">
             <!-- Sidebar content goes here -->
             <StackPanel>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/chickenNugget.png" Width="30" Height="30"/>
+                </Border>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
                     <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
                 </Border>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
                     <Image Source="/Assets/Images/add.png" Width="30" Height="30"/>
                 </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 450, 3, 8"  Padding="2">
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 405, 3, 8"  Padding="2">
                     <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
                 </Border>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8"  Padding="2">
-                <Image Source="/Assets/Images/settings.png" Width="30" Height="30"/>
+                    <Image Source="/Assets/Images/settings.png" Width="30" Height="30"/>
                 </Border>
             </StackPanel>
         </Border>
-        <Border Background="#101112" Margin="40,0,0,0">
+        <Grid Background="#101112" Margin="40,0,0,0">
             <!-- Main content goes here -->
-            <TextBlock Text="Wowie content" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-        </Border>
+
+
+            <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,20,732,366">
+            </Border>
+            <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="230,20,512,366">
+            </Border>
+            <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="445,20,292,366">
+            </Border>
+            <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="675,23,79,369">
+            </Border>
+        </Grid>
     </Grid>
 </Page>
