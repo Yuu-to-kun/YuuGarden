@@ -24,32 +24,28 @@ namespace StarGarden.Pages
     /// </summary>
     public partial class Garden_MainScreen : Page
     {
-        private List<string> games = new List<string>();
+        private List<string> _games = new List<string>();
+
+        public ObservableCollection<GameEntry> Games { get; } = new ObservableCollection<GameEntry>();
+
         public Garden_MainScreen()
         {
             GameDetection detection = new GameDetection();
             games = detection.Scan();
-            InitializeComponent();
-            DataContext = new MainViewModel(games,detection);
-        }
-    }
-
-    public class MainViewModel
-    {
-        public ObservableCollection<GameEntry> Games { get; } = new ObservableCollection<GameEntry>();
-
-        List<string> _games;
-        GameDetection _detection;
-        public MainViewModel(List<string> games, GameDetection detection)
-        {
-            _games = games;
-            _detection = detection;
 
             GetKey getKey = new GetKey();
             for (int i = 0; i < _games.Count; i++)
             {
-                Games.Add(new GameEntry { Name = $"{getKey.GetSpecificKeyData(_detection.sfoPath(games[i]), "TITLE")}", Description = "Description 1", ImageSource = "https://fpps4.net/images/NA.jpg" });
+                Games.Add(new GameEntry
+                {
+                    Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
+                    Description = "Description 1",
+                    ImageSource = "https://fpps4.net/images/NA.jpg"
+                });
             }
+
+            InitializeComponent();
+            DataContext = this;
         }
     }
 }
