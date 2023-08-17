@@ -52,11 +52,10 @@ namespace StarGarden
             if (!Directory.Exists(LocalDataFolder))
             {
                 Directory.CreateDirectory(LocalDataFolder);
-                configFunctions.CreateConfig();
-            }
-            else if (Directory.Exists(LocalDataFolder) && !File.Exists(Path.Combine(LocalDataFolder,"config.json")))
-            {
-                configFunctions.CreateConfig();
+                if (!File.Exists(Path.Combine(LocalDataFolder, "config.json")))
+                {
+                    configFunctions.CreateConfig();
+                }
             }
         }
     }
