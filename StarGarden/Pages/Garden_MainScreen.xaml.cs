@@ -48,7 +48,7 @@ namespace StarGarden.Pages
             GetKey getKey = new GetKey();
             for (int i = 0; i < _games.Count; i++)
             {
-                Games.Add(new GameEntry { Name = $"{getKey.GetKeyData(_detection.sfoPath(games[i]), "TITLE")}", Description = "Description 1", ImageSource = "https://fpps4.net/images/NA.jpg" });
+                Games.Add(new GameEntry { Name = $"{getKey.GetSpecificKeyData(_detection.sfoPath(games[i]), "TITLE")}", Description = "Description 1", ImageSource = "https://fpps4.net/images/NA.jpg" });
             }
         }
     }

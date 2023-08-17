@@ -12,26 +12,23 @@ namespace StarGarden.Functions.FileWork.SFO
 {
     public class GetKey
     {
-        public uint UintData(FileStream fs, SFO_IndexEntry indexEntry, SFO_Header header)
+        public object GetData(FileStream fs, SFO_IndexEntry indexEntry, SFO_Header header)
         {
             byte[] buffer = new byte[indexEntry.paramLen];
             fs.Seek(header.dataTableOffset + indexEntry.dataOffset, SeekOrigin.Begin);
             fs.Read(buffer, 0, (int)indexEntry.paramLen);
 
-            uint result = BitConverter.ToUInt32(buffer, 0);
-            return result;
+            switch (isKeyUint(indexEntry))
+            {
+                case true:
+                    var uintResult = BitConverter.ToUInt32(buffer, 0);
+                    return uintResult;
+                case false:
+                    var stringResult = $"{Encoding.UTF8.GetString(buffer)}";
+                    return stringResult;
+            }
+
         }
-
-        public string StringData(FileStream fs, SFO_IndexEntry indexEntry, SFO_Header header)
-        {
-            byte[] buffer = new byte[indexEntry.paramLen];
-            fs.Seek(header.dataTableOffset + indexEntry.dataOffset, SeekOrigin.Begin);
-            fs.Read(buffer, 0, (int)indexEntry.paramLen);
-
-            string result = $"{Encoding.UTF8.GetString(buffer)}";
-            return result;
-        }
-
         public string KeyName(FileStream fs, SFO_IndexEntry indexEntry, SFO_Header header)
         {
             List<byte> bufferList = new List<byte>();
@@ -60,8 +57,7 @@ namespace StarGarden.Functions.FileWork.SFO
                 return false;
             }
         }
-
-        public object GetSpecificData(string keyName, FileStream fs,List<SFO_IndexEntry> indexEntries,SFO_Header header)
+        public object SpecificData(string keyName, FileStream fs,List<SFO_IndexEntry> indexEntries,SFO_Header header)
         {
             for (int i = 0; i < indexEntries.Count; i++)
             {
@@ -82,22 +78,13 @@ namespace StarGarden.Functions.FileWork.SFO
                 if (result == keyName)
                 {
 
-                    switch (isKeyUint(indexEntries[i]))
-                    {
-                        case true:
-                            var uintResult = UintData(fs, indexEntries[i],header);
-                            return uintResult;
-                        case false:
-                            var stringResult = StringData(fs, indexEntries[i],header);
-                            return stringResult;
-                    }
+                   return GetData(fs, indexEntries[i], header);
 
                 }
             }
             return null;
         }
-
-        public object GetKeyData(string sfoPath, string KeyName)
+        public object GetSpecificKeyData(string sfoPath, string KeyName)
         {
             using (FileStream fs = File.OpenRead(sfoPath))
             {
@@ -113,7 +100,7 @@ namespace StarGarden.Functions.FileWork.SFO
 
                 bigEndian.header(ref header);
 
-                var data = getKey.GetSpecificData(KeyName, fs, sfo_IndexEntries, header);
+                var data = getKey.SpecificData(KeyName, fs, sfo_IndexEntries, header);
 
                 return data;
             }

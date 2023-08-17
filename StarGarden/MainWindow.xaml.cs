@@ -28,14 +28,10 @@ namespace StarGarden
 
             GameDetection detection = new GameDetection();
             GetKey getKey = new GetKey();
-            
-            // page :3
-
-            //Declaring variables
             ConfigFunctions configFunctions = new ConfigFunctions();
             var config = configFunctions.OpenConfig();
 
-            //Routing depending on freshinstall
+            //Fresh Install or Launcher
             if (config.installPath.Equals("") || config.installPath.Equals(null))
             {
                 MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
@@ -46,7 +42,7 @@ namespace StarGarden
                 List<string> games = detection.Scan();
                 for (int i = 0; i < games.Count; i++)
                 {
-                    Console.WriteLine($"[Recognised Game]: {getKey.GetKeyData(detection.sfoPath(games[i]),"TITLE")}");
+                    Console.WriteLine($"[Recognised Game]: {getKey.GetSpecificKeyData(detection.sfoPath(games[i]),"TITLE")}");
                 }
             }
                 
