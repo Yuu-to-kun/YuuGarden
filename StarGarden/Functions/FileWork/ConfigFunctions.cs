@@ -1,5 +1,4 @@
-﻿using StarGarden.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static StarGarden.Models.fpPS4_Artifact_Json;
+using StarGarden.Models.Launcher;
 
 namespace StarGarden.Functions.FileWork
 {

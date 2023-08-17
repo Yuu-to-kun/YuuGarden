@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StarGarden.SFO
+namespace StarGarden.Models.SFO
 {
     public struct SFO_IndexEntry
     {

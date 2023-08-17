@@ -26,7 +26,6 @@ namespace StarGarden.Functions.FileWork
                     Console.WriteLine("A Game");
                 }
             }
-            Console.ReadKey();
             
         }
     }

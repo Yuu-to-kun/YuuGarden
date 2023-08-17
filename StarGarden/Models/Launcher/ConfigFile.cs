@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StarGarden.Models
+namespace StarGarden.Models.Launcher
 {
     public class ConfigFile
     {
