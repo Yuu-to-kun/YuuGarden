@@ -47,7 +47,7 @@ namespace StarGarden.Pages
                 };
                 gameEntry.gameSelected += IsCheckedChange;
 
-                Games.Add(gameEntry);
+                GamesTemplate.Add(gameEntry);
 
             }
 
