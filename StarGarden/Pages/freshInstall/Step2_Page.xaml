@@ -31,17 +31,17 @@
             <RowDefinition Height="112*"/>
             <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
-        <TextBlock  Margin="285,77,285,264" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
-            <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden Installation Utility"></Run>
+        <TextBlock  Margin="285,77,269,320" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+            <Run Text="Select Installation Path"/>
         </TextBlock>
 
-        <TextBlock Margin="204,267,204,156" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
-                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Garden will install into the following folder."/>
+        <TextBlock Margin="202,180,206,243" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
+                <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden will install into the selected folder."/>
         </TextBlock>
-        <TextBlock Text="If you want to select a diffrent folder, click browse." Margin="204,295,199,128" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
+        <TextBlock Text="If you want to select a different folder, click browse." Margin="202,208,202,215" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
 
 
-        <Border Height="32" CornerRadius="5" BorderThickness="1" Margin="262,326,358,90">
+        <Border Height="32" CornerRadius="5" BorderThickness="1" Margin="261,332,359,84">
             <Border.BorderBrush>
                 <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
             </Border.BorderBrush>
@@ -58,6 +58,6 @@
             <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" IsReadOnly="true"/>
         </Border>
 
-        <Button x:Name="BrowseFolderButton" Content="Browse" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="647,326,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand"/>
+        <Button x:Name="BrowseFolderButton" Content="Browse" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="646,332,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand"/>
     </Grid>
 </Page>

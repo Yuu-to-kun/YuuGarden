@@ -11,12 +11,12 @@
         <Grid Margin="70,122,70,140">
             <TextBlock x:Name="MainText" Margin="150,142,150,142" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" Panel.ZIndex="2" FontWeight="Bold" FontSize="40">
                 <Run Text="Welcome to"/>
-                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4"/>
-                <Run Text="Garden"/>
+                <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
+                
             </TextBlock>
             <TextBlock x:Name="SmolText" Margin="150,216,150,68" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" Panel.ZIndex="2" FontWeight="Bold" FontSize="30">
                 <Run Text="The all in one"/>
-                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 installer"/>
+                <Run Text="fp" Foreground="#f0e74a"/><Run Text="PS4 Launcher"/>
             </TextBlock>
         </Grid>
     </Grid>

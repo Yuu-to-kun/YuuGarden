@@ -76,7 +76,9 @@
                     </Button.Style>
                 </Button>
 
-                <TextBlock Text="fpPS4 Garden" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik">
+                   <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
+                </TextBlock>
             </Grid>
 
             <!-- Content :o-->

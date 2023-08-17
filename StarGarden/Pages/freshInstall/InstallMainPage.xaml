@@ -100,14 +100,19 @@
                 </Image.RenderTransform>
             </Image>
         </Button>
-        <Grid x:Name="installPopup" Width="400" Background="#222427" Visibility="Hidden" Margin="302,186,298,245">
-            <TextBlock TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,39,0,0" Width="294">
-                    <Run Text="Are you sure you want to install"/>
-                    <Run Foreground="#FFFFF53C" Text="fp"/><Run Text="PS4 Garden?"/>
-            </TextBlock>
-            <Button x:Name="proceedButton" Content="Install" Style="{StaticResource CustomButtonStyle}" Width="100" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="231,135,69,54" Click="proceedButton_Click"/>
-            <Button x:Name="cancelButton" Content="Cancel" Style="{StaticResource CustomButtonStyle}" Width="100"  Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="69,135,231,54" Click="cancelButton_Click"/>
-        </Grid>
+        <Border x:Name="installPopup" Height="220" Width="400" Background="#222427" Visibility="Visible" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="300" ShadowDepth="5" Opacity="2" BlurRadius="15"/>
+            </Border.Effect>
+            <Grid Height="220" Width="400">
+                <TextBlock TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294">
+                        <Run Text="Are you sure you want to install"/>
+                        <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden?"/>
+                </TextBlock>
+                <Button x:Name="proceedButton" Content="Install" Style="{StaticResource CustomButtonStyle}" Width="100" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="232,150,68,39" Click="proceedButton_Click"/>
+                <Button x:Name="cancelButton" Content="Cancel" Style="{StaticResource CustomButtonStyle}" Width="100"  Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="69,150,231,39" Click="cancelButton_Click"/>
+            </Grid>
+        </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,550,0,0">
             <Ellipse x:Name="Indicator1" Width="10" Height="10" Fill="white" Margin="5"/>
             <Ellipse x:Name="Indicator2" Width="10" Height="10" Fill="Gray" Margin="5"/>

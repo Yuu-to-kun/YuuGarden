@@ -41,18 +41,18 @@ namespace StarGarden.Pages.freshInstall
                 RepeatBehavior = RepeatBehavior.Forever
             };
 
-            var gradientBrush = new LinearGradientBrush();
-            var gradientStops = gradientBrush.GradientStops;
-            gradientBrush.StartPoint = new Point(0, 0);
-            gradientBrush.EndPoint = new Point(1, 5);
-            gradientStops.Add(new GradientStop(Colors.Red, 0.0));
-            gradientStops.Add(new GradientStop(Colors.Orange, 0.3));
-            gradientStops.Add(new GradientStop(Colors.Yellow, 0.6));
-            gradientStops.Add(new GradientStop(Colors.Green, 0.9));
-            gradientStops.Add(new GradientStop(Colors.Blue, 1.2));
-            gradientStops.Add(new GradientStop(Colors.Violet, 1.5));
+            //var gradientBrush = new LinearGradientBrush();
+            //var gradientStops = gradientBrush.GradientStops;
+            //gradientBrush.StartPoint = new Point(0, 0);
+            //gradientBrush.EndPoint = new Point(1, 5);
+            //gradientStops.Add(new GradientStop(Colors.Red, 0.0));
+            //gradientStops.Add(new GradientStop(Colors.Orange, 0.3));
+            //gradientStops.Add(new GradientStop(Colors.Yellow, 0.6));
+            //gradientStops.Add(new GradientStop(Colors.Green, 0.9));
+            //gradientStops.Add(new GradientStop(Colors.Blue, 1.2));
+            //gradientStops.Add(new GradientStop(Colors.Violet, 1.5));
 
-            circleGoRound.Stroke = gradientBrush;
+            //circleGoRound.Stroke = gradientBrush;
 
             circleGoRound.RenderTransform = new RotateTransform();
             circleGoRound.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
