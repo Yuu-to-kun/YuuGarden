@@ -9,11 +9,12 @@ namespace StarGarden.Functions.FileWork
 {
     public class GameDetection
     {
-        public void Scan()
+        public List<string> Scan()
         {
             ConfigFunctions configFunc = new ConfigFunctions();
             var config = configFunc.OpenConfig();
 
+            List<string> result = new List<string>();
             string gamesDirPath = config.gamesDirPath;
 
             string[] potentialGames = Directory.GetDirectories(gamesDirPath);
@@ -23,10 +24,16 @@ namespace StarGarden.Functions.FileWork
                 if (File.Exists(Path.Combine(potentialGame, "eboot.bin")) 
                     && Directory.Exists(Path.Combine(potentialGame,"sce_sys")))
                 {
-                    Console.WriteLine("A Game");
+                    result.Add(potentialGame);
                 }
             }
-            
+            return result;
+        }
+
+        public string sfoPath(string gameDir)
+        {
+            var result = Path.Combine(gameDir,"sce_sys","param.sfo");
+            return result;
         }
     }
 }

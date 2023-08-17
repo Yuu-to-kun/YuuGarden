@@ -1,4 +1,5 @@
 ﻿using StarGarden.Functions.FileWork;
+using StarGarden.Functions.FileWork.SFO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,8 @@ namespace StarGarden
             InitializeComponent();
 
             GameDetection detection = new GameDetection();
-            detection.Scan();
+            GetKey getKey = new GetKey();
+            
             // page :3
 
             //Declaring variables
@@ -41,6 +43,11 @@ namespace StarGarden
             else
             {
                 MainFrame.Navigate(new Uri("/pages/Garden_MainScreen.xaml", UriKind.Relative));
+                List<string> games = detection.Scan();
+                for (int i = 0; i < games.Count; i++)
+                {
+                    Console.WriteLine($"[Recognised Game]: {getKey.GetKeyData(detection.sfoPath(games[i]),"TITLE")}");
+                }
             }
                 
         }
