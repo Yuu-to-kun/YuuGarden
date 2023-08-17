@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using StarGarden.Models.Launcher;
 using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
+using System.ComponentModel;
 
 namespace StarGarden.Pages
 {
@@ -31,19 +32,43 @@ namespace StarGarden.Pages
         {
             GameDetection detection = new GameDetection();
             games = detection.Scan();
+            
 
             GetKey getKey = new GetKey();
             for (int i = 0; i < games.Count; i++)
             {
-                GamesTemplate.Add(new GameEntry { 
-                    Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}", 
-                    Description = "Description 1", 
-                    ImageSource = "https://fpps4.net/images/NA.jpg" 
-                });
+                GameEntry gameEntry = new GameEntry
+                {
+                    Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
+                    Description = "Description 1",
+                    ImageSource = "https://fpps4.net/images/NA.jpg",
+                    IsChecked = false,
+                    
+                };
+                gameEntry.gameSelected += IsCheckedChange;
+
+                Games.Add(gameEntry);
+
             }
 
             InitializeComponent();
             DataContext = this;
+
+            
+
+        }
+
+        public void IsCheckedChange(object sender, PropertyChangedEventArgs e)
+        {
+            GameEntry entry = (GameEntry)sender;
+            if (entry.IsChecked == true)
+            {
+                Console.WriteLine(entry.Name + " has been selected");
+            }
+            else if (entry.IsChecked == false)
+            {
+                Console.WriteLine(entry.Name + " has been deselected");
+            }
 
         }
     }

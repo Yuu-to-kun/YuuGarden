@@ -59,6 +59,7 @@
                                     <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
                                     <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
                                     <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
+                                    <CheckBox IsChecked="{Binding IsChecked}"></CheckBox>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
