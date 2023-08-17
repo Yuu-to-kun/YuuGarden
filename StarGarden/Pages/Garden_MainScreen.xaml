@@ -51,7 +51,7 @@
 
         <Grid Background="#101112" Margin="40,0,0,0" Width="960" Height="652">
             <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <ItemsControl ItemsSource="{Binding Games}">
+                <ItemsControl ItemsSource="{Binding GamesTemplate}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,20">

@@ -25,7 +25,7 @@ namespace StarGarden.Pages
     public partial class Garden_MainScreen : Page
     {
         private List<string> games = new List<string>();
-        public ObservableCollection<GameEntry> Games { get; } = new ObservableCollection<GameEntry>();
+        public ObservableCollection<GameEntry> GamesTemplate { get; } = new ObservableCollection<GameEntry>();
 
         public Garden_MainScreen()
         {
@@ -35,7 +35,7 @@ namespace StarGarden.Pages
             GetKey getKey = new GetKey();
             for (int i = 0; i < games.Count; i++)
             {
-                Games.Add(new GameEntry { 
+                GamesTemplate.Add(new GameEntry { 
                     Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}", 
                     Description = "Description 1", 
                     ImageSource = "https://fpps4.net/images/NA.jpg" 
