@@ -25,6 +25,8 @@ namespace StarGarden
         {
             InitializeComponent();
 
+            GameDetection detection = new GameDetection();
+            detection.Scan();
             // page :3
 
             //Declaring variables

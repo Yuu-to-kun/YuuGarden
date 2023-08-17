@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StarGarden.Models.Launcher;
 
 namespace StarGarden.Pages
 {
@@ -28,24 +29,17 @@ namespace StarGarden.Pages
         }
     }
 
-    public class Game
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ImageSource { get; set; }
-    }
-
     public class MainViewModel
     {
-        public ObservableCollection<Game> Games { get; } = new ObservableCollection<Game>();
+        public ObservableCollection<GameEntry> Games { get; } = new ObservableCollection<GameEntry>();
 
         public MainViewModel()
         {
-            Games.Add(new Game { Name = "Game 1", Description = "Description 1", ImageSource = "https://fpps4.net/images/NA.jpg" });
-            Games.Add(new Game { Name = "Game 2", Description = "Description 2", ImageSource = "https://fpps4.net/images/NA.jpg" });
-            Games.Add(new Game { Name = "Game 3", Description = "Description 3", ImageSource = "https://fpps4.net/images/NA.jpg" });
-            Games.Add(new Game { Name = "Game 4", Description = "This is something", ImageSource = "https://fpps4.net/images/NA.jpg" });
-            Games.Add(new Game { Name = "Game 5", Description = "grjyabgr yejv", ImageSource = "https://fpps4.net/images/NA.jpg" });
+            Games.Add(new GameEntry { Name = "Game 1", Description = "Description 1", ImageSource = "https://fpps4.net/images/NA.jpg" });
+            Games.Add(new GameEntry { Name = "Game 2", Description = "Description 2", ImageSource = "https://fpps4.net/images/NA.jpg" });
+            Games.Add(new GameEntry { Name = "Game 3", Description = "Description 3", ImageSource = "https://fpps4.net/images/NA.jpg" });
+            Games.Add(new GameEntry { Name = "Game 4", Description = "This is something", ImageSource = "https://fpps4.net/images/NA.jpg" });
+            Games.Add(new GameEntry { Name = "Game 5", Description = "grjyabgr yejv", ImageSource = "https://fpps4.net/images/NA.jpg" });
         }
     }
 }
