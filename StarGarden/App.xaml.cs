@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
 using Windows.Storage;
+using StarGarden.Functions;
+using StarGarden.Pages;
 
 namespace StarGarden
 {
@@ -22,6 +24,9 @@ namespace StarGarden
     {
         private void InitializeJumpList()
         {
+            ConsoleWindow console = new ConsoleWindow();
+            console.Show();
+
             JumpList jumpList = new JumpList();
 
             JumpTask jumpTask1 = new JumpTask

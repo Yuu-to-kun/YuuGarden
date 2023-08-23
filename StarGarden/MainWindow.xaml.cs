@@ -1,4 +1,5 @@
-﻿using StarGarden.Functions.FileWork;
+﻿using StarGarden.Functions;
+using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace StarGarden
                 List<string> games = detection.Scan();
                 for (int i = 0; i < games.Count; i++)
                 {
-                    Console.WriteLine($"[Recognised Game]: {getKey.GetSpecificKeyData(detection.sfoPath(games[i]),"TITLE")}");
+                    SG_Console.WriteLine($"[Recognised Game]: {getKey.GetSpecificKeyData(detection.sfoPath(games[i]),"TITLE")}");
                 }
             }
                 

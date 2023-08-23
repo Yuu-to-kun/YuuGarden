@@ -46,7 +46,7 @@ namespace StarGarden.Functions.NetworkWork.Github
              }
              else
             {
-                Console.WriteLine("File Exists");
+                SG_Console.WriteLine("File Exists");
                 if (!Directory.Exists(Path.Combine(Misc.downloadPath, "fpPS4")))
                 {
                     
@@ -71,7 +71,7 @@ namespace StarGarden.Functions.NetworkWork.Github
                 }
                 else
                 {
-                    Console.WriteLine("Already Extracted");
+                    SG_Console.WriteLine("Already Extracted");
                 }
             }
 

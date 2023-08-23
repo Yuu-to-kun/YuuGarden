@@ -67,16 +67,17 @@ namespace StarGarden.Pages
             GameEntry entry = (GameEntry)sender;
             if (entry.IsChecked == true)
             {
-                Console.WriteLine(entry.Name + " has been selected");
+                SG_Console.WriteLine(entry.Name + " has been selected");
                 playButton.Visibility = Visibility.Visible;
                 currentGame = entry;
 
             }
             else if (entry.IsChecked == false)
             {
-                Console.WriteLine(entry.Name + " has been deselected");
+                SG_Console.WriteLine(entry.Name + " has been deselected");
                 playButton.Visibility = Visibility.Hidden;
                 currentGame = null;
+                
             }
 
         }

@@ -17,11 +17,16 @@ namespace StarGarden.Functions
             ProcessStartInfo game = new ProcessStartInfo();
             var config = configFunctions.OpenConfig();
 
-            game.FileName = "cmd.exe";
+            game.FileName = "C:\\Users\\Kimie\\Documents\\StarGarden\\Games\\SonicMania\\start.bat";
             game.WindowStyle = ProcessWindowStyle.Normal;
-            game.Arguments = "/k " + config.fpPS4_ExePath + " -e " + elfLocation;
+            game.Arguments = elfLocation;
+            game.CreateNoWindow = false;
+            game.UseShellExecute = false;
 
-            Process.Start(game);
+            Process process = new Process();
+
+            process.StartInfo = game;
+            process.Start();
         }
 
     }
