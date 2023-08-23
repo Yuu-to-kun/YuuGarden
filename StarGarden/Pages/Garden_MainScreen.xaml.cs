@@ -17,6 +17,7 @@ using StarGarden.Models.Launcher;
 using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
 using System.ComponentModel;
+using StarGarden.Functions;
 
 namespace StarGarden.Pages
 {
@@ -27,6 +28,8 @@ namespace StarGarden.Pages
     {
         private List<string> games = new List<string>();
         public ObservableCollection<GameEntry> GamesTemplate { get; } = new ObservableCollection<GameEntry>();
+        
+        public GameEntry currentGame = new GameEntry();
 
         public Garden_MainScreen()
         {
@@ -43,6 +46,7 @@ namespace StarGarden.Pages
                     Description = "Description 1",
                     ImageSource = "https://fpps4.net/images/NA.jpg",
                     IsChecked = false,
+                    GamePath= games[i],
                     
                 };
                 gameEntry.gameSelected += IsCheckedChange;
@@ -64,12 +68,24 @@ namespace StarGarden.Pages
             if (entry.IsChecked == true)
             {
                 Console.WriteLine(entry.Name + " has been selected");
+                playButton.Visibility = Visibility.Visible;
+                currentGame = entry;
+
             }
             else if (entry.IsChecked == false)
             {
                 Console.WriteLine(entry.Name + " has been deselected");
+                playButton.Visibility = Visibility.Hidden;
+                currentGame = null;
             }
 
+        }
+
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame game = new StartGame();
+            game.Start($"\"{currentGame.ElfLoc}\"");
+            
         }
     }
 }

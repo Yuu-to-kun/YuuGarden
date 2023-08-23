@@ -19,15 +19,15 @@
         </Style>
         <Style x:Key="GameCardStyling" TargetType="Border">
             <Setter Property="Background" Value="#26272a"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#393b3e"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </Page.Resources>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#393b3e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid Background="#26272a" Width="40" HorizontalAlignment="Left">
             <StackPanel>
@@ -71,6 +71,7 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </StackPanel>
+            <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click"/>
         </Grid>
     </Grid>
 </Page>
