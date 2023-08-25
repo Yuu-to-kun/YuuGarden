@@ -100,7 +100,7 @@
                 </Image.RenderTransform>
             </Image>
         </Button>
-        <Border x:Name="installPopup" Height="220" Width="400" Background="#222427" Visibility="Visible" CornerRadius="5">
+        <Border x:Name="installPopup" Height="220" Width="400" Background="#222427" Visibility="Hidden" CornerRadius="5">
             <Border.Effect>
                 <DropShadowEffect Color="Black" Direction="300" ShadowDepth="5" Opacity="2" BlurRadius="15"/>
             </Border.Effect>
