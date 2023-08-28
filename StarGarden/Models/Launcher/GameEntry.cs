@@ -17,6 +17,7 @@ namespace StarGarden.Models.Launcher
         private string elfLoc;
         private bool isChecked;
         public event PropertyChangedEventHandler gameSelected;
+        public event PropertyChangedEventHandler gameDeselected;
 
 
         public string Name { get => name; set => name = value; }
@@ -29,7 +30,16 @@ namespace StarGarden.Models.Launcher
                 if (isChecked != value)
                 {
                     isChecked = value;
-                    gameSelected?.Invoke(this, new PropertyChangedEventArgs(nameof(isChecked)));
+                    if (isChecked == true)
+                    {
+                        gameSelected?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
+                        
+
+                    }
+                    else if (isChecked == false)
+                    {
+                        gameDeselected?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
+                    }
                 }
             }
         }

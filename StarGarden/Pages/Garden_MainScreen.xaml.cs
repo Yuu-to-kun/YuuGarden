@@ -29,8 +29,8 @@ namespace StarGarden.Pages
         private List<string> games = new List<string>();
         public ObservableCollection<GameEntry> GamesTemplate { get; } = new ObservableCollection<GameEntry>();
         
-        public GameEntry currentGame = new GameEntry();
-
+        public GameEntry checkedGame = null;
+        
         public Garden_MainScreen()
         {
             GameDetection detection = new GameDetection();
@@ -50,8 +50,10 @@ namespace StarGarden.Pages
                     
                 };
                 gameEntry.gameSelected += IsCheckedChange;
+                gameEntry.gameDeselected += IsUncheckedChange;
 
                 GamesTemplate.Add(gameEntry);
+                
 
             }
 
@@ -65,28 +67,30 @@ namespace StarGarden.Pages
         public void IsCheckedChange(object sender, PropertyChangedEventArgs e)
         {
             GameEntry entry = (GameEntry)sender;
-            if (entry.IsChecked == true)
+            if (checkedGame == null || checkedGame.Name == null)
             {
-                SG_Console.WriteLine(entry.Name + " has been selected");
-                playButton.Visibility = Visibility.Visible;
-                currentGame = entry;
-
+                SG_Console.WriteLine("----------------------\nGameEntry is Null");
+                SG_Console.WriteLine($"Selecting {entry.Name}");
+                checkedGame = entry;
             }
-            else if (entry.IsChecked == false)
-            {
-                SG_Console.WriteLine(entry.Name + " has been deselected");
-                playButton.Visibility = Visibility.Hidden;
-                currentGame = null;
-                
-            }
+            SG_Console.WriteLine(entry.Name + " has been selected \n----------------------");
+            playButton.Visibility = Visibility.Visible;
+        }
 
+        public void IsUncheckedChange(object sender, PropertyChangedEventArgs e)
+        {
+            GameEntry entry = (GameEntry)sender;
+            SG_Console.WriteLine(entry.Name + " has been deselected");
+            playButton.Visibility = Visibility.Hidden;
+            checkedGame = null;
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             StartGame game = new StartGame();
-            game.Start($"\"{currentGame.ElfLoc}\"");
+            game.Start($"\"{checkedGame.ElfLoc}\"");
             
         }
+        
     }
 }
