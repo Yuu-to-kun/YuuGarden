@@ -55,12 +55,16 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,20">
-                                <StackPanel>
-                                    <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
-                                    <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
-                                    <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
-                                    <CheckBox IsChecked="{Binding IsChecked}"></CheckBox>
-                                </StackPanel>
+                                <Button Height="260" Width="200">
+                                    <Button.Background>
+                                        <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                    </Button.Background>
+                                    <StackPanel>
+                                        <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
+                                        <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
+                                        <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
+                                    </StackPanel>
+                                </Button>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
