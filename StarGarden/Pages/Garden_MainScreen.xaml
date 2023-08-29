@@ -65,7 +65,6 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}" CornerRadius="5">
                             <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
-                            <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -99,8 +98,8 @@
         </Grid>
 
         <Grid Background="#101112" Margin="40,0,0,0" Width="960" Height="652">
-            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <!--<WrapPanel>-->
+            <!--<StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">-->
+            <WrapPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding GamesTemplate}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -115,14 +114,14 @@
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
+                    <!--<ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                    </ItemsControl.ItemsPanel>-->
                 </ItemsControl>
-            <!--</WrapPanel>-->
-            </StackPanel>
+            </WrapPanel>
+            <!--</StackPanel>-->
             <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click"/>
         </Grid>
         <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="5" Panel.ZIndex="5" Margin="30,10,30,0">
