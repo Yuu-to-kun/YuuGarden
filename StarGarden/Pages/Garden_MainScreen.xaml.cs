@@ -45,12 +45,9 @@ namespace StarGarden.Pages
                     Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
                     Description = "Description 1",
                     ImageSource = "https://fpps4.net/images/NA.jpg",
-                    IsChecked = false,
                     GamePath= games[i],
                     
                 };
-                gameEntry.gameSelected += IsCheckedChange;
-                gameEntry.gameDeselected += IsUncheckedChange;
 
                 GamesTemplate.Add(gameEntry);
                 
@@ -64,33 +61,22 @@ namespace StarGarden.Pages
 
         }
 
-        public void IsCheckedChange(object sender, PropertyChangedEventArgs e)
-        {
-            GameEntry entry = (GameEntry)sender;
-            if (checkedGame == null || checkedGame.Name == null)
-            {
-                SG_Console.WriteLine("----------------------\nGameEntry is Null");
-                SG_Console.WriteLine($"Selecting {entry.Name}");
-                checkedGame = entry;
-            }
-            SG_Console.WriteLine(entry.Name + " has been selected \n----------------------");
-            playButton.Visibility = Visibility.Visible;
-        }
-
-        public void IsUncheckedChange(object sender, PropertyChangedEventArgs e)
-        {
-            GameEntry entry = (GameEntry)sender;
-            SG_Console.WriteLine(entry.Name + " has been deselected");
-            playButton.Visibility = Visibility.Hidden;
-            checkedGame = null;
-        }
-
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             StartGame game = new StartGame();
             game.Start($"\"{checkedGame.ElfLoc}\"");
             
         }
-        
+
+        private void gameClick(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var entry = (GameEntry)button.DataContext;
+
+            SG_Console.WriteLine($"{entry.Name} was clicked!");
+
+            gamePopupTitle.Text = entry.Name;
+            gamePopup.Visibility = Visibility.Visible;
+        }
     }
 }
