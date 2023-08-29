@@ -26,7 +26,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="CustomButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#26272a"/>
             <Setter Property="Template">
@@ -44,7 +44,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
     </Page.Resources>
     <Grid>
         <Grid Background="#26272a" Width="40" HorizontalAlignment="Left">
@@ -90,6 +89,16 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </StackPanel>
+            <Border x:Name="gamePopup" Height="320" Width="500" Background="#222427" Visibility="Hidden" CornerRadius="5" Panel.ZIndex="5">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="300" ShadowDepth="5" Opacity="2" BlurRadius="15"/>
+                </Border.Effect>
+                <Grid>
+                    <TextBlock x:Name="gamePopupTitle" Text="Title" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294" Panel.ZIndex="6"/>
+                    <TextBlock x:Name="gamePopupCode" Text="Code" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,77,0,0" Width="294" Panel.ZIndex="6"/>
+                    <TextBlock x:Name="gamePopupType" Text="Homebrew" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,117,0,0" Width="294" Panel.ZIndex="6"/>
+                </Grid>
+            </Border>
             <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click"/>
         </Grid>
     </Grid>
