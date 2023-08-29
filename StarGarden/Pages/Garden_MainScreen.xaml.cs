@@ -78,5 +78,10 @@ namespace StarGarden.Pages
             gamePopupTitle.Text = entry.Name;
             gamePopup.Visibility = Visibility.Visible;
         }
+
+        private void gamePopUpExit(object sender, RoutedEventArgs e)
+        {
+            gamePopup.Visibility = Visibility.Hidden;
+        }
     }
 }
