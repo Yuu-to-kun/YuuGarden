@@ -18,6 +18,7 @@ using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
 using System.ComponentModel;
 using StarGarden.Functions;
+using System.Windows.Media.Animation;
 
 namespace StarGarden.Pages
 {
@@ -76,7 +77,29 @@ namespace StarGarden.Pages
             SG_Console.WriteLine($"{entry.Name} was clicked!");
 
             gamePopupTitle.Text = entry.Name;
+
+            // animation
+            double targetHeight = gamePopup.ActualHeight;
+            gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
             gamePopup.Visibility = Visibility.Visible;
+
+            DoubleAnimation slideAnimation = new DoubleAnimation
+            {
+                From = targetHeight,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.2),
+                EasingFunction = new CubicEase{EasingMode = EasingMode.EaseOut}
+            };
+            DoubleAnimation fadeAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.25),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+            };
+
+            gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
         }
 
         private void gamePopUpExit(object sender, RoutedEventArgs e)
@@ -84,4 +107,6 @@ namespace StarGarden.Pages
             gamePopup.Visibility = Visibility.Hidden;
         }
     }
+
+
 }

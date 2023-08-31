@@ -77,6 +77,10 @@
         </Style>
     </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="249*"/>
+            <ColumnDefinition Width="751*"/>
+        </Grid.ColumnDefinitions>
         <Grid Background="#26272a" Width="40" HorizontalAlignment="Left">
             <StackPanel>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
@@ -97,34 +101,29 @@
             </StackPanel>
         </Grid>
 
-        <!--<Grid  Width="960" Height="652">-->
-            <!--<StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">-->
-            <WrapPanel Background="#101112" Margin="40,0,0,0" Orientation="Horizontal" Width="960" Height="652">
-                <ItemsControl ItemsSource="{Binding GamesTemplate}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,20">
-                                <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
-                                    <StackPanel>
-                                        <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
-                                        <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
-                                        <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
-                                    </StackPanel>
-                                </Button>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <!--<ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>-->
-                </ItemsControl>
-            </WrapPanel>
-            <!--</StackPanel>-->
-            <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click"/>
-        <!--</Grid>-->
-        <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="5" Panel.ZIndex="5" Margin="30,10,30,0">
+        <ItemsControl Background="#101112" Padding="20,30,0,30" Margin="40,0,0,0" ItemsSource="{Binding GamesTemplate}" Width="960" Height="652" Grid.ColumnSpan="2">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40">
+                        <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
+                            <StackPanel Margin="10,10,0,0">
+                                <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
+                                <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
+                                <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <!--<Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click"/>-->
+        <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Width="890" Height="625" Margin="75,27,35,0" Grid.ColumnSpan="2">
             <Grid>
                 <Button x:Name="gamePopupExit" Click="gamePopUpExit" Cursor="Hand" Style="{StaticResource exitButton}" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"></Button>
                 <TextBlock x:Name="gamePopupTitle" Text="Title" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294" Panel.ZIndex="6"/>

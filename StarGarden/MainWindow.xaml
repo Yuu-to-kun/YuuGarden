@@ -23,6 +23,37 @@
             </Setter>
         </Style>
     </Window.Style>
+    <Window.Resources>
+        <Style x:Key="StarStyling" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="white" BlurRadius="4" ShadowDepth="7" Opacity="0.6" Direction="180"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <RotateTransform Angle="40"/>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+            <!--<Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        --><!--<Storyboard RepeatBehavior="Forever">--><!--
+                        <Storyboard RepeatBehavior="1">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)" From="40" To="60" Duration="0:0:1"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" From="0" To="800" Duration="0:0:2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)" From="0" To="800" Duration="0:0:2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>-->
+        </Style>
+    </Window.Resources>
+
     <Border BorderBrush="#393b3e" BorderThickness="1" CornerRadius="1">
         <Grid>
             <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
@@ -83,6 +114,15 @@
 
             <!-- Content :o-->
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
+            <Grid Panel.ZIndex="5">
+                <Canvas Name="NightCanvas">
+                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="0" Canvas.Left="30"/>
+                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="20" Canvas.Left="20"/>
+                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="40" Canvas.Left="0">
+                    </Border>
+                    <!-- Add more stars here (Star4, Star5, etc.) -->
+                </Canvas>
+            </Grid>
         </Grid>
     </Border>
 </Window>
