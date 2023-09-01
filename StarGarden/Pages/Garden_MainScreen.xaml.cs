@@ -45,7 +45,7 @@ namespace StarGarden.Pages
                 {
                     Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
                     Description = "Description 1",
-                    ImageSource = "https://fpps4.net/images/NA.jpg",
+                    ImageSource = $"{System.IO.Path.Combine(games[i],"sce_sys","icon0.png")}",
                     GamePath= games[i],
                     
                 };
@@ -73,12 +73,15 @@ namespace StarGarden.Pages
         {
             var button = (Button)sender;
             var entry = (GameEntry)button.DataContext;
+            GetKey getKey = new GetKey();
+
 
             checkedGame = entry;
 
             SG_Console.WriteLine($"{entry.Name} was clicked!");
 
             gamePopupTitle.Text = entry.Name;
+            gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
 
             // animation
             double targetHeight = gamePopup.ActualHeight;
