@@ -69,10 +69,12 @@ namespace StarGarden.Pages
             
         }
 
-        private void gameClick(object sender, RoutedEventArgs e)
+        private async void gameClick(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
             var entry = (GameEntry)button.DataContext;
+
+            checkedGame = entry;
 
             SG_Console.WriteLine($"{entry.Name} was clicked!");
 
@@ -100,11 +102,16 @@ namespace StarGarden.Pages
 
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+
+            await Task.Delay(slideAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            playButton.Visibility = Visibility.Visible;
         }
 
         private void gamePopUpExit(object sender, RoutedEventArgs e)
         {
             gamePopup.Visibility = Visibility.Hidden;
+            playButton.Visibility = Visibility.Hidden;
+
         }
     }
 
