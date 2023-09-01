@@ -3,7 +3,9 @@ using StarGarden.Models.Launcher;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,22 +13,23 @@ namespace StarGarden.Functions
 {
     public class StartGame
     {
+        [DllImport("user32.dll")]
+        static extern int SetWindowText(IntPtr hWnd, string text);
         public void Start(string elfLocation)
         {
             ConfigFunctions configFunctions = new ConfigFunctions();
             ProcessStartInfo game = new ProcessStartInfo();
             var config = configFunctions.OpenConfig();
+            var logLoc = Path.Combine(Path.GetDirectoryName(config.fpPS4_ExePath), "game_log.txt");
 
-            game.FileName = config.fpPS4_ExePath;
-            game.WindowStyle = ProcessWindowStyle.Normal;
-            game.Arguments = "/k -e " + elfLocation;
-            game.CreateNoWindow = false;
-            game.UseShellExecute = false;
+            Process p = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = $"/c \"{config.fpPS4_ExePath} -e {elfLocation} & pause\"";
+            startInfo.CreateNoWindow = false;
+            p.StartInfo = startInfo;
+            p.Start();
 
-            Process process = new Process();
-
-            process.StartInfo = game;
-            process.Start();
         }
 
     }
