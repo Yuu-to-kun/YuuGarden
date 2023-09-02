@@ -77,14 +77,52 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <ItemsControl Background="#101112" Padding="20,30,0,30" ItemsSource="{Binding GamesTemplate}" Height="652">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="249*"/>
+            <ColumnDefinition Width="751*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#26272a" Width="40" HorizontalAlignment="Left" Panel.ZIndex="1">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="0" ShadowDepth="1" Opacity="1" BlurRadius="10"/>
+            </Border.Effect>
+            <StackPanel>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/chickenNugget.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
+                    <Image Source="/Assets/Images/add.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 405, 3, 8"  Padding="2">
+                    <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8"  Padding="2">
+                    <Image Source="/Assets/Images/settings.png" Width="30" Height="30"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <ItemsControl Background="#101112" Padding="20,30,0,30" Margin="40,0,0,0" ItemsSource="{Binding GamesTemplate}" Width="960" Height="652" Grid.ColumnSpan="2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40">
+                    <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black"  ShadowDepth="3" Opacity="1" BlurRadius="15"/>
+                        </Border.Effect>
                         <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
-                            <StackPanel Margin="10,10,0,0">
-                                <Image Source="{Binding ImageSource}" Width="120" Height="120"/>
-                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
+                            <StackPanel Height="260" Width="200">
+                                <Grid>
+                                    <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10"/>
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                                        <Image Source="/Assets/Images/pic0.png" Stretch="UniformToFill"/>
+                                        <StackPanel.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=imageMask}" />
+                                        </StackPanel.OpacityMask>
+                                    </StackPanel>
+                                </Grid>
+                                <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
                                 <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
                             </StackPanel>
                         </Button>
