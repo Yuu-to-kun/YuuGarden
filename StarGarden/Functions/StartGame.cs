@@ -30,6 +30,8 @@ namespace StarGarden.Functions
             p.StartInfo = startInfo;
             p.Start();
 
+            p.WaitForExit();
+            SG_Console.WriteLine("Game has been stopped");
         }
 
     }

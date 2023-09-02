@@ -14,6 +14,8 @@ using System.Windows.Shell;
 using Windows.Storage;
 using StarGarden.Functions;
 using StarGarden.Pages;
+using DiscordRPC;
+using Windows.Media.Protection.PlayReady;
 
 namespace StarGarden
 {
@@ -26,6 +28,11 @@ namespace StarGarden
         {
             ConsoleWindow console = new ConsoleWindow();
             console.Show();
+
+            GlobalObjects.DiscordRpcClient.Initialize();
+            GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
+            GlobalObjects.Timer.Elapsed += GlobalObjects.UpdateTimer;
+            GlobalObjects.Timer.Start();
 
             JumpList jumpList = new JumpList();
 
@@ -63,6 +70,13 @@ namespace StarGarden
                 }
             }
         }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            GlobalObjects.DiscordRpcClient.Dispose();
+        }
+
+
     }
 
 

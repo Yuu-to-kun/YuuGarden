@@ -77,31 +77,7 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="249*"/>
-            <ColumnDefinition Width="751*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Background="#26272a" Width="40" HorizontalAlignment="Left">
-            <StackPanel>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
-                    <Image Source="/Assets/Images/chickenNugget.png" Width="30" Height="30"/>
-                </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
-                    <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
-                </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
-                    <Image Source="/Assets/Images/add.png" Width="30" Height="30"/>
-                </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 405, 3, 8"  Padding="2">
-                    <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
-                </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8"  Padding="2">
-                    <Image Source="/Assets/Images/settings.png" Width="30" Height="30"/>
-                </Border>
-            </StackPanel>
-        </Grid>
-
-        <ItemsControl Background="#101112" Padding="20,30,0,30" Margin="40,0,0,0" ItemsSource="{Binding GamesTemplate}" Width="960" Height="652" Grid.ColumnSpan="2">
+        <ItemsControl Background="#101112" Padding="20,30,0,30" ItemsSource="{Binding GamesTemplate}" Height="652">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40">
@@ -123,7 +99,7 @@
         </ItemsControl>
 
         <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Left" Panel.ZIndex="6" Margin="133,487,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click" Grid.Column="1"/>
-        <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Width="890" Height="625" Margin="75,27,35,0" Grid.ColumnSpan="2">
+        <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Height="625" Margin="35,27,35,0" Grid.ColumnSpan="2">
             <Grid>
                 <Button x:Name="gamePopupExit" Click="gamePopUpExit" Cursor="Hand" Style="{StaticResource exitButton}" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"></Button>
                 <TextBlock x:Name="gamePopupTitle" Text="Title" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294" Panel.ZIndex="6"/>
