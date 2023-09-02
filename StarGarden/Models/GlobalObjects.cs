@@ -18,7 +18,7 @@ namespace StarGarden.Models
         //public static DateTime startTime { get; set; } = DateTime.UtcNow;
         public static RichPresence RichPresence { get; set; } = new RichPresence 
         {
-            State = "00:00:00 elapsed",
+            State = "Feeling silly",
             Assets = new Assets()
             {
                 LargeImageKey = "image_large",
@@ -28,18 +28,9 @@ namespace StarGarden.Models
             Details = "Idling",
             Timestamps = new Timestamps()
             {
-                //Start = TimeSpan.FromTicks(DateTime.UtcNow.Ticks - startTime),
+                Start = DateTime.UtcNow
             }
             
         };
-
-
-        public static void UpdateTimer(object sender, System.Timers.ElapsedEventArgs e)
-        {
-
-            currentTime = currentTime.AddSeconds(1);
-            RichPresence.State = $"{currentTime.ToString("HH:mm:ss")} elapsed";
-            DiscordRpcClient.SetPresence(RichPresence);
-        }
     }
 }

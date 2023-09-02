@@ -31,8 +31,6 @@ namespace StarGarden
 
             GlobalObjects.DiscordRpcClient.Initialize();
             GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
-            GlobalObjects.Timer.Elapsed += GlobalObjects.UpdateTimer;
-            GlobalObjects.Timer.Start();
 
             JumpList jumpList = new JumpList();
 
