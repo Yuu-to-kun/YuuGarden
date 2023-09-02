@@ -44,7 +44,7 @@ namespace StarGarden.Pages
                 GameEntry gameEntry = new GameEntry
                 {
                     Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
-                    Description = "Description 1",
+                    Cusa = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE_ID").ToString()}",
                     ImageSource = $"{System.IO.Path.Combine(games[i],"sce_sys","icon0.png")}",
                     GamePath= games[i],
                     

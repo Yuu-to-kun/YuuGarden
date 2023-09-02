@@ -11,7 +11,7 @@ namespace StarGarden.Models.Launcher
     public class GameEntry
     {
         private string name;
-        private string description;
+        private string cusa;
         private string imageSource;
         private string gamePath;
         private string sfoPath;
@@ -19,7 +19,7 @@ namespace StarGarden.Models.Launcher
 
 
         public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
+        public string Cusa { get => cusa; set => cusa = value; }
         public string ImageSource { get => imageSource; set => imageSource = value; }
 
         public string GamePath { get => gamePath; set { gamePath = value; elfLoc = Path.Combine(value, "eboot.bin"); sfoPath = Path.Combine(value, "sce_sys","param.sfo"); } }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StarGarden"
         mc:Ignorable="d"
-        Title="MainWindow" Height="610" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="682" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Background>
         <SolidColorBrush Color="Transparent" />
     </Window.Background>

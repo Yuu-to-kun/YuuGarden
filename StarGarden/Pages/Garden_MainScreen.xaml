@@ -82,9 +82,9 @@
             <ColumnDefinition Width="751*"/>
         </Grid.ColumnDefinitions>
         <Border Background="#26272a" Width="40" HorizontalAlignment="Left" Panel.ZIndex="1">
-            <Border.Effect>
+            <!--<Border.Effect>
                 <DropShadowEffect Color="Black" Direction="0" ShadowDepth="1" Opacity="1" BlurRadius="10"/>
-            </Border.Effect>
+            </Border.Effect>-->
             <StackPanel>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
                     <Image Source="/Assets/Images/chickenNugget.png" Width="30" Height="30"/>
@@ -114,16 +114,16 @@
                         <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
                             <StackPanel Height="260" Width="200">
                                 <Grid>
-                                    <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10"/>
+                                    <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10,10,6,6"/>
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                                        <Image Source="/Assets/Images/pic0.png" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding ImageSource}" Width="200" Height="200"/>
                                         <StackPanel.OpacityMask>
                                             <VisualBrush Visual="{Binding ElementName=imageMask}" />
                                         </StackPanel.OpacityMask>
                                     </StackPanel>
                                 </Grid>
-                                <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,5" Foreground="White" FontFamily="Rubik Light"/>
-                                <TextBlock Text="{Binding Description}" FontSize="16" Margin="5,0,5,10" Foreground="White" FontFamily="Rubik Light"/>
+                                <TextBlock Text="{Binding Name}" FontSize="18" Margin="5,10,5,0" Foreground="White" FontFamily="Rubik Light"/>
+                                <TextBlock Text="{Binding Cusa}" FontSize="14" Margin="5,4,5,0" Foreground="White" FontFamily="Rubik Light"/>
                             </StackPanel>
                         </Button>
                     </Border>
