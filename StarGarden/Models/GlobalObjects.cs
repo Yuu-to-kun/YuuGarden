@@ -18,14 +18,12 @@ namespace StarGarden.Models
         //public static DateTime startTime { get; set; } = DateTime.UtcNow;
         public static RichPresence RichPresence { get; set; } = new RichPresence 
         {
-            State = "Feeling silly",
+            State = "Idling",
             Assets = new Assets()
             {
                 LargeImageKey = "image_large",
                 LargeImageText = ":3",
-                SmallImageKey = "image_small"
             },
-            Details = "Idling",
             Timestamps = new Timestamps()
             {
                 Start = DateTime.UtcNow

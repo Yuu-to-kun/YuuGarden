@@ -1,4 +1,5 @@
 ﻿using StarGarden.Functions.FileWork;
+using StarGarden.Models;
 using StarGarden.Models.Launcher;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,10 @@ namespace StarGarden.Functions
     {
         [DllImport("user32.dll")]
         static extern int SetWindowText(IntPtr hWnd, string text);
-        public void Start(string elfLocation)
+        public void Start(string elfLocation, string gameName, string gameIcon)
         {
             ConfigFunctions configFunctions = new ConfigFunctions();
-            ProcessStartInfo game = new ProcessStartInfo();
             var config = configFunctions.OpenConfig();
-            var logLoc = Path.Combine(Path.GetDirectoryName(config.fpPS4_ExePath), "game_log.txt");
 
             Process p = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -30,7 +29,17 @@ namespace StarGarden.Functions
             p.StartInfo = startInfo;
             p.Start();
 
+            var presence = GlobalObjects.RichPresence;
+            presence.State = $"{gameName}";
+            presence.Timestamps.Start = DateTime.UtcNow;
+
+            GlobalObjects.DiscordRpcClient.SetPresence(presence);
+
             p.WaitForExit();
+            presence.State = $"Idling";
+            presence.Timestamps.Start = DateTime.UtcNow;
+            GlobalObjects.DiscordRpcClient.SetPresence(presence);
+
             SG_Console.WriteLine("Game has been stopped");
         }
 
