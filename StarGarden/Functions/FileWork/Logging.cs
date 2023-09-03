@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 
 namespace StarGarden.Functions.FileWork
@@ -24,7 +25,10 @@ namespace StarGarden.Functions.FileWork
                 var tr = new TextRange(GlobalObjects.SG_Console.textBox.Document.ContentStart, GlobalObjects.SG_Console.textBox.Document.ContentEnd);
                 File.WriteAllText(Path.Combine(logLoc, $"log_{DateTime.Now.ToString("dd_MM_yyyy_HH'hr'mm'min'ss'sec'")}_.txt"), tr.Text.Substring(
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
-                SG_Console.WriteLine("Saving Log");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    SG_Console.WriteLine("Saving Log");
+                });
             }
             else
             {
@@ -36,7 +40,10 @@ namespace StarGarden.Functions.FileWork
 
                 File.WriteAllText(Path.Combine(logLoc, $"log_{DateTime.Now.ToString("dd_MM_yyyy_HH'hr'mm'min'ss'sec'")}_.txt"), tr.Text.Substring(
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
-                SG_Console.WriteLine("Saving Log");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    SG_Console.WriteLine("Saving Log");
+                });
             }
         }
     }

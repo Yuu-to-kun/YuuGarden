@@ -104,7 +104,10 @@ namespace StarGarden.Functions
                 // Save logs
                 log.Save(logLoc);
 
-                SG_Console.WriteLine("Game has been stopped");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    SG_Console.WriteLine("Game has been stopped");
+                });
             });
             
             
