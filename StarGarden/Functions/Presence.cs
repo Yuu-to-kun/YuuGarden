@@ -24,7 +24,7 @@ namespace StarGarden.Functions
                 },
                 Timestamps = new Timestamps()
                 {
-                    Start = DateTime.Now,
+                    Start = DateTime.UtcNow,
                 }
             });
 

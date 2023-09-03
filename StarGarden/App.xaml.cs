@@ -97,6 +97,7 @@ namespace StarGarden
                 }
             }
             GlobalObjects.DiscordRpcClient.Dispose(); 
+            GlobalObjects.SG_Console.Close();
         }
 
 
