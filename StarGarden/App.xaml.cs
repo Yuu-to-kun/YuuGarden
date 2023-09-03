@@ -16,6 +16,8 @@ using StarGarden.Functions;
 using StarGarden.Pages;
 using DiscordRPC;
 using Windows.Media.Protection.PlayReady;
+using System.Diagnostics;
+using System.Management;
 
 namespace StarGarden
 {
@@ -26,8 +28,7 @@ namespace StarGarden
     {
         private void InitializeJumpList()
         {
-            ConsoleWindow console = new ConsoleWindow();
-            console.Show();
+            GlobalObjects.SG_Console.Show();
 
             GlobalObjects.DiscordRpcClient.Initialize();
             GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
@@ -72,6 +73,29 @@ namespace StarGarden
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             GlobalObjects.DiscordRpcClient.Dispose();
+
+            foreach (var item in GlobalObjects.ProcessesList)
+            {
+                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={item.Id}"))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        UInt32 childProcessId = (UInt32)obj["ProcessId"];
+                        Process childprocess = null;
+
+                        try
+                        {
+                            childprocess = Process.GetProcessById((int)childProcessId);
+                            childprocess.Kill();
+                        }
+                        catch (ArgumentException)
+                        {
+
+                            item.Kill();
+                        }
+                    }
+                }
+            }
         }
 
 

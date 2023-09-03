@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="ConsoleWindow" Height="173" Width="391">
     <Grid Margin="10,10,10,10">
-           <TextBox x:Name="textBox" Foreground="Black" Margin="6,0,0,0" IsReadOnly="True"></TextBox>
+           <RichTextBox x:Name="textBox" Foreground="Black" Margin="6,0,0,0" IsReadOnly="True"></RichTextBox>
     </Grid>
 </Window>

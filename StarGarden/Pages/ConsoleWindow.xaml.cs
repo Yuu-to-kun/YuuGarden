@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -26,9 +27,15 @@ namespace StarGarden.Pages
             InitializeComponent();
         }
 
-        public void WriteLine(string output)
+        public void WriteLine(string output,SolidColorBrush color)
         {
-            textBox.AppendText(output + Environment.NewLine);
+            TextRange tr = new TextRange(textBox.Document.ContentEnd, textBox.Document.ContentEnd);
+            tr.Text = $"{output}\r";
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, color);
+
+            
+
+            //textBox.AppendText(output + Environment.NewLine);
             textBox.ScrollToEnd();
         }
 
