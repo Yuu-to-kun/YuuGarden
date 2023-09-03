@@ -58,6 +58,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="exitButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#00FFFFFF"/>
             <Setter Property="Template">
@@ -72,6 +73,83 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#393b3e"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
+        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />
+        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+        <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        <SolidColorBrush x:Key="NormalBrush" Color="#888" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF686868" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="PressedBrush" Color="#888"/>
+
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Name="Border" Margin="1" CornerRadius="2" Background="{StaticResource NormalBrush}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="1">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource GlyphBrush}" Data="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"  Width="10" Margin="-5,0,0,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="0"/>
+                    <RowDefinition Height="0.00001*"/>
+                    <RowDefinition MaxHeight="0"/>
+                </Grid.RowDefinitions>
+                <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
+                    </Track.Thumb>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="10"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -103,38 +181,39 @@
                 </Border>
             </StackPanel>
         </Border>
-
-        <ItemsControl Background="#101112" Padding="20,30,0,30" Margin="40,0,0,0" ItemsSource="{Binding GamesTemplate}" Width="960" Height="652" Grid.ColumnSpan="2">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black"  ShadowDepth="3" Opacity="1" BlurRadius="15"/>
-                        </Border.Effect>
-                        <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
-                            <StackPanel Height="260" Width="200">
-                                <Grid>
-                                    <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10,10,6,6"/>
-                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                                        <Image Source="{Binding ImageSource}" Width="200" Height="200"/>
-                                        <StackPanel.OpacityMask>
-                                            <VisualBrush Visual="{Binding ElementName=imageMask}" />
-                                        </StackPanel.OpacityMask>
-                                    </StackPanel>
-                                </Grid>
-                                <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontSize="18" Margin="5,10,5,0" Foreground="White" FontFamily="Rubik Light"/>
-                                <TextBlock Text="{Binding Cusa}" FontSize="14" Margin="5,4,5,0" Foreground="White" FontFamily="Rubik Light"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="40,0,0,0" Background="#101112" VerticalScrollBarVisibility="Visible" Width="960" Height="652" Grid.ColumnSpan="2">
+            <ItemsControl Padding="20,30,0,30" ItemsSource="{Binding GamesTemplate}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black"  ShadowDepth="3" Opacity="1" BlurRadius="15"/>
+                            </Border.Effect>
+                            <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
+                                <StackPanel Height="260" Width="200">
+                                    <Grid>
+                                        <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10,10,6,6"/>
+                                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                                            <Image Source="{Binding ImageSource}" Width="200" Height="200"/>
+                                            <StackPanel.OpacityMask>
+                                                <VisualBrush Visual="{Binding ElementName=imageMask}" />
+                                            </StackPanel.OpacityMask>
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontSize="18" Margin="5,10,5,0" Foreground="White" FontFamily="Rubik Light"/>
+                                    <TextBlock Text="{Binding Cusa}" FontSize="14" Margin="5,4,5,0" Foreground="White" FontFamily="Rubik Light"/>
+                                </StackPanel>
+                            </Button>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Button x:Name="playButton" Visibility="Hidden" Content="Play" HorizontalAlignment="Left" Panel.ZIndex="6" Margin="133,487,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click" Grid.Column="1"/>
         <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Height="625" Margin="35,27,35,0" Grid.ColumnSpan="2">
