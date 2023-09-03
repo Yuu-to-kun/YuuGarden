@@ -72,10 +72,10 @@ namespace StarGarden
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            GlobalObjects.DiscordRpcClient.Dispose();
-
             foreach (var item in GlobalObjects.ProcessesList)
             {
+                item.OutputDataReceived -= GlobalObjects.OutputReceived;
+                item.ErrorDataReceived -= GlobalObjects.ErrorOutputReceived;
                 using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={item.Id}"))
                 {
                     foreach (ManagementObject obj in searcher.Get())
@@ -96,6 +96,7 @@ namespace StarGarden
                     }
                 }
             }
+            GlobalObjects.DiscordRpcClient.Dispose(); 
         }
 
 

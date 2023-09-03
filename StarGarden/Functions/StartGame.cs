@@ -91,7 +91,15 @@ namespace StarGarden.Functions
                 p.WaitForExit();
                 GlobalObjects.ProcessesList.Remove(p);
                 // Set presence
-                presence.Set($"Idling");
+                try
+                {
+                    presence.Set($"Idling");
+                }
+                catch (ObjectDisposedException)
+                {
+
+                    return;
+                }
 
                 // Save logs
                 log.Save(logLoc);
