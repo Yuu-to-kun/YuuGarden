@@ -54,8 +54,10 @@
         </Style>
     </Window.Resources>
 
-    <Border BorderBrush="#393b3e" BorderThickness="1" CornerRadius="1">
+    <Border BorderBrush="#44464c" BorderThickness="01" CornerRadius="10" ClipToBounds="True">
         <Grid>
+
+            <!-- top bar styling -->
             <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -63,7 +65,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Button"  Grid.Column="2" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand">
+                <Button Content="Button"  Grid.Column="2" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand" HorizontalAlignment="Center">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="Transparent"/>
@@ -107,22 +109,22 @@
                     </Button.Style>
                 </Button>
 
-                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik">
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik" Width="95" HorizontalAlignment="Left">
                    <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
                 </TextBlock>
             </Grid>
 
-            <!-- Content :o-->
+            <!-- Frame for content-->
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
-            <Grid Panel.ZIndex="5">
+
+            <!--<Grid Panel.ZIndex="5">
                 <Canvas Name="NightCanvas">
                     <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="0" Canvas.Left="30"/>
                     <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="20" Canvas.Left="20"/>
-                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="40" Canvas.Left="0">
-                    </Border>
-                    <!-- Add more stars here (Star4, Star5, etc.) -->
+                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="40" Canvas.Left="0"/>
                 </Canvas>
-            </Grid>
+            </Grid>-->
+
         </Grid>
     </Border>
 </Window>

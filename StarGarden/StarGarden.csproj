@@ -12,11 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Fonts\Rubik.ttf" />
+    <None Remove="Assets\Fonts\Rubik-VariableFont_wght.ttf" />
     <None Remove="Assets\Images\add.png" />
     <None Remove="Assets\Images\arrowForward.png" />
     <None Remove="Assets\Images\checkCircleFilled.png" />
-    <None Remove="Assets\Images\ChickenNugget.png" />
+    <None Remove="Assets\Images\chickenNugget.png" />
     <None Remove="Assets\Images\close.png" />
     <None Remove="Assets\Images\maximize.png" />
     <None Remove="Assets\Images\minimize.png" />
@@ -42,6 +42,12 @@
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\Rubik-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -57,10 +63,10 @@
     <Resource Include="Assets\Images\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\Images\minimize.png">
+    <Resource Include="Assets\Images\maximize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\Images\maximize.png">
+    <Resource Include="Assets\Images\minimize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\search.png">
@@ -79,5 +85,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-
 </Project>

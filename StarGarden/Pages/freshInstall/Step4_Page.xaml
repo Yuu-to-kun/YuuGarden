@@ -59,29 +59,78 @@
     </Page.Resources>
 
     <Grid Background="#101112">
-        <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+        <TextBlock Margin="278,77,278,519"
+                   Foreground="White"
+                   TextAlignment="Center"
+                   FontFamily="/Assets/Fonts/#Rubik"
+                   FontSize="40"
+                   FontWeight="Bold">
+            
             <Run Text="Installation Complete!"/>
         </TextBlock>
 
-        <TextBlock Margin="292,178,292,418" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
+        <TextBlock Margin="292,178,292,418"
+                   Foreground="White"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   FontFamily="/Assets/Fonts/#Rubik"
+                   FontSize="18"
+                   FontWeight="Bold">
+            
              <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
             <Run Text="has Been installed succesfully!     Click View Folder to view the installation folder"/>
         </TextBlock>
 
-        <Button x:Name="BrowseFolderButton" Content="View Folder" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Click="BrowseFolderButton_Click" Margin="292,320,0,0"/>
+        <Button x:Name="BrowseFolderButton"
+                Content="View Folder"
+                Style="{StaticResource CustomButtonStyle}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="120"
+                Foreground="#FFECEFF4"
+                Height="32"
+                FontFamily="/Assets/Fonts/#Rubik"
+                FontWeight="Bold"
+                FontSize="16"
+                Cursor="Hand"
+                Click="BrowseFolderButton_Click"
+                Margin="292,320,0,0"/>
 
-        <CheckBox x:Name="LaunchOnClose" Template="{StaticResource CustomCheckboxTemplate}" Foreground="White" HorizontalAlignment="Left" Margin="292,374,0,0" VerticalAlignment="Top" Width="176" VerticalContentAlignment="Center">
+        <CheckBox x:Name="LaunchOnClose"
+                  Template="{StaticResource CustomCheckboxTemplate}"
+                  Foreground="White"
+                  HorizontalAlignment="Left"
+                  Margin="292,374,0,0"
+                  VerticalAlignment="Top"
+                  Width="176"
+                  VerticalContentAlignment="Center">
+            
             <CheckBox.BorderBrush>
                 <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
             </CheckBox.BorderBrush>
 
-            <TextBlock VerticalAlignment="Center"  FontFamily="Rubik Light" FontSize="16">
+            <TextBlock VerticalAlignment="Center"
+                       FontFamily="/Assets/Fonts/#Rubik"
+                       FontSize="16">
+                
                 <Run Text="Launch"></Run>
                 <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
             </TextBlock>
         </CheckBox>
 
-        <Button x:Name="FinishInstallationButton" Content="Finish" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="628,346,0,0" Click="FinishInstallationButton_Click"/>
-
+        <Button x:Name="FinishInstallationButton"
+                Content="Finish"
+                Style="{StaticResource CustomButtonStyle}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="80"
+                Foreground="#FFECEFF4"
+                Height="32"
+                FontFamily="/Assets/Fonts/#Rubik"
+                FontWeight="Bold"
+                FontSize="16"
+                Cursor="Hand"
+                Margin="628,346,0,0"
+                Click="FinishInstallationButton_Click"/>
     </Grid>
 </Page>

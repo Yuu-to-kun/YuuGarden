@@ -7,13 +7,24 @@
       mc:Ignorable="d" 
       Title="FreshInstall3" Height="652" Width="1000">
 
-    <Grid Background="#101112" RenderTransformOrigin="0.498,0.485">
-        <TextBlock Margin="278,77,278,519" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+    <Grid Background="#101112"
+          RenderTransformOrigin="0.498,0.485">
+        
+        <TextBlock Margin="278,77,278,519"
+                   Foreground="White"
+                   TextAlignment="Center"
+                   FontFamily="/Assets/Fonts/#Rubik"
+                   FontSize="40"
+                   FontWeight="Bold">
+            
             <Run Text="Installing"/>
             <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
         </TextBlock>
 
-        <Border CornerRadius="5" Width="420" Height="40" Margin="290,297,290,315">
+        <Border CornerRadius="5"
+                Width="420"
+                Height="40"
+                Margin="290,297,290,315">
             <Border.BorderBrush>
                 <SolidColorBrush Color="#FFE1E1E1" Opacity="0.05"/>
             </Border.BorderBrush>
@@ -27,11 +38,25 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <TextBlock x:Name="TerminalOutput" Padding="5" Background="Transparent" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" Text="Terminal output                                                            1/16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TerminalOutput"
+                       Padding="5"
+                       Background="Transparent"
+                       FontFamily="/Assets/Fonts/#Rubik"
+                       Foreground="#FFECEFF4"
+                       FontSize="16"
+                       Text="Terminal output                                                            1/16"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
         </Border>
 
-        <Ellipse x:Name="circleGoRound" Height="75" Width="75" Stroke="#0086D1"  StrokeDashArray="25 8" StrokeThickness="6.9" Margin="400,379,400,73" RenderTransformOrigin="0.5 0.5"/>
+        <Ellipse x:Name="circleGoRound"
+                 Height="75"
+                 Width="75"
+                 Stroke="#0086D1"
+                 StrokeDashArray="25 8"
+                 StrokeThickness="6.9"
+                 Margin="400,379,400,73"
+                 RenderTransformOrigin="0.5 0.5"/>
         <!-- Stroke dash array should be calculated with the widht, height and strokethickness. standards: StrokeDashArray  = 235 78 | stroke thickness = 2 | height+widht = 200 -->
-        
     </Grid>
 </Page>

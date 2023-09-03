@@ -31,14 +31,14 @@
             <RowDefinition Height="112*"/>
             <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
-        <TextBlock  Margin="285,77,269,320" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Rubik Light" FontSize="40" FontWeight="Bold">
+        <TextBlock  Margin="285,77,269,320" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="/Assets/Fonts/#Rubik" FontSize="40" FontWeight="Bold">
             <Run Text="Select Installation Path"/>
         </TextBlock>
 
-        <TextBlock Margin="202,180,206,243" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold">
+        <TextBlock Margin="202,180,206,243" Foreground="White" TextAlignment="Center" FontFamily="/Assets/Fonts/#Rubik" FontSize="18" FontWeight="Bold">
                 <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden will install into the selected folder."/>
         </TextBlock>
-        <TextBlock Text="If you want to select a different folder, click browse." Margin="202,208,202,215" Foreground="White" TextAlignment="Center" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold"/>
+        <TextBlock Text="If you want to select a different folder, click browse." Margin="202,208,202,215" Foreground="White" TextAlignment="Center" FontFamily="/Assets/Fonts/#Rubik" FontSize="18" FontWeight="Bold"/>
 
 
         <Border Height="32" CornerRadius="5" BorderThickness="1" Margin="261,332,359,84">
@@ -55,9 +55,9 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="Rubik Light" Foreground="#FFECEFF4" FontSize="16" IsReadOnly="true"/>
+            <TextBox x:Name="FolderPathTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Padding="5" FontFamily="/Assets/Fonts/#Rubik" Foreground="#FFECEFF4" FontSize="16" IsReadOnly="true"/>
         </Border>
 
-        <Button x:Name="BrowseFolderButton" Content="Browse" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="646,332,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand"/>
+        <Button x:Name="BrowseFolderButton" Content="Browse" Style="{StaticResource CustomButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="646,332,0,0" Foreground="#FFECEFF4" Height="32" FontFamily="/Assets/Fonts/#Rubik" FontWeight="Bold" FontSize="16" Click="BrowseInstallFolder_Click" Cursor="Hand"/>
     </Grid>
 </Page>
