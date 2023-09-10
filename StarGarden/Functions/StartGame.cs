@@ -26,7 +26,7 @@ namespace StarGarden.Functions
             Logging log = new Logging();
             var config = configFunctions.OpenConfig();
 
-            if (config.gamesAllowedToRun == GlobalObjects.ProcessesList.Count)
+            if (config.gamesAllowedToRun == GlobalObjects.procConsList.Count)
             {
                 SG_Console.WriteLine("Maximum count of allowed games has already been reached");
                 return;
@@ -46,13 +46,25 @@ namespace StarGarden.Functions
                  StartInfo = startInfo
             };
 
+            ConsoleWindow currentGameConsole = new ConsoleWindow();
 
+            currentGameConsole.Show();
+
+            currentGameConsole.Dispatcher.Invoke(new Action(() =>
+            {
+                SG_Console.WriteLine("\rGameLog\r");
+            }));
 
             // Loggining
-            SG_Console.WriteLine("\rGameLog\r");
-            p.OutputDataReceived += GlobalObjects.OutputReceived;
+            //SG_Console.WriteLine("\rGameLog\r");
 
-            p.ErrorDataReceived += GlobalObjects.ErrorOutputReceived;
+            currentGameConsole.Dispatcher.Invoke(new Action(() =>
+            {
+                p.OutputDataReceived += (sender, e) => GlobalObjects.OutputReceived(sender, e, currentGameConsole);
+
+                p.ErrorDataReceived += GlobalObjects.ErrorOutputReceived;
+            }));
+            
 
 
 
@@ -64,7 +76,8 @@ namespace StarGarden.Functions
                p.BeginOutputReadLine();
                p.BeginErrorReadLine();
 
-                GlobalObjects.ProcessesList.Add(p);
+                //GlobalObjects.ProcessesList.Add(p);
+                GlobalObjects.procConsList.Add((p,currentGameConsole));
                 // Set presence
                 presence.Set($"{gameName}");
                 
@@ -95,7 +108,8 @@ namespace StarGarden.Functions
 
 
                 p.WaitForExit();
-                GlobalObjects.ProcessesList.Remove(p);
+                //GlobalObjects.ProcessesList.Remove(p);
+                GlobalObjects.procConsList.RemoveAll(item => item.Item1 == p);
                 // Set presence
                 try
                 {

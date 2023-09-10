@@ -73,13 +73,14 @@ namespace StarGarden
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            List<Process> tempList = new List<Process>(GlobalObjects.ProcessesList);
+            //List<Process> tempList = new List<Process>(GlobalObjects.ProcessesList);
+            List<(Process,ConsoleWindow)> procConsList = new List<(Process, ConsoleWindow)>(GlobalObjects.procConsList);
 
-            foreach (var item in tempList)
+            foreach ((Process process,ConsoleWindow consoleWindow) in procConsList)
             {
-                item.OutputDataReceived -= GlobalObjects.OutputReceived;
-                item.ErrorDataReceived -= GlobalObjects.ErrorOutputReceived;
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={item.Id}"))
+                process.OutputDataReceived -= (sender, e) => GlobalObjects.OutputReceived(sender,e,consoleWindow);
+                process.ErrorDataReceived -= GlobalObjects.ErrorOutputReceived;
+                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={process.Id}"))
                 {
                     foreach (ManagementObject obj in searcher.Get())
                     {
@@ -94,8 +95,9 @@ namespace StarGarden
                         catch (ArgumentException)
                         {
 
-                            item.Kill();
-                            GlobalObjects.ProcessesList.Remove(item);
+                            process.Kill();
+                            //GlobalObjects.ProcessesList.Remove(items);
+                            GlobalObjects.procConsList.RemoveAll(item => item.Item1 == process);
                         }
                     }
                 }

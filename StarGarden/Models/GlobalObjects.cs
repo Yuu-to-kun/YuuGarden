@@ -35,9 +35,11 @@ namespace StarGarden.Models
         };
         public static List<Process> ProcessesList { get; set; } = new List<Process>();
 
-        public static void OutputReceived(object sender, DataReceivedEventArgs args)
+        public static List<(Process, ConsoleWindow)> procConsList { get; set; } = new List<(Process, ConsoleWindow)>();
+
+        public static void OutputReceived(object sender, DataReceivedEventArgs args,ConsoleWindow consoleWindow)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            consoleWindow.Dispatcher.Invoke(() =>
             {
                 Functions.SG_Console.WriteLine(args.Data);
             });
