@@ -24,7 +24,19 @@ namespace StarGarden.Functions.FileWork
 
             await Task.Run(() =>
             {
-                File.Copy(appPath, Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                try
+                {
+                    File.Copy(appPath, Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                }
+                catch (System.IO.IOException)
+                {
+                    if (File.Exists(Path.Combine(Misc.downloadPath, "StarGarden.exe")))
+                    {
+                        File.Delete(Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                        File.Copy(appPath, Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                    }
+                }
+                
 
 
                 if (!Directory.Exists(Path.Combine(startMenuPath, "StarGarden")))

@@ -26,6 +26,12 @@ namespace StarGarden.Functions
             Logging log = new Logging();
             var config = configFunctions.OpenConfig();
 
+            if (config.gamesAllowedToRun == GlobalObjects.ProcessesList.Count)
+            {
+                SG_Console.WriteLine("Maximum count of allowed games has already been reached");
+                return;
+            }
+
             // Instances of objects
             ProcessStartInfo startInfo = new ProcessStartInfo() { 
             

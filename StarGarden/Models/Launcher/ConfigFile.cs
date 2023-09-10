@@ -13,5 +13,6 @@ namespace StarGarden.Models.Launcher
         public string installPath;
         public string gamesDirPath;
         public string fpPS4_ExePath;
+        public int gamesAllowedToRun;
     }
 }

@@ -25,6 +25,7 @@ namespace StarGarden.Functions.FileWork
             configFile.installPath = "";
             configFile.gamesDirPath = "";
             configFile.fpPS4_ExePath = "";
+            configFile.gamesAllowedToRun = 1;
 
             var conf = JsonConvert.SerializeObject(configFile, Formatting.Indented);
 

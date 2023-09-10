@@ -63,16 +63,19 @@ namespace StarGarden
             if (!Directory.Exists(LocalDataFolder))
             {
                 Directory.CreateDirectory(LocalDataFolder);
-                if (!File.Exists(Path.Combine(LocalDataFolder, "config.json")))
-                {
-                    configFunctions.CreateConfig();
-                }
+               
+            }
+            if (!File.Exists(Path.Combine(LocalDataFolder, "config.json")))
+            {
+                configFunctions.CreateConfig();
             }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            foreach (var item in GlobalObjects.ProcessesList)
+            List<Process> tempList = new List<Process>(GlobalObjects.ProcessesList);
+
+            foreach (var item in tempList)
             {
                 item.OutputDataReceived -= GlobalObjects.OutputReceived;
                 item.ErrorDataReceived -= GlobalObjects.ErrorOutputReceived;
@@ -92,6 +95,7 @@ namespace StarGarden
                         {
 
                             item.Kill();
+                            GlobalObjects.ProcessesList.Remove(item);
                         }
                     }
                 }
