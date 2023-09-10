@@ -25,19 +25,11 @@ namespace StarGarden.Functions.FileWork
                 var tr = new TextRange(GlobalObjects.SG_Console.textBox.Document.ContentStart, GlobalObjects.SG_Console.textBox.Document.ContentEnd);
                 File.WriteAllText(Path.Combine(logLoc, $"log_{DateTime.Now.ToString("dd_MM_yyyy_HH'hr'mm'min'ss'sec'")}_.txt"), tr.Text.Substring(
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
-                try
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        SG_Console.WriteLine("Saving Log");
-                    });
-                }
-                catch (Exception)
-                {
-
-                    return;
-                }
                 
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    SG_Console.WriteLine("Saving Log");
+                });
             }
             else
             {

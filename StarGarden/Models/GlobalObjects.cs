@@ -35,21 +35,24 @@ namespace StarGarden.Models
         };
         public static List<Process> ProcessesList { get; set; } = new List<Process>();
 
-        public static List<(Process, ConsoleWindow)> procConsList { get; set; } = new List<(Process, ConsoleWindow)>();
+        public static List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> runningGames { get; set; }
+            = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler ,string)>();
 
         public static void OutputReceived(object sender, DataReceivedEventArgs args,ConsoleWindow consoleWindow)
         {
-            consoleWindow.Dispatcher.Invoke(() =>
-            {
-                Functions.SG_Console.WriteLine(args.Data);
-            });
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    consoleWindow.WriteLine(args.Data);
+                });
         }
 
-        public static void ErrorOutputReceived(object sender, DataReceivedEventArgs args)
+        
+
+        public static void ErrorOutputReceived(object sender, DataReceivedEventArgs args, ConsoleWindow consoleWindow)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Functions.SG_Console.WriteLine(args.Data, System.Windows.Media.Brushes.Red);
+                consoleWindow.WriteLine(args.Data, System.Windows.Media.Brushes.Red);
             });
         }
     }

@@ -1,9 +1,13 @@
 ﻿using StarGarden.Functions;
 using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
+using StarGarden.Models;
+using StarGarden.Pages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,9 +64,12 @@ namespace StarGarden
             WindowState = WindowState.Minimized;
         }
 
-        private void ExitButtonClick(object sender, RoutedEventArgs e)
+        private async void ExitButtonClick(object sender, RoutedEventArgs e)
         {
+            CloseProcessess processess = new CloseProcessess();
+            await processess.Close();
             Application.Current.Shutdown();
+
         }
 
         private void MaximizeButtonClick(object sender, RoutedEventArgs e)
