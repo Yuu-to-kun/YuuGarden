@@ -27,6 +27,12 @@ namespace StarGarden.Pages
             InitializeComponent();
         }
 
+        public void WriteLine(string output)
+        {
+            SolidColorBrush defaultColor = Brushes.Black;
+            WriteLine(output, defaultColor);
+            
+        }
         public void WriteLine(string output,SolidColorBrush color)
         {
             TextRange tr = new TextRange(textBox.Document.ContentEnd, textBox.Document.ContentEnd);

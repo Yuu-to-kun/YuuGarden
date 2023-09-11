@@ -18,7 +18,7 @@ namespace StarGarden.Functions
 {
     public class StartGame
     {
-        public void Start(string elfLocation, string gameName, string logLoc)
+        public void Start(string elfLocation, string gameName, string logLoc,string iconLoc)
         {
             // Instances of Classes
             ConfigFunctions configFunctions = new ConfigFunctions();
@@ -26,9 +26,14 @@ namespace StarGarden.Functions
             Logging log = new Logging();
             var config = configFunctions.OpenConfig();
 
-            if (config.gamesAllowedToRun == GlobalObjects.ProcessesList.Count)
+            if (config.gamesAllowedToRun == GlobalObjects.runningGames.Count)
             {
                 SG_Console.WriteLine("Maximum count of allowed games has already been reached");
+                return;
+            }
+            else if (GlobalObjects.runningGames.Any(item=> item.Item5 == gameName))
+            {
+                SG_Console.WriteLine("Game is already running");
                 return;
             }
 
@@ -46,13 +51,27 @@ namespace StarGarden.Functions
                  StartInfo = startInfo
             };
 
+            ConsoleWindow currentGameConsole = new ConsoleWindow();
+            currentGameConsole.Title = gameName;
+            EventHandler<DataReceivedEventArgs> eventHandler = (sender, e) => GlobalObjects.OutputReceived(sender, e, currentGameConsole);
+            EventHandler<DataReceivedEventArgs> eventHandlerError = (sender, e) => GlobalObjects.ErrorOutputReceived(sender, e, currentGameConsole);
+            DataReceivedEventHandler dataReceivedHandler = new DataReceivedEventHandler(eventHandler);
+            DataReceivedEventHandler dataReceivedHandlerError = new DataReceivedEventHandler(eventHandlerError);
 
+            currentGameConsole.Show();
+
+            currentGameConsole.WriteLine("\rGameLog\r");
 
             // Loggining
-            SG_Console.WriteLine("\rGameLog\r");
-            p.OutputDataReceived += GlobalObjects.OutputReceived;
+            //SG_Console.WriteLine("\rGameLog\r");
 
-            p.ErrorDataReceived += GlobalObjects.ErrorOutputReceived;
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                p.OutputDataReceived += dataReceivedHandler;
+
+                p.ErrorDataReceived += dataReceivedHandlerError;
+            }));
+            
 
 
 
@@ -64,7 +83,8 @@ namespace StarGarden.Functions
                p.BeginOutputReadLine();
                p.BeginErrorReadLine();
 
-                GlobalObjects.ProcessesList.Add(p);
+                //GlobalObjects.ProcessesList.Add(p);
+                GlobalObjects.runningGames.Add((p,currentGameConsole,dataReceivedHandler, dataReceivedHandlerError,gameName));
                 // Set presence
                 presence.Set($"{gameName}");
                 
@@ -95,7 +115,8 @@ namespace StarGarden.Functions
 
 
                 p.WaitForExit();
-                GlobalObjects.ProcessesList.Remove(p);
+                //GlobalObjects.ProcessesList.Remove(p);
+                GlobalObjects.runningGames.RemoveAll(item => item.Item1 == p);
                 // Set presence
                 try
                 {
@@ -112,6 +133,7 @@ namespace StarGarden.Functions
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
+                    currentGameConsole.Close();
                     SG_Console.WriteLine("Game has been stopped");
                 });
             });

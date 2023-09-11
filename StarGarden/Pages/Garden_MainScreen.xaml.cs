@@ -66,7 +66,7 @@ namespace StarGarden.Pages
         {
             StartGame game = new StartGame();
             game.Start($"\"{checkedGame.ElfLoc}\"",
-                checkedGame.Name,System.IO.Path.Combine(checkedGame.GamePath,"SG_Logs"));
+                checkedGame.Name,System.IO.Path.Combine(checkedGame.GamePath,"SG_Logs"),System.IO.Path.Combine(checkedGame.GamePath,"sce_sys","icon0.png"));
             
         }
 

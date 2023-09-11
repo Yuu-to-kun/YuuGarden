@@ -73,35 +73,7 @@ namespace StarGarden
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            List<Process> tempList = new List<Process>(GlobalObjects.ProcessesList);
-
-            foreach (var item in tempList)
-            {
-                item.OutputDataReceived -= GlobalObjects.OutputReceived;
-                item.ErrorDataReceived -= GlobalObjects.ErrorOutputReceived;
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={item.Id}"))
-                {
-                    foreach (ManagementObject obj in searcher.Get())
-                    {
-                        UInt32 childProcessId = (UInt32)obj["ProcessId"];
-                        Process childprocess = null;
-
-                        try
-                        {
-                            childprocess = Process.GetProcessById((int)childProcessId);
-                            childprocess.Kill();
-                        }
-                        catch (ArgumentException)
-                        {
-
-                            item.Kill();
-                            GlobalObjects.ProcessesList.Remove(item);
-                        }
-                    }
-                }
-            }
-            GlobalObjects.DiscordRpcClient.Dispose(); 
-            GlobalObjects.SG_Console.Close();
+            GlobalObjects.DiscordRpcClient.Dispose();
         }
 
 
