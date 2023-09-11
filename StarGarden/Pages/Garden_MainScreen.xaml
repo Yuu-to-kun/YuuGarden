@@ -189,8 +189,8 @@
                 </Border>
             </StackPanel>
         </Border>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="40,0,0,0" Background="#101112" VerticalScrollBarVisibility="Visible" Width="960" Height="652" Grid.ColumnSpan="2">
-            <ItemsControl Padding="20,30,0,30" ItemsSource="{Binding GamesTemplate}">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="40,0,0,0" Background="#101112" Width="960" Height="652" Grid.ColumnSpan="2">
+            <ItemsControl Padding="15,30,0,30" ItemsSource="{Binding GamesTemplate}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">
@@ -208,7 +208,7 @@
                                             </StackPanel.OpacityMask>
                                         </StackPanel>
                                     </Grid>
-                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontSize="18" Margin="5,10,5,0" Foreground="White" FontFamily="/Assets/Fonts/#Rubik"/>
+                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="16" Margin="5,10,5,0" Foreground="White" FontFamily="/Assets/Fonts/#Rubik"/>
                                     <TextBlock Text="{Binding Cusa}" FontSize="14" Margin="5,4,5,0" Foreground="White" FontFamily="/Assets/Fonts/#Rubik"/>
                                 </StackPanel>
                             </Button>

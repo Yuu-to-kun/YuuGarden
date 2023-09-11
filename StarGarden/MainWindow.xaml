@@ -39,7 +39,7 @@
             <Grid.OpacityMask>
                 <VisualBrush Visual="{Binding ElementName=Border1}" />
             </Grid.OpacityMask>
-            <Border x:Name="Border1" CornerRadius="7.5" Background="#101112"/>
+            <Border x:Name="Border1" CornerRadius="8" Background="#101112"/>
 
                 <!-- top bar styling -->
                 <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Height="32" Width="998" VerticalAlignment="Top" Background="#26272a">
