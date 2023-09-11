@@ -12,7 +12,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Threading;
+using Application = System.Windows.Application;
 
 namespace StarGarden.Functions
 {
@@ -79,16 +81,27 @@ namespace StarGarden.Functions
             // Running async the whole process
             _= Task.Run(() =>
             {
-               p.Start();
-               p.BeginOutputReadLine();
-               p.BeginErrorReadLine();
+                p.Start();
+                p.BeginOutputReadLine();
+                p.BeginErrorReadLine();
+                ConfigFunctions.BGPConfig bGPConfig = configFunctions.OpenBGP_Config();
+                bGPConfig.proccessIds.Add(p.Id);
+                configFunctions.SaveBGP(bGPConfig);
 
                 //GlobalObjects.ProcessesList.Add(p);
                 GlobalObjects.runningGames.Add((p,currentGameConsole,dataReceivedHandler, dataReceivedHandlerError,gameName));
                 // Set presence
                 presence.Set($"{gameName}");
-                
 
+                var result = System.Windows.Forms.MessageBox.Show("Hello, this is a pop-up message box.", "Message", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+
+                // Convert DialogResult to MessageBoxResult
+                MessageBoxResult wpfResult = (MessageBoxResult)Enum.Parse(typeof(MessageBoxResult), result.ToString());
+
+                if (wpfResult == MessageBoxResult.OK)
+                {
+                    // User clicked OK
+                }
                 //Checking for game window close
                 while (!p.HasExited)
                 {
@@ -115,7 +128,10 @@ namespace StarGarden.Functions
 
 
                 p.WaitForExit();
-                //GlobalObjects.ProcessesList.Remove(p);
+                ConfigFunctions.BGPConfig bGPConfig2 = configFunctions.OpenBGP_Config();
+                bGPConfig.proccessIds.Remove(p.Id);
+                configFunctions.SaveBGP(bGPConfig2);
+
                 GlobalObjects.runningGames.RemoveAll(item => item.Item1 == p);
                 // Set presence
                 try

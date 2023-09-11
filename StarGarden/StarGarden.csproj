@@ -43,6 +43,7 @@
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Management" Version="7.0.2" />
+    <PackageReference Include="TaskScheduler" Version="2.10.1" />
     <Resource Include="Assets\Fonts\Rubik-VariableFont_wght.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
