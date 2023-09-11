@@ -5,10 +5,11 @@ StarGarden will inclue:
 
 - fpPS4 installer
 - Launcher
-- automatic package extraction
-- game stats from [fpps4.net](https://fpps4.net)
-- easy game reporting
-- playtime     
+- Automatic package extraction
+- Game stats from [fpps4.net](https://fpps4.net)
+- Discord Status
+- Easy game reporting
+- Playtime
 
 ***And more!***
 
