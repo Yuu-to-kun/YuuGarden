@@ -105,12 +105,45 @@
                 <DropShadowEffect Color="Black" Direction="300" ShadowDepth="5" Opacity="2" BlurRadius="15"/>
             </Border.Effect>
             <Grid Height="220" Width="400">
-                <TextBlock TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Rubik Light" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294">
+                <TextBlock TextAlignment="Center"
+                           Foreground="#FFECEFF4"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           TextWrapping="Wrap"
+                           FontFamily="/Assets/Fonts/#Rubik"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,41,0,0"
+                           Width="294">
+                    
                         <Run Text="Are you sure you want to install"/>
                         <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden?"/>
                 </TextBlock>
-                <Button x:Name="proceedButton" Content="Install" Style="{StaticResource CustomButtonStyle}" Width="100" Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="232,150,68,39" Click="proceedButton_Click"/>
-                <Button x:Name="cancelButton" Content="Cancel" Style="{StaticResource CustomButtonStyle}" Width="100"  Foreground="#FFECEFF4" Height="32" FontFamily="Rubik Light" FontWeight="Bold" FontSize="16" Cursor="Hand" Margin="69,150,231,39" Click="cancelButton_Click"/>
+                <Button x:Name="proceedButton"
+                        Content="Install"
+                        Style="{StaticResource CustomButtonStyle}"
+                        Width="100"
+                        Foreground="#FFECEFF4"
+                        Height="32"
+                        FontFamily="/Assets/Fonts/#Rubik"
+                        FontWeight="Bold"
+                        FontSize="16"
+                        Cursor="Hand"
+                        Margin="232,150,68,39"
+                        Click="proceedButton_Click"/>
+                
+                <Button x:Name="cancelButton"
+                        Content="Cancel"
+                        Style="{StaticResource CustomButtonStyle}"
+                        Width="100"
+                        Foreground="#FFECEFF4"
+                        Height="32"
+                        FontFamily="/Assets/Fonts/#Rubik"
+                        FontWeight="Bold"
+                        FontSize="16"
+                        Cursor="Hand"
+                        Margin="69,150,231,39"
+                        Click="cancelButton_Click"/>
             </Grid>
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,550,0,0">

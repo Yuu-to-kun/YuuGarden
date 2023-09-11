@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StarGarden"
         mc:Ignorable="d"
-        Title="MainWindow" Height="682" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="712" Width="1030" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Background>
         <SolidColorBrush Color="Transparent" />
     </Window.Background>
@@ -23,108 +23,84 @@
             </Setter>
         </Style>
     </Window.Style>
-    <Window.Resources>
-        <Style x:Key="StarStyling" TargetType="Border">
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="white" BlurRadius="4" ShadowDepth="7" Opacity="0.6" Direction="180"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TransformGroup>
-                        <RotateTransform Angle="40"/>
-                        <TranslateTransform X="0" Y="0"/>
-                    </TransformGroup>
-                </Setter.Value>
-            </Setter>
-            <!--<Style.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        --><!--<Storyboard RepeatBehavior="Forever">--><!--
-                        <Storyboard RepeatBehavior="1">
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)" From="40" To="60" Duration="0:0:1"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" From="0" To="800" Duration="0:0:2"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.Y)" From="0" To="800" Duration="0:0:2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>-->
-        </Style>
-    </Window.Resources>
 
-    <Border BorderBrush="#44464c" BorderThickness="01" CornerRadius="10" ClipToBounds="True">
+    <Border>
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20"
+                              ShadowDepth="3"
+                              Direction="307"
+                              Color="Black"
+                              Opacity="0.4"
+                              RenderingBias="Quality"/>
+        </Border.Effect>
+    
+    <Border BorderBrush="#44464c" Height="682" Width="1000" BorderThickness="01" CornerRadius="9" ClipToBounds="True">
         <Grid>
+            <Grid.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName=Border1}" />
+            </Grid.OpacityMask>
+            <Border x:Name="Border1" CornerRadius="7.5" Background="#101112"/>
 
-            <!-- top bar styling -->
-            <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="#26272a" Height="32" VerticalAlignment="Top" Width="1000">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                <!-- top bar styling -->
+                <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Height="32" Width="998" VerticalAlignment="Top" Background="#26272a">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Content="Button" Grid.Column="2" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand" HorizontalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFBE2B2B"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
-                <Button Content="Button"  Grid.Column="2" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand" HorizontalAlignment="Center">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <Image Source="/Assets/Images/close.png" Width="22" Height="22"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#FFBE2B2B"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                    <Button Content="Button" Grid.Column="1" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="MinimizeButtonClick" Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <Image Source="/Assets/Images/minimize.png" Width="20" Height="20"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#393b3e"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
-                <Button Content="Button" Grid.Column="1" HorizontalAlignment="Center" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="MinimizeButtonClick" Cursor="Hand">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <Image Source="/Assets/Images/minimize.png" Width="20" Height="20"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#393b3e"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik" Width="95" HorizontalAlignment="Left">
+                        <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
+                    </TextBlock>
+                </Grid>
 
-                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik" Width="95" HorizontalAlignment="Left">
-                   <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
-                </TextBlock>
+                <!-- Frame for content-->
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
             </Grid>
-
-            <!-- Frame for content-->
-            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
-
-            <!--<Grid Panel.ZIndex="5">
-                <Canvas Name="NightCanvas">
-                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="0" Canvas.Left="30"/>
-                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="20" Canvas.Left="20"/>
-                    <Border Style="{StaticResource StarStyling}" Width="8" Height="8" Background="White" Opacity="0" Canvas.Top="40" Canvas.Left="0"/>
-                </Canvas>
-            </Grid>-->
-
-        </Grid>
+        </Border>
     </Border>
 </Window>
