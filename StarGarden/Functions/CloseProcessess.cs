@@ -57,8 +57,6 @@ namespace StarGarden.Functions
                         }
                         await process.WaitForExitAsync();
                     }
-                    
-
             }
             });
         }
