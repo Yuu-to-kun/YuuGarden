@@ -18,6 +18,7 @@ using DiscordRPC;
 using Windows.Media.Protection.PlayReady;
 using System.Diagnostics;
 using System.Management;
+using System.Threading;
 
 namespace StarGarden
 {
@@ -26,6 +27,7 @@ namespace StarGarden
     /// </summary>
     public partial class App : Application
     {
+        Mutex myMutex;
         private void InitializeJumpList()
         {
             GlobalObjects.SG_Console.Show();
@@ -50,9 +52,18 @@ namespace StarGarden
             // Apply changes to the JumpList
             jumpList.Apply();
         }
-
+        
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            bool aIsNewInstance = false;
+            myMutex = new Mutex(true, "StarGarden", out aIsNewInstance);
+            if (!aIsNewInstance)
+            {
+                MessageBox.Show("There is an instance is already running...");
+                App.Current.Shutdown();
+            }
+
+
             InitializeJumpList();
 
             //Declaring variables
