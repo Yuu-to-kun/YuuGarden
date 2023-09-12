@@ -1,4 +1,5 @@
-﻿using StarGarden.Models;
+﻿using StarGarden.Functions.FileWork;
+using StarGarden.Models;
 using StarGarden.Pages;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace StarGarden.Functions
 
                     List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> procConsList
                         = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler, string)>(GlobalObjects.runningGames);
-
+                    ConfigFunctions configFunctions = new ConfigFunctions();
                     foreach ((Process process, ConsoleWindow consoleWindow, DataReceivedEventHandler eventHandler, DataReceivedEventHandler eventHandlerError,string gameName) in procConsList)
                     {
                         process.OutputDataReceived -= eventHandler;
@@ -56,7 +57,7 @@ namespace StarGarden.Functions
                         }
                         await process.WaitForExitAsync();
                     }
-
+                    
 
             }
             });
