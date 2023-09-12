@@ -7,6 +7,7 @@ using System.Linq;
 using System.Management;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace StarGarden.Functions
 {
@@ -14,43 +15,51 @@ namespace StarGarden.Functions
     {
         public async Task Close()
         {
-            if (GlobalObjects.runningGames.Count != 0)
+            await Task.Run(async() =>
             {
-                SG_Console.WriteLine("Shutting down processes please wait");
-
-                List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> procConsList
-                    = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler, string)>(GlobalObjects.runningGames);
-
-                foreach ((Process process, ConsoleWindow consoleWindow, DataReceivedEventHandler eventHandler, DataReceivedEventHandler eventHandlerError,string gameName) in procConsList)
+                
+                if (GlobalObjects.runningGames.Count != 0)
                 {
-                    process.OutputDataReceived -= eventHandler;
-                    process.ErrorDataReceived -= eventHandlerError;
-                    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={process.Id}"))
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        foreach (ManagementObject obj in searcher.Get())
+                        SG_Console.WriteLine("Shutting down processes please wait");
+                    });
+                   
+
+                    List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> procConsList
+                        = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler, string)>(GlobalObjects.runningGames);
+
+                    foreach ((Process process, ConsoleWindow consoleWindow, DataReceivedEventHandler eventHandler, DataReceivedEventHandler eventHandlerError,string gameName) in procConsList)
+                    {
+                        process.OutputDataReceived -= eventHandler;
+                        process.ErrorDataReceived -= eventHandlerError;
+                        using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={process.Id}"))
                         {
-                            UInt32 childProcessId = (UInt32)obj["ProcessId"];
-                            Process childprocess = null;
-
-                            try
+                            foreach (ManagementObject obj in searcher.Get())
                             {
-                                childprocess = Process.GetProcessById((int)childProcessId);
-                                childprocess.Kill();
-                            }
-                            catch (ArgumentException)
-                            {
+                                UInt32 childProcessId = (UInt32)obj["ProcessId"];
+                                Process childprocess = null;
 
-                                process.Kill();
-                                //GlobalObjects.ProcessesList.Remove(items);
-                                GlobalObjects.runningGames.RemoveAll(item => item.Item1 == process);
+                                try
+                                {
+                                    childprocess = Process.GetProcessById((int)childProcessId);
+                                    childprocess.Kill();
+                                }
+                                catch (ArgumentException)
+                                {
+
+                                    process.Kill();
+                                    //GlobalObjects.ProcessesList.Remove(items);
+                                    GlobalObjects.runningGames.RemoveAll(item => item.Item1 == process);
+                                }
                             }
                         }
+                        await process.WaitForExitAsync();
                     }
-                    await process.WaitForExitAsync();
-                }
 
 
             }
+            });
         }
     }
 }

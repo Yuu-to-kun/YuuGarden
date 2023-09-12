@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using Application = System.Windows.Application;
 
 namespace StarGarden.Functions
 {
@@ -67,7 +66,7 @@ namespace StarGarden.Functions
             // Loggining
             //SG_Console.WriteLine("\rGameLog\r");
 
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            currentGameConsole.Dispatcher.Invoke(new Action(() =>
             {
                 p.OutputDataReceived += dataReceivedHandler;
 
@@ -90,18 +89,19 @@ namespace StarGarden.Functions
 
                 //GlobalObjects.ProcessesList.Add(p);
                 GlobalObjects.runningGames.Add((p,currentGameConsole,dataReceivedHandler, dataReceivedHandlerError,gameName));
+                
                 // Set presence
                 presence.Set($"{gameName}");
 
-                var result = System.Windows.Forms.MessageBox.Show("Hello, this is a pop-up message box.", "Message", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
-
-                // Convert DialogResult to MessageBoxResult
-                MessageBoxResult wpfResult = (MessageBoxResult)Enum.Parse(typeof(MessageBoxResult), result.ToString());
-
-                if (wpfResult == MessageBoxResult.OK)
-                {
-                    // User clicked OK
-                }
+                //var result = System.Windows.Forms.MessageBox.Show("Hello, this is a pop-up message box.", "Message", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                //
+                //// Convert DialogResult to MessageBoxResult
+                //MessageBoxResult wpfResult = (MessageBoxResult)Enum.Parse(typeof(MessageBoxResult), result.ToString());
+                //
+                //if (wpfResult == MessageBoxResult.OK)
+                //{
+                //    // User clicked OK
+                //}
                 //Checking for game window close
                 while (!p.HasExited)
                 {
@@ -129,7 +129,7 @@ namespace StarGarden.Functions
 
                 p.WaitForExit();
                 ConfigFunctions.BGPConfig bGPConfig2 = configFunctions.OpenBGP_Config();
-                bGPConfig.proccessIds.Remove(p.Id);
+                bGPConfig2.proccessIds.Remove(p.Id);
                 configFunctions.SaveBGP(bGPConfig2);
 
                 GlobalObjects.runningGames.RemoveAll(item => item.Item1 == p);
@@ -146,12 +146,18 @@ namespace StarGarden.Functions
 
                 // Save logs
                 log.Save(logLoc);
-
-                Application.Current.Dispatcher.Invoke(() =>
+                
+                // Checking if the app has not been shutdown and if not it does what it does
+                if (System.Windows.Application.Current != null)
                 {
-                    currentGameConsole.Close();
-                    SG_Console.WriteLine("Game has been stopped");
-                });
+                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        currentGameConsole.Close();
+                        SG_Console.WriteLine("Game has been stopped");
+                    });
+                }
+                    
+                
             });
             
             

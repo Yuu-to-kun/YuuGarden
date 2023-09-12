@@ -25,6 +25,16 @@ namespace starGarden_backgroundProcesses.Models
 
             File.WriteAllText(Path.Combine(location, "config.json"), conf);
         }
+        public Config OpenBGP_Config(string location)
+        {
+            var config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(location, "config.json")));
+            return config;
+        }
+        public void SaveBGP(Config config, string location)
+        {
+            var conf = JsonConvert.SerializeObject(config, Formatting.Indented);
+            File.WriteAllText(Path.Combine(location, "config.json"), conf);
+        }
 
     }
 }

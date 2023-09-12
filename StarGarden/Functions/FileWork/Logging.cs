@@ -25,11 +25,20 @@ namespace StarGarden.Functions.FileWork
                 var tr = new TextRange(GlobalObjects.SG_Console.textBox.Document.ContentStart, GlobalObjects.SG_Console.textBox.Document.ContentEnd);
                 File.WriteAllText(Path.Combine(logLoc, $"log_{DateTime.Now.ToString("dd_MM_yyyy_HH'hr'mm'min'ss'sec'")}_.txt"), tr.Text.Substring(
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
-                
-                Application.Current.Dispatcher.Invoke(() =>
+
+                //Tries to see if the app has not been shutdown
+                try
                 {
-                    SG_Console.WriteLine("Saving Log");
-                });
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        SG_Console.WriteLine("Saving Log");
+                    });
+                }
+                catch (TaskCanceledException)
+                {
+
+                    return;
+                }
             }
             else
             {
@@ -41,10 +50,21 @@ namespace StarGarden.Functions.FileWork
 
                 File.WriteAllText(Path.Combine(logLoc, $"log_{DateTime.Now.ToString("dd_MM_yyyy_HH'hr'mm'min'ss'sec'")}_.txt"), tr.Text.Substring(
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
-                Application.Current.Dispatcher.Invoke(() =>
+
+                //Tries to see if the app has not been shutdown
+                try
                 {
-                    SG_Console.WriteLine("Saving Log");
-                });
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        SG_Console.WriteLine("Saving Log");
+                    });
+                }
+                catch (TaskCanceledException)
+                {
+
+                    return;
+                }
+               
             }
         }
     }

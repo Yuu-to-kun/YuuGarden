@@ -46,6 +46,9 @@ namespace StarGarden.Functions.FileWork
             File.WriteAllText(Path.Combine(LocalDataFolder, "config.json"), conf);
         }
 
+
+        // BackgroundProcessConfig -- TODO (MOVE)
+
         public class BGPConfig
         {
             public List<int> proccessIds;
