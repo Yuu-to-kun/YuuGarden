@@ -35,7 +35,7 @@ namespace StarGarden.Functions
             }
             else if (GlobalObjects.runningGames.Any(item=> item.Item5 == gameName))
             {
-                SG_Console.WriteLine("Game is already running");
+                SG_Console.WriteLine($"{gameName} is already running");
                 return;
             }
 
@@ -79,6 +79,7 @@ namespace StarGarden.Functions
             // Running the whole process in a new thread
             _= Task.Run(() =>
             {
+                
                 p.Start();
                 p.BeginOutputReadLine();
                 p.BeginErrorReadLine();
@@ -91,6 +92,12 @@ namespace StarGarden.Functions
                 
                 // Set presence
                 presence.Set($"{gameName}");
+
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    currentGameConsole.Close();
+                    SG_Console.WriteLine($"{gameName} started");
+                });
 
                 while (!p.HasExited)
                 {
@@ -136,17 +143,26 @@ namespace StarGarden.Functions
                 }
 
                 // Save logs
-                log.Save(logLoc);
+                log.Save(logLoc,gameName);
                 
 
                 // Checking if the app has not been shutdown and if not it does what it does
                 if (System.Windows.Application.Current != null)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    try
                     {
-                        currentGameConsole.Close();
-                        SG_Console.WriteLine("Game has been stopped");
-                    });
+                        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            currentGameConsole.Close();
+                            SG_Console.WriteLine($"{gameName} has been stopped");
+                        });
+                    }
+                    catch (TaskCanceledException)
+                    {
+
+                        return;
+                    }
+                   
                 }
                     
                 

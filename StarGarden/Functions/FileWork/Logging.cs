@@ -13,7 +13,7 @@ namespace StarGarden.Functions.FileWork
 {
     public class Logging
     {
-        public void Save(string logLoc)
+        public void Save(string logLoc,string gameName)
         {
 
             if (!Directory.Exists(logLoc))
@@ -31,7 +31,7 @@ namespace StarGarden.Functions.FileWork
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        SG_Console.WriteLine("Saving Log");
+                        SG_Console.WriteLine($"Saving Log for {gameName}");
                     });
                 }
                 catch (TaskCanceledException)
@@ -52,17 +52,20 @@ namespace StarGarden.Functions.FileWork
                 tr.Text.IndexOf("GameLog") + "GameLog".Length));
 
                 //Tries to see if the app has not been shutdown
-                try
+                if (System.Windows.Application.Current != null)
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    try
                     {
-                        SG_Console.WriteLine("Saving Log");
-                    });
-                }
-                catch (TaskCanceledException)
-                {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            SG_Console.WriteLine($"Saving Log for {gameName}");
+                        });
+                    }
+                    catch (TaskCanceledException)
+                    {
 
-                    return;
+                        return;
+                    }
                 }
                
             }

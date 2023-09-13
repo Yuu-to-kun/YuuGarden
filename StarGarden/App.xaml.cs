@@ -84,6 +84,8 @@ namespace StarGarden
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            StartCleaning start = new StartCleaning();
+            start.Clean();
             GlobalObjects.DiscordRpcClient.Dispose();
         }
 

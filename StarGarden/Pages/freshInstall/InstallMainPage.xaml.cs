@@ -151,6 +151,7 @@ namespace StarGarden.Pages
              fpPS4_Download download = new fpPS4_Download();
              Installation_Process install = new Installation_Process();
              ConfigFunctions configFuncs = new ConfigFunctions();
+             StarGarden_Download starGarden_Download = new StarGarden_Download();
              var config = configFuncs.OpenConfig();
 
              //Page Indicator Change
@@ -177,6 +178,7 @@ namespace StarGarden.Pages
              {
 
                  await download.Download(PrevButton);
+                 await starGarden_Download.downloadLatestRelease();
                  await install.Install();
 
                  Indicator3.Fill = new SolidColorBrush(Colors.Gray);

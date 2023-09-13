@@ -79,7 +79,7 @@ namespace StarGarden.Pages
 
             checkedGame = entry;
 
-            SG_Console.WriteLine($"{entry.Name} was clicked!");
+            SG_Console.WriteLine($"{entry.Name} has been selected!");
 
             gamePopupTitle.Text = entry.Name;
             gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
