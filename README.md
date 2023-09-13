@@ -1,4 +1,5 @@
-# StarGarden
+# I want to apologise for the previous announcment it was stupid on my part to rush a decision so. The development will be stopped for a short period of time but not forever
+## StarGarden
 StarGarden is an open source fpPS4 launcher that will handle everything for you, so you can play your ps4 games.
 
 StarGarden will inclue:
@@ -15,11 +16,11 @@ StarGarden will inclue:
 
 
 
-# Proudly presented by
+## Proudly presented by
 - [KimieStar](https://github.com/KimieStar)
 - [Mr. Snowy](https://github.com/MrSn0wy)
 
 
 
-# Come join!
+## Come join!
 Discuss about the project and give recommendations in the discord server [here!](https://discord.gg/V74EWXgxq)

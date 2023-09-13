@@ -27,6 +27,7 @@ namespace StarGarden.Functions
             Logging log = new Logging();
             var config = configFunctions.OpenConfig();
 
+            // Checks allowed amount of games to run
             if (config.gamesAllowedToRun == GlobalObjects.runningGames.Count)
             {
                 SG_Console.WriteLine("Maximum count of allowed games has already been reached");
@@ -34,7 +35,7 @@ namespace StarGarden.Functions
             }
             else if (GlobalObjects.runningGames.Any(item=> item.Item5 == gameName))
             {
-                SG_Console.WriteLine("Game is already running");
+                SG_Console.WriteLine($"{gameName} is already running");
                 return;
             }
 
@@ -51,7 +52,6 @@ namespace StarGarden.Functions
             Process p = new Process() { 
                  StartInfo = startInfo
             };
-
             ConsoleWindow currentGameConsole = new ConsoleWindow();
             currentGameConsole.Title = gameName;
             EventHandler<DataReceivedEventArgs> eventHandler = (sender, e) => GlobalObjects.OutputReceived(sender, e, currentGameConsole);
@@ -59,12 +59,11 @@ namespace StarGarden.Functions
             DataReceivedEventHandler dataReceivedHandler = new DataReceivedEventHandler(eventHandler);
             DataReceivedEventHandler dataReceivedHandlerError = new DataReceivedEventHandler(eventHandlerError);
 
+            // Game console
             currentGameConsole.Show();
-
             currentGameConsole.WriteLine("\rGameLog\r");
 
-            // Loggining
-            //SG_Console.WriteLine("\rGameLog\r");
+            // Hooking logging events
 
             currentGameConsole.Dispatcher.Invoke(new Action(() =>
             {
@@ -77,32 +76,29 @@ namespace StarGarden.Functions
 
 
 
-            // Running async the whole process
+            // Running the whole process in a new thread
             _= Task.Run(() =>
             {
+                
                 p.Start();
                 p.BeginOutputReadLine();
                 p.BeginErrorReadLine();
+
                 ConfigFunctions.BGPConfig bGPConfig = configFunctions.OpenBGP_Config();
                 bGPConfig.proccessIds.Add(p.Id);
                 configFunctions.SaveBGP(bGPConfig);
 
-                //GlobalObjects.ProcessesList.Add(p);
                 GlobalObjects.runningGames.Add((p,currentGameConsole,dataReceivedHandler, dataReceivedHandlerError,gameName));
                 
                 // Set presence
                 presence.Set($"{gameName}");
 
-                //var result = System.Windows.Forms.MessageBox.Show("Hello, this is a pop-up message box.", "Message", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
-                //
-                //// Convert DialogResult to MessageBoxResult
-                //MessageBoxResult wpfResult = (MessageBoxResult)Enum.Parse(typeof(MessageBoxResult), result.ToString());
-                //
-                //if (wpfResult == MessageBoxResult.OK)
-                //{
-                //    // User clicked OK
-                //}
-                //Checking for game window close
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    currentGameConsole.Close();
+                    SG_Console.WriteLine($"{gameName} started");
+                });
+
                 while (!p.HasExited)
                 {
                     using (ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_Process WHERE ParentProcessId={p.Id}"))
@@ -128,11 +124,13 @@ namespace StarGarden.Functions
 
 
                 p.WaitForExit();
-                ConfigFunctions.BGPConfig bGPConfig2 = configFunctions.OpenBGP_Config();
-                bGPConfig2.proccessIds.Remove(p.Id);
-                configFunctions.SaveBGP(bGPConfig2);
 
+                // Removeing Process from Lists
+                bGPConfig.proccessIds.Remove(p.Id);
+                configFunctions.SaveBGP(bGPConfig);
                 GlobalObjects.runningGames.RemoveAll(item => item.Item1 == p);
+
+
                 // Set presence
                 try
                 {
@@ -145,16 +143,26 @@ namespace StarGarden.Functions
                 }
 
                 // Save logs
-                log.Save(logLoc);
+                log.Save(logLoc,gameName);
                 
+
                 // Checking if the app has not been shutdown and if not it does what it does
                 if (System.Windows.Application.Current != null)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    try
                     {
-                        currentGameConsole.Close();
-                        SG_Console.WriteLine("Game has been stopped");
-                    });
+                        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            currentGameConsole.Close();
+                            SG_Console.WriteLine($"{gameName} has been stopped");
+                        });
+                    }
+                    catch (TaskCanceledException)
+                    {
+
+                        return;
+                    }
+                   
                 }
                     
                 

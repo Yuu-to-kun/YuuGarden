@@ -26,14 +26,14 @@ namespace StarGarden.Functions.FileWork
             {
                 try
                 {
-                    File.Copy(appPath, Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                    File.Copy(appPath, Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
                 }
                 catch (System.IO.IOException)
                 {
-                    if (File.Exists(Path.Combine(Misc.downloadPath, "StarGarden.exe")))
+                    if (File.Exists(Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe")))
                     {
-                        File.Delete(Path.Combine(Misc.downloadPath, "StarGarden.exe"));
-                        File.Copy(appPath, Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                        File.Delete(Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
+                        File.Copy(appPath, Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
                     }
                 }
                 
@@ -45,28 +45,28 @@ namespace StarGarden.Functions.FileWork
 
 
                 }
-                if (!Directory.Exists(Path.Combine(Misc.downloadPath,"Games")))
+                if (!Directory.Exists(Path.Combine(GlobalObjects.downloadPath,"Games")))
                 {
-                    Directory.CreateDirectory(Path.Combine(Misc.downloadPath, "Games"));
+                    Directory.CreateDirectory(Path.Combine(GlobalObjects.downloadPath, "Games"));
                 }
                 if (!File.Exists(Path.Combine(startMenuFolder, "StarGarden.lnk")))
                 {
                     CreateShortcut shortcut = new CreateShortcut();
 
-                    shortcut.startMenuShortcut(Path.Combine(startMenuFolder, "StarGarden.lnk"), Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                    shortcut.startMenuShortcut(Path.Combine(startMenuFolder, "StarGarden.lnk"), Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
                 }
                 if (!File.Exists(Path.Combine(desktopPath, "StarGarden.lnk")))
                 {
                     CreateShortcut shortcut = new CreateShortcut();
 
-                    shortcut.startMenuShortcut(Path.Combine(desktopPath, "StarGarden.lnk"), Path.Combine(Misc.downloadPath, "StarGarden.exe"));
+                    shortcut.startMenuShortcut(Path.Combine(desktopPath, "StarGarden.lnk"), Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
                 }
 
 
                 var config = configFunctions.OpenConfig();
-                config.installPath = Misc.downloadPath;
-                config.gamesDirPath = Path.Combine(Misc.downloadPath, "Games");
-                config.fpPS4_ExePath = Path.Combine(Misc.downloadPath, "fpPS4","fpPS4.exe");
+                config.installPath = GlobalObjects.downloadPath;
+                config.gamesDirPath = Path.Combine(GlobalObjects.downloadPath, "Games");
+                config.fpPS4_ExePath = Path.Combine(GlobalObjects.downloadPath, "fpPS4","fpPS4.exe");
 
                 configFunctions.SaveConfig(config);
             });

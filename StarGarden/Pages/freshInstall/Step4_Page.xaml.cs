@@ -32,7 +32,7 @@ namespace StarGarden.Pages.freshInstall
             //Star Process Information
             ProcessStartInfo startinfo = new ProcessStartInfo { 
                 FileName = "explorer.exe",
-                Arguments = Misc.downloadPath,
+                Arguments = GlobalObjects.downloadPath,
                 WindowStyle = ProcessWindowStyle.Normal,
             };
             Process.Start(startinfo);

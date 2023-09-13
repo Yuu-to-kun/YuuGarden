@@ -26,28 +26,28 @@ namespace StarGarden.Functions.NetworkWork.Github
         public async Task Download(Button PrevButton)
         {
 
-            string filePath = Path.Combine(Misc.downloadPath, "fpPS4.zip");
-            string fpPS4_Folder = Path.Combine(Misc.downloadPath, "fpPS4");
+            string filePath = Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip");
+            string fpPS4_Folder = Path.Combine(GlobalObjects.downloadPath, "fpPS4");
 
-            if (!File.Exists(Path.Combine(Misc.downloadPath, "fpPS4.zip")))
+            if (!File.Exists(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip")))
             {
                  await Task.Run(() =>
                  {
-                     if (!Directory.Exists(Misc.downloadPath))
+                     if (!Directory.Exists(GlobalObjects.downloadPath))
                      {
-                         Directory.CreateDirectory(Misc.downloadPath);
+                         Directory.CreateDirectory(GlobalObjects.downloadPath);
                      }
-                     Download_Latest_Trunk(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+                     Download_Latest_Trunk(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
                      Extract_FpPS4(filePath,fpPS4_Folder);
 
-                     File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
+                     File.Delete(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
 
                  });
              }
              else
             {
-                SG_Console.WriteLine("File Exists");
-                if (!Directory.Exists(Path.Combine(Misc.downloadPath, "fpPS4")))
+                SG_Console.WriteLine("File Exists, skipping download.\nExtracting...");
+                if (!Directory.Exists(Path.Combine(GlobalObjects.downloadPath, "fpPS4")))
                 {
                     
                     await Task.Run(() =>
@@ -59,8 +59,7 @@ namespace StarGarden.Functions.NetworkWork.Github
 
                         Thread.Sleep(2500);
                         Extract_FpPS4(filePath,fpPS4_Folder);
-                        File.Delete(Path.Combine(Misc.downloadPath, "fpPS4.zip"));
-                        //Thread.Sleep(5000);
+                        File.Delete(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
                         Application.Current.Dispatcher.Invoke(() =>
                         {
                             PrevButton.IsEnabled = true;
@@ -71,7 +70,7 @@ namespace StarGarden.Functions.NetworkWork.Github
                 }
                 else
                 {
-                    SG_Console.WriteLine("Already Extracted");
+                    SG_Console.WriteLine("Already Extracted, skipping");
                 }
             }
 

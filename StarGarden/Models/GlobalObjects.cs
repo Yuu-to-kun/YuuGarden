@@ -15,11 +15,9 @@ namespace StarGarden.Models
 {
     public static class GlobalObjects
     {
+        //Discord RPC
         public static DiscordRpcClient DiscordRpcClient { get; set; } = new DiscordRpcClient("1147311963379073084");
-        public static System.Timers.Timer Timer { get; set; } = new System.Timers.Timer(1000);
-        public static DateTime currentTime { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 00, 0, 0);
-        public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
-        public static RichPresence RichPresence { get; set; } = new RichPresence 
+        public static RichPresence RichPresence { get; set; } = new RichPresence
         {
             State = "Idling",
             Assets = new Assets()
@@ -31,13 +29,23 @@ namespace StarGarden.Models
             {
                 Start = DateTime.UtcNow
             }
-            
-        };
-        public static List<Process> ProcessesList { get; set; } = new List<Process>();
 
+        };
+
+        //Main Console
+        public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
+        
+        //Misc
+
+        public static string downloadPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
+
+
+        //Running Games
         public static List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> runningGames { get; set; }
             = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler ,string)>();
 
+
+        // Games Output
         public static void OutputReceived(object sender, DataReceivedEventArgs args,ConsoleWindow consoleWindow)
         {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -45,9 +53,6 @@ namespace StarGarden.Models
                     consoleWindow.WriteLine(args.Data);
                 });
         }
-
-        
-
         public static void ErrorOutputReceived(object sender, DataReceivedEventArgs args, ConsoleWindow consoleWindow)
         {
             Application.Current.Dispatcher.Invoke(() =>

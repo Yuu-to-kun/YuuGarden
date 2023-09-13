@@ -29,7 +29,7 @@ namespace StarGarden.Pages
         {
             InitializeComponent();
 
-            FolderPathTextBox.Text = Misc.downloadPath;
+            FolderPathTextBox.Text = GlobalObjects.downloadPath;
         }
 
         private void BrowseInstallFolder_Click(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace StarGarden.Pages
             {
                 FolderPathTextBox.Text = System.IO.Path.Combine(installFolder, "StarGarden");
             }
-            Misc.downloadPath = System.IO.Path.Combine(installFolder, "StarGarden");
+            GlobalObjects.downloadPath = System.IO.Path.Combine(installFolder, "StarGarden");
         }
     }
 }
