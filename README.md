@@ -1,8 +1,4 @@
-# Important notice
-I am saying officially sorry to Snowy and myself for cancelling this project even after the hard effort we've put into it. But after repeated nasty attitude from certain people that will be listed, we have decided to end development indefinitely.
-- elon7496 (discord)
-- fafyizer (discord)
-
+# I want to apologise for the previous announcment it was stupid on my part to rush a decision so. The development will be stopped for a short period of time but not forever
 ## StarGarden
 StarGarden is an open source fpPS4 launcher that will handle everything for you, so you can play your ps4 games.
 
