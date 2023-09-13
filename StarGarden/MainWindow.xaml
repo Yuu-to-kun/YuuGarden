@@ -25,16 +25,8 @@
     </Window.Style>
 
     <Border>
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="10"
-                              ShadowDepth="3"
-                              Direction="307"
-                              Color="Black"
-                              Opacity="0.4"
-                              RenderingBias="Performance"/>
-        </Border.Effect>
-    
-    <Border BorderBrush="#44464c" Height="682" Width="1000" BorderThickness="01" CornerRadius="9" ClipToBounds="True">
+
+        <Border BorderBrush="#44464c" Height="682" Width="1000" BorderThickness="01" CornerRadius="9" ClipToBounds="True">
         <Grid>
             <Grid.OpacityMask>
                 <VisualBrush Visual="{Binding ElementName=Border1}" />
