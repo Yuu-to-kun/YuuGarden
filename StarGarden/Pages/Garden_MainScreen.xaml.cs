@@ -87,7 +87,12 @@ namespace StarGarden.Pages
             // animation
             double targetHeight = gamePopup.ActualHeight;
             gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
+            if (!mainGrid.Children.Contains(gamePopup))
+            {
+                mainGrid.Children.Add(gamePopup);
+            }
             gamePopup.Visibility = Visibility.Visible;
+
 
             DoubleAnimation slideAnimation = new DoubleAnimation
             {
@@ -108,6 +113,10 @@ namespace StarGarden.Pages
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
 
             await Task.Delay(slideAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            if (mainGrid.Children.Contains(scrollViewer))
+            {
+                mainGrid.Children.Remove(scrollViewer);
+            }
             playButton.Visibility = Visibility.Visible;
         }
 
@@ -115,6 +124,9 @@ namespace StarGarden.Pages
         {
             gamePopup.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Hidden;
+            mainGrid.Children.Remove(gamePopup);
+            mainGrid.Children.Add(scrollViewer);
+
 
         }
     }

@@ -162,7 +162,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="249*"/>
             <ColumnDefinition Width="751*"/>
@@ -189,7 +189,7 @@
                 </Border>
             </StackPanel>
         </Border>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="40,0,0,0" Background="#101112" Width="960" Height="652" Grid.ColumnSpan="2">
+        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="40,0,0,0" Background="#101112" Width="960" Height="652" Grid.ColumnSpan="2">
             <ItemsControl Padding="15,30,0,30" ItemsSource="{Binding GamesTemplate}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
