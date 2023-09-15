@@ -122,6 +122,10 @@ namespace StarGarden.Functions.NetworkWork.Github
                 string part2 = "61cC5OWK9qwTHk3vIB3u";
                 string GToken = part0 + part1 + part2;
 
+                if (!Directory.Exists(Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden", "bgProccesses"))))
+                {
+                    Directory.CreateDirectory(Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden", "bgProccesses")));
+                }
                 string downloadFilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden", "bgProccesses", "bg.exe"));
                 Uri endpointLatestRelease = new Uri("https://api.github.com/repos/KimieStar/StarGarden/releases/latest");
                 string link = latestReleaseDownloadLink(GToken, endpointLatestRelease);
