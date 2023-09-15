@@ -114,6 +114,7 @@ namespace StarGarden.Functions
                                 if (!bGPConfig.proccessIds.Contains(childprocess.Id))
                                 {
                                     bGPConfig.proccessIds.Add(childprocess.Id);
+                                    configFunctions.SaveBGP(bGPConfig);
                                 }
                             }
                             catch (ArgumentException)
