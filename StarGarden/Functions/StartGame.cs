@@ -111,6 +111,10 @@ namespace StarGarden.Functions
                             try
                             {
                                 childprocess = Process.GetProcessById((int)childProcessId);
+                                if (!bGPConfig.proccessIds.Contains(childprocess.Id))
+                                {
+                                    bGPConfig.proccessIds.Add(childprocess.Id);
+                                }
                             }
                             catch (ArgumentException)
                             {

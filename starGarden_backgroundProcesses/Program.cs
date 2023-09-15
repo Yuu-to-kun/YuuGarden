@@ -10,8 +10,11 @@ if (!Directory.Exists(configFolderPath))
 {
     DirectoryInfo directoryInfo = Directory.CreateDirectory(configFolderPath);
     directoryInfo.Attributes |= FileAttributes.Hidden;
-    config.Create(list, configFolderPath);
 
+}
+if (!File.Exists(Path.Combine(configFolderPath,"config.json")))
+{
+    config.Create(list, configFolderPath);
 }
 
 var configList = config.OpenBGP_Config(Path.Combine(configFolderPath)).proccessIds;
