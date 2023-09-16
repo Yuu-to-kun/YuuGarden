@@ -64,10 +64,6 @@ namespace StarGarden
 
             // Apply changes to the JumpList
             jumpList.Apply();
-
-            var handle = GetConsoleWindow();
-            ShowWindow(handle, SW_SHOWMINIMIZED);
-            ShowWindow(handle, SW_HIDE);
         }
         
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -79,7 +75,8 @@ namespace StarGarden
                 MessageBox.Show("There is an instance is already running...");
                 App.Current.Shutdown();
             }
-
+            var handle = GetConsoleWindow();
+            ShowWindow(handle, SW_HIDE);
 
             InitializeJumpList();
 
