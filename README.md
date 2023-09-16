@@ -1,4 +1,3 @@
-# I want to apologise for the previous announcment it was stupid on my part to rush a decision so. The development will be stopped for a short period of time but not forever
 ## StarGarden
 StarGarden is an open source fpPS4 launcher that will handle everything for you, so you can play your ps4 games.
 
