@@ -175,12 +175,12 @@ namespace StarGarden.Pages
                 updateMenu.Visibility = Visibility.Hidden;
 
             }
-            else if (updateMenu.Visibility == Visibility.Hidden)
+            else
             {
-                //if (settingMenu.Visibility == Visibility.Visible)
-                //{
-                //    settingsButtonClick();
-                //}
+                if (settingMenu.Visibility == Visibility.Visible)
+                {
+                    settingMenu.Visibility = Visibility.Hidden;
+                }
 
                 // Load animation
                 double targetHeight = updateMenuChild.ActualHeight;
@@ -237,12 +237,12 @@ namespace StarGarden.Pages
                 settingMenu.Visibility = Visibility.Hidden;
 
             }
-            else if (settingMenu.Visibility == Visibility.Hidden)
+            else
             {
-                //if (updateMenu.Visibility == Visibility.Visible)
-                //{
-                //    updatesButtonClick;
-                //}
+                if (updateMenu.Visibility == Visibility.Visible)
+                {
+                    updateMenu.Visibility = Visibility.Hidden;
+                }
                 // Load animation
                 double targetHeight = settingMenuChild.ActualHeight;
                 settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
