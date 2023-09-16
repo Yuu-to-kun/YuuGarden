@@ -27,6 +27,7 @@ namespace StarGarden.Pages
     /// </summary>
     public partial class Garden_MainScreen : Page
     {
+
         private List<string> games = new List<string>();
         public ObservableCollection<GameEntry> GamesTemplate { get; } = new ObservableCollection<GameEntry>();
         
@@ -58,7 +59,15 @@ namespace StarGarden.Pages
             InitializeComponent();
             DataContext = this;
 
-            
+            // fix game being centerd while less then 4 games are displayed
+            if (games.Count < 4) 
+            {
+                ItemsControl.HorizontalAlignment = HorizontalAlignment.Left;
+
+            } else if (games.Count > 4 || games.Count == 4)
+            {
+                ItemsControl.HorizontalAlignment = HorizontalAlignment.Center;
+            }
 
         }
 

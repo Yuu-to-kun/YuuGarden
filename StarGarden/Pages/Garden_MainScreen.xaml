@@ -191,7 +191,7 @@
         </Border>
 
         <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="40,0,0,0" Background="#101112" Width="960" Height="652">
-            <ItemsControl Padding="0,30,0,30" ItemsSource="{Binding GamesTemplate}" HorizontalAlignment="Center">
+            <ItemsControl x:Name="ItemsControl" Padding="0,30,0,30" ItemsSource="{Binding GamesTemplate}" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">

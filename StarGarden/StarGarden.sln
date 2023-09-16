@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarGarden", "StarGarden.csproj", "{4D146CC9-48BC-43B5-8D25-86F3D805C357}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D146CC9-48BC-43B5-8D25-86F3D805C357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D146CC9-48BC-43B5-8D25-86F3D805C357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D146CC9-48BC-43B5-8D25-86F3D805C357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D146CC9-48BC-43B5-8D25-86F3D805C357}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {392AE40C-1286-49A2-9CB9-C4422BA5BE86}
+	EndGlobalSection
+EndGlobal
