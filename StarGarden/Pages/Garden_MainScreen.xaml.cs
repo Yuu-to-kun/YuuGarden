@@ -92,7 +92,7 @@ namespace StarGarden.Pages
                 mainGrid.Children.Add(gamePopup);
             }
             gamePopup.Visibility = Visibility.Visible;
-
+            scrollViewer.VerticalScrollBarVisibility = Visibility.Hidden;
 
             DoubleAnimation slideAnimation = new DoubleAnimation
             {
