@@ -37,6 +37,7 @@ namespace StarGarden
 
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
+        const int SW_SHOWMINIMIZED = 2;
 
 
         Mutex myMutex;
@@ -65,6 +66,7 @@ namespace StarGarden
             jumpList.Apply();
 
             var handle = GetConsoleWindow();
+            ShowWindow(handle, SW_SHOWMINIMIZED);
             ShowWindow(handle, SW_HIDE);
         }
         
