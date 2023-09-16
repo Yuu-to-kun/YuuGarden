@@ -20,8 +20,11 @@ namespace StarGarden.Functions.FileWork
             List<string> potentialGames = new List<string>();
             foreach (var item in gamesDirPath)
             {
-               var entry = Directory.GetDirectories(item);
-               potentialGames.Add(entry);
+                foreach (var item2 in Directory.GetDirectories(item))
+                {
+                    potentialGames.Add(item2);
+                }
+               
             }
 
             foreach (var potentialGame in potentialGames)
