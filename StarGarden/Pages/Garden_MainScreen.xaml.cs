@@ -126,6 +126,7 @@ namespace StarGarden.Pages
             playButton.Visibility = Visibility.Hidden;
             mainGrid.Children.Remove(gamePopup);
             mainGrid.Children.Add(scrollViewer);
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 
 
         }
