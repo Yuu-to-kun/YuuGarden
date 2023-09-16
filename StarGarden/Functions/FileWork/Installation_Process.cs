@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using StarGarden.Models;
+using WindowsShortcutFactory;
 
 namespace StarGarden.Functions.FileWork
 {
@@ -51,15 +52,16 @@ namespace StarGarden.Functions.FileWork
                 }
                 if (!File.Exists(Path.Combine(startMenuFolder, "StarGarden.lnk")))
                 {
-                    CreateShortcut shortcut = new CreateShortcut();
+                    WindowsShortcutFactory.WindowsShortcut shortcut1 = new WindowsShortcutFactory.WindowsShortcut();
+                    shortcut1.Path = Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe");
+                    shortcut1.Save(Path.Combine(startMenuFolder, "StarGarden.lnk"));
 
-                    shortcut.startMenuShortcut(Path.Combine(startMenuFolder, "StarGarden.lnk"), Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
                 }
                 if (!File.Exists(Path.Combine(desktopPath, "StarGarden.lnk")))
                 {
-                    CreateShortcut shortcut = new CreateShortcut();
-
-                    shortcut.startMenuShortcut(Path.Combine(desktopPath, "StarGarden.lnk"), Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe"));
+                    WindowsShortcutFactory.WindowsShortcut shortcut1 = new WindowsShortcutFactory.WindowsShortcut();
+                    shortcut1.Path = Path.Combine(GlobalObjects.downloadPath, "StarGarden.exe");
+                    shortcut1.Save(Path.Combine(desktopPath, "StarGarden.lnk"));
                 }
 
 

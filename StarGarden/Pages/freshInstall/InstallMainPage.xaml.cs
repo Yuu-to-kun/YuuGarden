@@ -178,7 +178,7 @@ namespace StarGarden.Pages
              {
 
                  await download.Download(PrevButton);
-                 await starGarden_Download.downloadLatestRelease();
+                 //await starGarden_Download.downloadLatestRelease();
                  await install.Install();
 
                  Indicator3.Fill = new SolidColorBrush(Colors.Gray);
