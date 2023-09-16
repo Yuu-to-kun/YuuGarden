@@ -19,14 +19,26 @@ using Windows.Media.Protection.PlayReady;
 using System.Diagnostics;
 using System.Management;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace StarGarden
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// 
     public partial class App : Application
     {
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
+
+
         Mutex myMutex;
         private void InitializeJumpList()
         {
@@ -51,6 +63,9 @@ namespace StarGarden
 
             // Apply changes to the JumpList
             jumpList.Apply();
+
+            var handle = GetConsoleWindow();
+            ShowWindow(handle, SW_HIDE);
         }
         
         private void Application_Startup(object sender, StartupEventArgs e)
