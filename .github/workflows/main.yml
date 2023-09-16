@@ -25,5 +25,5 @@ jobs:
       - name: Upload windows binaries
         uses: actions/upload-artifact@v3
         with:
-            name: StarGarden
+            name: StarGarden.zip
             path: Build/win64/
