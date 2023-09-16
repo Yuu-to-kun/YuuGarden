@@ -15,9 +15,14 @@ namespace StarGarden.Functions.FileWork
             var config = configFunc.OpenConfig();
 
             List<string> result = new List<string>();
-            string gamesDirPath = config.gamesDirPath;
+            List<string> gamesDirPath = config.gamesDirPaths;
 
-            string[] potentialGames = Directory.GetDirectories(gamesDirPath);
+            List<string> potentialGames = new List<string>();
+            foreach (var item in gamesDirPath)
+            {
+               var entry = Directory.GetDirectories(item);
+               potentialGames.Add(entry);
+            }
 
             foreach (var potentialGame in potentialGames)
             {

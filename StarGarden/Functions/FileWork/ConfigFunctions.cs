@@ -24,7 +24,7 @@ namespace StarGarden.Functions.FileWork
             configFile.appVer = appVersion;
             configFile.lang = "En-Us";
             configFile.installPath = "";
-            configFile.gamesDirPath = "";
+            configFile.gamesDirPaths = new List<string> {""};
             configFile.fpPS4_ExePath = "";
             configFile.gamesAllowedToRun = 1;
 
