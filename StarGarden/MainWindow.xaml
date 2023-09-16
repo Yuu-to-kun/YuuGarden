@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StarGarden"
         mc:Ignorable="d"
-        Title="MainWindow" Height="712" Width="1030" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="Window_Closed">
+        Title="MainWindow" Height="682" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="Window_Closed">
     <Window.Background>
         <SolidColorBrush Color="Transparent" />
     </Window.Background>
@@ -85,7 +85,7 @@
                         </Button.Style>
                     </Button>
 
-                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="pack://application:,,,/StarGarden;component/Assets/Fonts/#Rubik" Width="95" HorizontalAlignment="Left">
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10 0 0 0" FontSize="16" FontFamily="/Assets/Fonts/#Rubik" Width="95" HorizontalAlignment="Left">
                         <Run Text="Star" Foreground="#0086D1"/><Run Text="Garden"/>
                     </TextBlock>
                 </Grid>

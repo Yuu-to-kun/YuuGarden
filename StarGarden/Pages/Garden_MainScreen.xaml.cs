@@ -70,6 +70,61 @@ namespace StarGarden.Pages
             
         }
 
+        private async void settingsButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (settingMenu.Visibility == Visibility.Visible)
+            {
+                // UnLoad animation
+                double targetHeight = settingMenuChild.ActualHeight;
+                settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
+
+                DoubleAnimation slideAnimation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = targetHeight,
+                    Duration = TimeSpan.FromSeconds(0.2),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
+                };
+                DoubleAnimation fadeAnimation = new DoubleAnimation
+                {
+                    From = 1,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.25),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+                settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+                await Task.Delay(200);
+                settingMenu.Visibility = Visibility.Hidden;
+
+            } else if (settingMenu.Visibility == Visibility.Hidden)
+            {
+                // Load animation
+                double targetHeight = settingMenuChild.ActualHeight;
+                settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
+                
+                DoubleAnimation slideAnimation = new DoubleAnimation
+                {
+                    From = targetHeight,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.2),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+                DoubleAnimation fadeAnimation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(0.25),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                settingMenu.Visibility = Visibility.Visible;
+                settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+                settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            }
+        }
+
         private async void gameClick(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
