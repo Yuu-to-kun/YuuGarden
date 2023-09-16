@@ -25,5 +25,5 @@ jobs:
       - name: Upload windows binaries
         uses: actions/upload-artifact@v3
         with:
-            name: StarGarden-${{ matrix.dotnet-version }}
-            path: ./Build/StarGarden/win64/StarGarden.exe
+            name: StarGarden
+            path: ../Build/win64/
