@@ -67,7 +67,6 @@ namespace StarGarden.Functions.FileWork
 
                 var config = configFunctions.OpenConfig();
                 config.installPath = GlobalObjects.downloadPath;
-                config.gamesDirPaths.Add(Path.Combine(GlobalObjects.downloadPath, "Games"));
                 config.fpPS4_ExePath = Path.Combine(GlobalObjects.downloadPath, "fpPS4","fpPS4.exe");
 
                 configFunctions.SaveConfig(config);
