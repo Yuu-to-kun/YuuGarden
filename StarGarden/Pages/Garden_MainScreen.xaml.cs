@@ -118,6 +118,10 @@ namespace StarGarden.Pages
                 mainGrid.Children.Remove(scrollViewer);
             }
             playButton.Visibility = Visibility.Visible;
+            gamePopupExit.IsEnabled = false;
+            Task.Delay(1000);
+            gamePopupExit.IsEnabled = true;
+
         }
 
         private void gamePopUpExit(object sender, RoutedEventArgs e)
@@ -125,8 +129,6 @@ namespace StarGarden.Pages
             gamePopup.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Hidden;
             mainGrid.Children.Remove(gamePopup);
-
-            mainGrid.Children.Remove(scrollViewer);
             mainGrid.Children.Add(scrollViewer);
             
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
