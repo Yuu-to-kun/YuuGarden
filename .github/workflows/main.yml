@@ -4,7 +4,7 @@ on: [push]
 
 env:
   PROJECT_PATH: StarGarden/StarGarden.csproj
-  ARTIFACT_PATH: StarGarden\StarGarden\bin\Release\net7.0-windows10.0.22621.0\publish\win-x64\StarGarden.exe
+  ARTIFACT_PATH: StarGarden\StarGarden\bin\Release\net7.0-windows10.0.22621.0\win-x64\publish\StarGarden.exe
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: dotnet build ${{env.PROJECT_PATH}} -c Release --no-restore  
       - name: Publish
-        run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 -p:PublishSingleFile=true
+        run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 --no-self-contained -p:PublishSingleFile=true
       - name: Test
         run: dotnet test --no-restore --verbosity normal
       - name: Upload windows binaries
