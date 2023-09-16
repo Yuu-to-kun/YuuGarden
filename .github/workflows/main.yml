@@ -31,4 +31,5 @@ jobs:
       - name: Upload windows binaries
         uses: actions/upload-artifact@v3
         with:
+            name: StarGarden.exe
             path: ${{env.ARTIFACT_PATH}}
