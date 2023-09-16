@@ -125,9 +125,14 @@ namespace StarGarden.Pages
             gamePopup.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Hidden;
             mainGrid.Children.Remove(gamePopup);
-            if (!mainGrid.Children.Contains(scrollViewer))
+            try
             {
                 mainGrid.Children.Add(scrollViewer);
+
+            }
+            catch (Exception)
+            {
+
             }
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 
