@@ -2,6 +2,9 @@ name: dotnet package
 
 on: [push]
 
+env:
+  PROJECT_PATH: StarGarden/StarGarden.csproj
+
 jobs:
   build:
 
@@ -17,9 +20,11 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore ${{env.PROJECT_PATH}}
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ${{env.PROJECT_PATH}} -c Release --no-restore  
+      - name: Publish
+        run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 -p:PublishSingleFile=true
       - name: Test
         run: dotnet test --no-restore --verbosity normal
       - name: Upload windows binaries
