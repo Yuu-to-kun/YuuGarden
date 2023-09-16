@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: StarGarden.exe
-            path: ${{env.ARTIFACT_PATH}}
+            path: ${{env.ARTIFACT_PATH}} 
