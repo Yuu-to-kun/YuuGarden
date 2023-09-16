@@ -9,6 +9,7 @@
     <FileVersion></FileVersion>
 	<Version>0.0.0.1</Version>
 	<UseWindowsForms>True</UseWindowsForms>
+  <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>
