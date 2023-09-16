@@ -119,7 +119,7 @@ namespace StarGarden.Pages
             }
             playButton.Visibility = Visibility.Visible;
             gamePopupExit.IsEnabled = false;
-            Task.Delay(TimeSpan.FromSeconds(2));
+            await Task.Delay(TimeSpan.FromSeconds(2));
             gamePopupExit.IsEnabled = true;
         }
 
