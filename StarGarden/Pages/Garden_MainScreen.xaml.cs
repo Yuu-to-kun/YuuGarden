@@ -59,7 +59,7 @@ namespace StarGarden.Pages
             InitializeComponent();
             DataContext = this;
 
-            // fix game being centerd while less then 4 games are displayed
+            // fix game being centerd when less then 4 games are displayed
             if (games.Count < 4) 
             {
                 ItemsControl.HorizontalAlignment = HorizontalAlignment.Left;
