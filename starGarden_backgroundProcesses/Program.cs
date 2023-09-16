@@ -17,6 +17,7 @@ if (!File.Exists(Path.Combine(configFolderPath,"config.json")))
     config.Create(list, configFolderPath);
 }
 
+
 var configList = config.OpenBGP_Config(Path.Combine(configFolderPath)).proccessIds;
     foreach (int Id in config.OpenBGP_Config(Path.Combine(configFolderPath)).proccessIds)
     {
