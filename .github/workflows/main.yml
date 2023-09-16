@@ -4,7 +4,7 @@ on: [push]
 
 env:
   PROJECT_PATH:  StarGarden/StarGarden.csproj
-  ARTIFACT_PATH: StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/*.exe
+  ARTIFACT_PATH: StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/
 
 jobs:
   build:
@@ -31,6 +31,4 @@ jobs:
       - name: Upload windows binaries
         uses: actions/upload-artifact@v3
         with:
-            path: |
-              StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/
-              !StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/*.exe
+            path: ${{env.ARTIFACT_PATH}}
