@@ -31,4 +31,6 @@ jobs:
       - name: Upload windows binaries
         uses: actions/upload-artifact@v3
         with:
-            path: ${{env.ARTIFACT_PATH}}
+            path: |
+              StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/
+              !StarGarden/StarGarden/bin/Release/net7.0-windows10.0.22621.0/win-x64/publish/*.exe
