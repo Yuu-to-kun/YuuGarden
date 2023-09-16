@@ -79,6 +79,135 @@ namespace StarGarden.Pages
             
         }
 
+        //private async void animation(UIElement element, bool isChild)
+        //{
+        //    UIElement child = new UIElement();
+
+        //    if (!isChild) 
+        //    {
+        //        child = element;
+        //    } else if (isChild) 
+        //    {
+        //        string tempChild = element + "child";
+        //        //child = element.Contains(tempChild);
+        //    }
+
+        //    if (element.Visibility == Visibility.Visible)
+        //    {
+        //        // UnLoad animation
+        //        double targetHeight = child.ActualHeight;
+        //        child.RenderTransform = new TranslateTransform(0, targetHeight);
+
+        //        DoubleAnimation slideAnimation = new DoubleAnimation
+        //        {
+        //            From = 0,
+        //            To = targetHeight,
+        //            Duration = TimeSpan.FromSeconds(0.2),
+        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
+        //        };
+        //        DoubleAnimation fadeAnimation = new DoubleAnimation
+        //        {
+        //            From = 1,
+        //            To = 0,
+        //            Duration = TimeSpan.FromSeconds(0.25),
+        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+        //        };
+
+        //        child.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+        //        child.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+        //        await Task.Delay(200);
+        //        element.Visibility = Visibility.Hidden;
+
+        //    }
+        //    else if (element.Visibility == Visibility.Hidden)
+        //    {
+        //        // Load animation
+        //        double targetHeight = child.ActualHeight;
+        //        child.RenderTransform = new TranslateTransform(0, targetHeight);
+
+        //        DoubleAnimation slideAnimation = new DoubleAnimation
+        //        {
+        //            From = targetHeight,
+        //            To = 0,
+        //            Duration = TimeSpan.FromSeconds(0.2),
+        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+        //        };
+        //        DoubleAnimation fadeAnimation = new DoubleAnimation
+        //        {
+        //            From = 0,
+        //            To = 1,
+        //            Duration = TimeSpan.FromSeconds(0.25),
+        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+        //        };
+
+        //        element.Visibility = Visibility.Visible;
+        //        child.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+        //        child.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+        //    }
+        //}
+
+        private async void updatesButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (updateMenu.Visibility == Visibility.Visible)
+            {
+                // UnLoad animation
+                double targetHeight = updateMenuChild.ActualHeight;
+                updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
+
+                DoubleAnimation slideAnimation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = targetHeight,
+                    Duration = TimeSpan.FromSeconds(0.2),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
+                };
+                DoubleAnimation fadeAnimation = new DoubleAnimation
+                {
+                    From = 1,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.25),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+                updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+                await Task.Delay(200);
+                updateMenu.Visibility = Visibility.Hidden;
+
+            }
+            else if (updateMenu.Visibility == Visibility.Hidden)
+            {
+                //if (settingMenu.Visibility == Visibility.Visible)
+                //{
+                //    settingsButtonClick();
+                //}
+
+                // Load animation
+                double targetHeight = updateMenuChild.ActualHeight;
+                updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
+
+                DoubleAnimation slideAnimation = new DoubleAnimation
+                {
+                    From = targetHeight,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.2),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+                DoubleAnimation fadeAnimation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(0.25),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                updateMenu.Visibility = Visibility.Visible;
+                updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+                updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            }
+        }
+
+
         private async void settingsButtonClick(object sender, RoutedEventArgs e)
         {
             if (settingMenu.Visibility == Visibility.Visible)
@@ -107,12 +236,17 @@ namespace StarGarden.Pages
                 await Task.Delay(200);
                 settingMenu.Visibility = Visibility.Hidden;
 
-            } else if (settingMenu.Visibility == Visibility.Hidden)
+            }
+            else if (settingMenu.Visibility == Visibility.Hidden)
             {
+                //if (updateMenu.Visibility == Visibility.Visible)
+                //{
+                //    updatesButtonClick;
+                //}
                 // Load animation
                 double targetHeight = settingMenuChild.ActualHeight;
                 settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
-                
+
                 DoubleAnimation slideAnimation = new DoubleAnimation
                 {
                     From = targetHeight,
@@ -180,14 +314,37 @@ namespace StarGarden.Pages
             playButton.Visibility = Visibility.Visible;
         }
 
-        private void gamePopUpExit(object sender, RoutedEventArgs e)
+        private async void gamePopUpExit(object sender, RoutedEventArgs e)
         {
-            gamePopup.Visibility = Visibility.Hidden;
+            //gamePopup.Visibility = Visibility.Hidden;
             playButton.Visibility = Visibility.Hidden;
-            mainGrid.Children.Remove(gamePopup);
+            
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 
+            // UnLoad animation
+            double targetHeight = gamePopup.ActualHeight;
+            gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
 
+            DoubleAnimation slideAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = targetHeight,
+                Duration = TimeSpan.FromSeconds(0.2),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
+            };
+            DoubleAnimation fadeAnimation = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.25),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+            };
+
+            gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            await Task.Delay(200);
+            gamePopup.Visibility = Visibility.Hidden;
+            mainGrid.Children.Remove(gamePopup);
         }
     }
 
