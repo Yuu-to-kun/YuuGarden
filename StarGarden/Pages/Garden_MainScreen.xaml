@@ -236,7 +236,7 @@
                 <TextBlock x:Name="gamePopupTitle" Text="Title" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="/Assets/Fonts/#Rubik" FontSize="18" FontWeight="Bold" Margin="0,41,0,0" Width="294" Panel.ZIndex="6"/>
                 <TextBlock x:Name="gamePopupCode" Text="Code" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="/Assets/Fonts/#Rubik" FontSize="18" FontWeight="Bold" Margin="0,77,0,0" Width="294" Panel.ZIndex="6"/>
                 <TextBlock x:Name="gamePopupType" Text="Homebrew" TextAlignment="Center" Foreground="#FFECEFF4" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="/Assets/Fonts/#Rubik" FontSize="18" FontWeight="Bold" Margin="0,117,0,0" Width="294" Panel.ZIndex="6"/>
-                <Button x:Name="playButton" Visibility="Hidden" Content="Play" Panel.ZIndex="6" Margin="133,487,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click" Grid.Column="1" HorizontalAlignment="Center"/>
+                <Button x:Name="playButton" Content="Play" Panel.ZIndex="6" Margin="133,487,0,0" VerticalAlignment="Top" Height="56" Width="276" Click="playButton_Click" Grid.Column="1" HorizontalAlignment="Center"/>
             </Grid>
         </Border>
 

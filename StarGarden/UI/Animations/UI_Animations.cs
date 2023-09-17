@@ -113,7 +113,7 @@ namespace StarGarden.UI.Animations
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
         }
-        public async void gameClick(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer,Button playButton)
+        public async void gameClick(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
         {
             // animation
             double targetHeight = gamePopup.ActualHeight;
@@ -123,7 +123,8 @@ namespace StarGarden.UI.Animations
                 mainGrid.Children.Add(gamePopup);
             }
             gamePopup.Visibility = Visibility.Visible;
-            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            
+            
 
             DoubleAnimation slideAnimation = new DoubleAnimation
             {
@@ -132,7 +133,7 @@ namespace StarGarden.UI.Animations
                 Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
-            DoubleAnimation fadeAnimation = new DoubleAnimation
+            DoubleAnimation fadeInAnimation = new DoubleAnimation
             {
                 From = 0,
                 To = 1,
@@ -140,13 +141,23 @@ namespace StarGarden.UI.Animations
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
 
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.25),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+            };
+
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
+            scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
 
             await Task.Delay(slideAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
-            playButton.Visibility = Visibility.Visible;
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+
         }
-        public async void gamePopUpExit(Border gamePopup, Grid mainGrid)
+        public async void gamePopUpExit(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
         {
             double targetHeight = gamePopup.ActualHeight;
             gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
@@ -158,17 +169,27 @@ namespace StarGarden.UI.Animations
                 Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
             };
-            DoubleAnimation fadeAnimation = new DoubleAnimation
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation
             {
                 From = 1,
                 To = 0,
                 Duration = TimeSpan.FromSeconds(0.25),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
+            DoubleAnimation fadeInAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.25),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+            };
 
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             await Task.Delay(200);
+            
             gamePopup.Visibility = Visibility.Hidden;
             mainGrid.Children.Remove(gamePopup);
         }

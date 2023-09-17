@@ -132,16 +132,16 @@ namespace StarGarden.Pages
             gamePopupTitle.Text = entry.Name;
             gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
 
-            animations.gameClick(gamePopup, mainGrid, scrollViewer, playButton);
+            animations.gameClick(gamePopup, mainGrid, scrollViewer);
         }
 
         private async void gamePopUpExit(object sender, RoutedEventArgs e)
         {
             UI_Animations animations = new UI_Animations();
-            playButton.Visibility = Visibility.Hidden;
             
-            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            animations.gamePopUpExit(gamePopup, mainGrid);
+            animations.gamePopUpExit(gamePopup, mainGrid, scrollViewer);
+            scrollViewer.Opacity = 1;
+            scrollViewer.Visibility = Visibility.Visible;
         }
     }
 
