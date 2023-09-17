@@ -162,7 +162,10 @@ namespace StarGarden.Pages
 
                 gamePopupTitle.Text = entry.Name;
                 gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
-                gamePopupImageBrush.ImageSource = new BitmapImage(new Uri($"{System.IO.Path.Combine(checkedGame.GamePath,"sce_sys","pic1.png")}",UriKind.Relative));
+                if (System.IO.File.Exists(System.IO.Path.Combine(checkedGame.GamePath, "sce_sys", "pic1.png")))
+                {
+                    gamePopupImageBrush.ImageSource = new BitmapImage(new Uri($"{System.IO.Path.Combine(checkedGame.GamePath, "sce_sys", "pic1.png")}", UriKind.Relative));
+                }
 
                 await animations.gameClick(gamePopup, scrollViewer);
             }
