@@ -84,7 +84,7 @@ namespace StarGarden.Functions
                 p.BeginOutputReadLine();
                 p.BeginErrorReadLine();
 
-                ConfigFunctions.BGPConfig bGPConfig = configFunctions.OpenBGP_Config();
+                BGPConfig bGPConfig = configFunctions.OpenBGP_Config();
                 bGPConfig.proccessIds.Add(p.Id);
                 configFunctions.SaveBGP(bGPConfig);
 

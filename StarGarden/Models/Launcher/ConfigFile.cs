@@ -15,4 +15,9 @@ namespace StarGarden.Models.Launcher
         public string fpPS4_ExePath;
         public int gamesAllowedToRun;
     }
+
+    public class BGPConfig
+    {
+        public List<int> proccessIds;
+    }
 }

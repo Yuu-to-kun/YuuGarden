@@ -17,7 +17,7 @@ namespace StarGarden.Functions.FileWork
         string appVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         string LocalDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden");
         string configFolderPathBGP = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-    "StarGarden", "bgProccesses");
+        "StarGarden", "bgProccesses");
 
         public void CreateConfig()
         {
@@ -47,13 +47,6 @@ namespace StarGarden.Functions.FileWork
             File.WriteAllText(Path.Combine(LocalDataFolder, "config.json"), conf);
         }
 
-
-        // BackgroundProcessConfig -- TODO (MOVE)
-
-        public class BGPConfig
-        {
-            public List<int> proccessIds;
-        }
         public BGPConfig OpenBGP_Config()
         {
             var config = JsonConvert.DeserializeObject<BGPConfig>(File.ReadAllText(Path.Combine(configFolderPathBGP,"config.json")));
