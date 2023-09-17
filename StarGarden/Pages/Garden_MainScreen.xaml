@@ -242,33 +242,29 @@
             </Grid>
         </Border>
 
-        <Border x:Name="settingMenu" Visibility="Hidden" Height="652" Width="1000" Panel.ZIndex="6" Margin="40,0,0,0" MouseLeftButtonDown="settingsButtonClick">
+        <Border x:Name="inputStealer" Visibility="Hidden" Height="652" Width="960" Panel.ZIndex="6" Margin="40,0,0,0" MouseLeftButtonDown="InputStealerClick">
             <Border.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </Border.Background>
-            <Border x:Name="settingMenuChild" Panel.ZIndex="7" Margin="3,0,0,4" Background="#2f3134" CornerRadius="0,10,10,0" Height="640" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.4" Direction="350" RenderingBias="Performance" />
-                </Border.Effect>
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    Settings here please :3
-                </ScrollViewer>
-            </Border>
         </Border>
 
-        <Border x:Name="updateMenu" Visibility="Hidden" Height="652" Width="1000" Panel.ZIndex="6" Margin="40,0,0,0" MouseLeftButtonDown="updatesButtonClick">
-            <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0"/>
-            </Border.Background>
-            <Border x:Name="updateMenuChild" Panel.ZIndex="7" Margin="3,0,0,4" Background="#2f3134" CornerRadius="0,10,10,0" Height="640" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.4" Direction="350" RenderingBias="Performance" />
-                </Border.Effect>
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    Updates here please :3
-                </ScrollViewer>
-            </Border>
+        <Border x:Name="settingMenu" Visibility="Hidden" Margin="43,0,0,4" Panel.ZIndex="7" Background="#2f3134" CornerRadius="0,10,10,0" Height="640" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.4" Direction="350" RenderingBias="Performance" />
+            </Border.Effect>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                Settings here please :3
+            </ScrollViewer>
         </Border>
-        
+
+        <Border x:Name="updateMenu" Visibility="Hidden" Panel.ZIndex="7" Margin="43,0,0,4" Background="#2f3134" CornerRadius="0,10,10,0" Height="640" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.4" Direction="350" RenderingBias="Performance" />
+            </Border.Effect>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                Updates here please :3
+            </ScrollViewer>
+        </Border>
+
     </Grid>
 </Page>

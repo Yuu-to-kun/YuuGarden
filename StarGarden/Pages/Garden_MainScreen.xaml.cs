@@ -90,14 +90,17 @@ namespace StarGarden.Pages
                 switch (updateMenu.Visibility)
                 {
                     case Visibility.Visible:
-                        await animations.updatesMenuUnload(updateMenuChild, updateMenu);
+                        inputStealer.Visibility = Visibility.Hidden;
+                        await animations.updatesMenuUnload(updateMenu, updateMenu);
                         break;
                     case Visibility.Hidden:
                         if (settingMenu.Visibility == Visibility.Visible)
                         {
+                            inputStealer.Visibility = Visibility.Hidden;
                             settingMenu.Visibility = Visibility.Hidden;
                         }
-                        await animations.updatesMenuLoad(updateMenuChild, updateMenu);
+                        inputStealer.Visibility = Visibility.Visible;
+                        await animations.updatesMenuLoad(updateMenu, updateMenu);
                         break;
                 }
             }
@@ -112,17 +115,36 @@ namespace StarGarden.Pages
                 switch (settingMenu.Visibility)
                 {
                     case Visibility.Visible:
-                        await animations.settingsUnload(settingMenuChild, settingMenu);
+                        inputStealer.Visibility = Visibility.Hidden;
+                        await animations.settingsUnload(settingMenu, settingMenu);
                         break;
                     case Visibility.Hidden:
                         if (updateMenu.Visibility == Visibility.Visible)
                         {
+                            inputStealer.Visibility = Visibility.Hidden;
                             updateMenu.Visibility = Visibility.Hidden;
                         }
-                        await animations.settingsLoad(settingMenuChild, settingMenu);
+                        inputStealer.Visibility = Visibility.Visible;
+                        await animations.settingsLoad(settingMenu, settingMenu);
                         break;
                 }
             }
+        }
+
+        private void InputStealerClick(object sender, RoutedEventArgs e)
+        {
+            if (settingMenu.Visibility == Visibility.Visible)
+            {
+                settingsButtonClick(sender, e);
+
+            } else if (updateMenu.Visibility == Visibility.Visible)
+            {
+                updatesButtonClick(sender, e);
+            } else
+            {
+                SG_Console.WriteLine("How did you click me?");
+            }
+           
         }
 
         private async void gameClick(object sender, RoutedEventArgs e)
@@ -157,7 +179,6 @@ namespace StarGarden.Pages
                 scrollViewer.Visibility = Visibility.Visible;
             }
         }
+
     }
-
-
 }
