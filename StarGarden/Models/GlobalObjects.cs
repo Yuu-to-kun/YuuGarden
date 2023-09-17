@@ -44,6 +44,8 @@ namespace StarGarden.Models
         public static List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> runningGames { get; set; }
             = new List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler ,string)>();
 
+        //Checks for Animation
+        public static bool isAnimating { get; set; } = false;
 
         // Games Output
         public static void OutputReceived(object sender, DataReceivedEventArgs args,ConsoleWindow consoleWindow)

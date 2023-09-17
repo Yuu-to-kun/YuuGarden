@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using StarGarden.Pages;
 using StarGarden.Pages.freshInstall;
+using StarGarden.Models;
 
 namespace StarGarden.UI.Animations
 {
@@ -34,11 +35,17 @@ namespace StarGarden.UI.Animations
                 Duration = TimeSpan.FromSeconds(0.25),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
 
+            GlobalObjects.isAnimating = true;
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
             await Task.Delay(fadeAnimation.Duration.TimeSpan +TimeSpan.FromSeconds(0.2));
             settingMenu.Visibility = Visibility.Hidden;
+            GlobalObjects.isAnimating = false;
         }
         public async Task settingsLoad(Border settingMenuChild, Border settingMenu)
         {
@@ -59,11 +66,17 @@ namespace StarGarden.UI.Animations
                 Duration = TimeSpan.FromSeconds(0.25),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
 
+            GlobalObjects.isAnimating = true;
             settingMenu.Visibility = Visibility.Visible;
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
             await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            GlobalObjects.isAnimating = false;
         }
         public async Task updatesMenuUnload(Border updateMenuChild, Border updateMenu)
         {
@@ -84,11 +97,17 @@ namespace StarGarden.UI.Animations
                 Duration = TimeSpan.FromSeconds(0.25),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
 
+            GlobalObjects.isAnimating = true;
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
             await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             updateMenu.Visibility = Visibility.Hidden;
+            GlobalObjects.isAnimating = false;
         }
         public async Task updatesMenuLoad(Border updateMenuChild, Border updateMenu)
         {
@@ -111,10 +130,17 @@ namespace StarGarden.UI.Animations
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
 
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
+
+            GlobalObjects.isAnimating = true;
             updateMenu.Visibility = Visibility.Visible;
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
             await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            GlobalObjects.isAnimating = false;
 
         }
         public async Task gameClick(Border gamePopup,ScrollViewer scrollViewer)
@@ -149,13 +175,19 @@ namespace StarGarden.UI.Animations
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
 
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
+
+            GlobalObjects.isAnimating = true;
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
 
             await Task.Delay(fadeOutAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-
+            GlobalObjects.isAnimating = false;
         }
         public async Task gamePopUpExit(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
         {
@@ -184,6 +216,12 @@ namespace StarGarden.UI.Animations
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
 
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
+
+            GlobalObjects.isAnimating = true;
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
@@ -191,6 +229,7 @@ namespace StarGarden.UI.Animations
             await Task.Delay(fadeInAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             
             gamePopup.Visibility = Visibility.Hidden;
+            GlobalObjects.isAnimating = false;
         }
     }
 }
