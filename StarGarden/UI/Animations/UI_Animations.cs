@@ -43,7 +43,8 @@ namespace StarGarden.UI.Animations
             GlobalObjects.isAnimating = true;
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(fadeAnimation.Duration.TimeSpan +TimeSpan.FromSeconds(0.2));
+
+            await Task.Delay(fadeAnimation.Duration.TimeSpan);
             settingMenu.Visibility = Visibility.Hidden;
             GlobalObjects.isAnimating = false;
         }
@@ -75,7 +76,8 @@ namespace StarGarden.UI.Animations
             settingMenu.Visibility = Visibility.Visible;
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+
+            await Task.Delay(fadeAnimation.Duration.TimeSpan);
             GlobalObjects.isAnimating = false;
         }
         public async Task updatesMenuUnload(Border updateMenuChild, Border updateMenu)
@@ -105,7 +107,8 @@ namespace StarGarden.UI.Animations
             GlobalObjects.isAnimating = true;
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+
+            await Task.Delay(fadeAnimation.Duration.TimeSpan);
             updateMenu.Visibility = Visibility.Hidden;
             GlobalObjects.isAnimating = false;
         }
@@ -136,9 +139,11 @@ namespace StarGarden.UI.Animations
             }
 
             GlobalObjects.isAnimating = true;
+
             updateMenu.Visibility = Visibility.Visible;
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+
             await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             GlobalObjects.isAnimating = false;
 
@@ -181,11 +186,12 @@ namespace StarGarden.UI.Animations
             }
 
             GlobalObjects.isAnimating = true;
+
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
 
-            await Task.Delay(fadeOutAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            await Task.Delay(fadeOutAnimation.Duration.TimeSpan);
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
             GlobalObjects.isAnimating = false;
         }
@@ -222,12 +228,13 @@ namespace StarGarden.UI.Animations
             }
 
             GlobalObjects.isAnimating = true;
+
             gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
-            await Task.Delay(fadeInAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
-            
+
+            await Task.Delay(fadeInAnimation.Duration.TimeSpan);
             gamePopup.Visibility = Visibility.Hidden;
             GlobalObjects.isAnimating = false;
         }

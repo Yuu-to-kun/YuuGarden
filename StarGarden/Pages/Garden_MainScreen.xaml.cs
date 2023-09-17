@@ -20,6 +20,7 @@ using System.ComponentModel;
 using StarGarden.Functions;
 using System.Windows.Media.Animation;
 using StarGarden.UI.Animations;
+using StarGarden.Models;
 
 namespace StarGarden.Pages
 {
@@ -83,65 +84,78 @@ namespace StarGarden.Pages
 
         private async void updatesButtonClick(object sender, RoutedEventArgs e)
         {
-            UI_Animations animations = new UI_Animations();
-            switch (updateMenu.Visibility)
+            if (!GlobalObjects.isAnimating)
             {
-                case Visibility.Visible:
-                    await animations.updatesMenuUnload(updateMenuChild, updateMenu);
-                    break;
-                case Visibility.Hidden:
-                    if (settingMenu.Visibility == Visibility.Visible)
-                    {
-                        settingMenu.Visibility = Visibility.Hidden;
-                    }
-                    await animations.updatesMenuLoad(updateMenuChild, updateMenu);
-                    break;
+                UI_Animations animations = new UI_Animations();
+                switch (updateMenu.Visibility)
+                {
+                    case Visibility.Visible:
+                        await animations.updatesMenuUnload(updateMenuChild, updateMenu);
+                        break;
+                    case Visibility.Hidden:
+                        if (settingMenu.Visibility == Visibility.Visible)
+                        {
+                            settingMenu.Visibility = Visibility.Hidden;
+                        }
+                        await animations.updatesMenuLoad(updateMenuChild, updateMenu);
+                        break;
+                }
             }
         }
 
 
         private async void settingsButtonClick(object sender, RoutedEventArgs e)
         {
-            UI_Animations animations = new UI_Animations();
-            switch (settingMenu.Visibility)
+            if (!GlobalObjects.isAnimating)
             {
-                case Visibility.Visible:
-                    await animations.settingsUnload(settingMenuChild, settingMenu);
-                    break;
-                case Visibility.Hidden:
-                    if (updateMenu.Visibility == Visibility.Visible)
-                    {
-                        updateMenu.Visibility = Visibility.Hidden;
-                    }
-                    await animations.settingsLoad(settingMenuChild, settingMenu);
-                    break;
+                UI_Animations animations = new UI_Animations();
+                switch (settingMenu.Visibility)
+                {
+                    case Visibility.Visible:
+                        await animations.settingsUnload(settingMenuChild, settingMenu);
+                        break;
+                    case Visibility.Hidden:
+                        if (updateMenu.Visibility == Visibility.Visible)
+                        {
+                            updateMenu.Visibility = Visibility.Hidden;
+                        }
+                        await animations.settingsLoad(settingMenuChild, settingMenu);
+                        break;
+                }
             }
         }
 
         private async void gameClick(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            var entry = (GameEntry)button.DataContext;
-            GetKey getKey = new GetKey();
+            if (!GlobalObjects.isAnimating)
+            {
+                var button = (Button)sender;
+                var entry = (GameEntry)button.DataContext;
+                GetKey getKey = new GetKey();
 
-            UI_Animations animations = new UI_Animations();
-            checkedGame = entry;
+                UI_Animations animations = new UI_Animations();
+                checkedGame = entry;
 
-            SG_Console.WriteLine($"{entry.Name} has been selected!");
+                SG_Console.WriteLine($"{entry.Name} has been selected!");
 
-            gamePopupTitle.Text = entry.Name;
-            gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
+                gamePopupTitle.Text = entry.Name;
+                gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
 
-            await animations.gameClick(gamePopup, scrollViewer);
+                await animations.gameClick(gamePopup, scrollViewer);
+            }
+
         }
 
         private async void gamePopUpExit(object sender, RoutedEventArgs e)
         {
-            UI_Animations animations = new UI_Animations();
-            
-            await animations.gamePopUpExit(gamePopup, mainGrid, scrollViewer);
-            scrollViewer.Opacity = 1;
-            scrollViewer.Visibility = Visibility.Visible;
+            if (!GlobalObjects.isAnimating)
+            {
+                UI_Animations animations = new UI_Animations();
+
+                await animations.gamePopUpExit(gamePopup, mainGrid, scrollViewer);
+                scrollViewer.Opacity = 1;
+                scrollViewer.Visibility = Visibility.Visible;
+            }
         }
     }
 

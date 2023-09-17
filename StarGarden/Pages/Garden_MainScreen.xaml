@@ -77,18 +77,20 @@
             </Style.Triggers>
         </Style>
 
-        <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
-        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
-        <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
-        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />
-        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />
-        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
-        <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
-        <SolidColorBrush x:Key="NormalBrush" Color="#888" />
-        <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />
-        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF686868" />
+        <!--<SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />-->
+        <!--<SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />-->
+        <!--<SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />-->
+        <!--<SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />-->
+        <!--<SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />-->
+        <!--<SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />-->
+        <!--<SolidColorBrush x:Key="GlyphBrush" Color="#444" />-->
+        <!--<SolidColorBrush x:Key="NormalBrush" Color="#888" />-->
+        <!--<SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />-->
+        <!--<SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF686868" />-->
         <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#888" />
-        <SolidColorBrush x:Key="PressedBrush" Color="#888"/>
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF686868" />
+        <SolidColorBrush x:Key="Background" Color="#FF686868" />
+        <!--<SolidColorBrush x:Key="PressedBrush" Color="#888"/>-->
 
         <!--<Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
             <Setter Property="Visibility" Value="Hidden"/>
@@ -122,20 +124,24 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Border CornerRadius="2" Background="#393b3e" BorderBrush="{TemplateBinding BorderBrush}" Width="10" Margin="-5,0,0,0"/>
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Width="10" Margin="-5,0,0,0"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--<Style.Triggers>
-                -->
+            <Style.Triggers>
+                
             <!--<Trigger Property="IsPressed" Value="true">
-                        <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                    <Setter TargetName="VerticalScrollBar" Property="Background" Value="black" />
                     </Trigger>-->
-            <!--
-                <Trigger Property="IsMouseOver" Value="true">
+            
+                <!--<Trigger Property="IsMouseOver" Value="true">
                     <Setter Property="Background" Value="white"/>
+                    
                 </Trigger>
-            </Style.Triggers>-->
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>-->
+            </Style.Triggers>
         </Style>
 
         <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
@@ -165,10 +171,6 @@
         </Style>
     </Page.Resources>
     <Grid x:Name="mainGrid">
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="249*"/>
-            <ColumnDefinition Width="751*"/>
-        </Grid.ColumnDefinitions>-->
 
         <Border Background="#26272a" Width="40" HorizontalAlignment="Left" Panel.ZIndex="1">
             <StackPanel>
@@ -187,7 +189,7 @@
             </StackPanel>
         </Border>
 
-        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="40,0,0,0" Background="#101112" Width="960" Height="652">
+        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="40,0,0,0" Background="#101112" Width="960" Height="652">
             <ItemsControl x:Name="ItemsControl" Padding="0,30,0,30" ItemsSource="{Binding GamesTemplate}" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -221,12 +223,12 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <Border Width="36" Height="36" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Background="#26272a" CornerRadius="5">
+        <Border Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Background="#26272a" CornerRadius="5">
             <Border.Effect>
                 <DropShadowEffect RenderingBias="Performance" BlurRadius="4" ShadowDepth="2"/>
             </Border.Effect>
             <Border Style="{StaticResource HoverBorderStyle}" Padding="2">
-                <Image Source="/Assets/Images/add.png" Width="32" Height="32"/>
+                <Image Source="/Assets/Images/add.png" Width="38" Height="38"/>
             </Border>
         </Border>
 
