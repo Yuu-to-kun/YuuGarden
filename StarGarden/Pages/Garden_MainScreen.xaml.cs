@@ -19,6 +19,7 @@ using StarGarden.Functions.FileWork.SFO;
 using System.ComponentModel;
 using StarGarden.Functions;
 using System.Windows.Media.Animation;
+using StarGarden.UI.Animations;
 
 namespace StarGarden.Pages
 {
@@ -79,192 +80,41 @@ namespace StarGarden.Pages
             
         }
 
-        //private async void animation(UIElement element, bool isChild)
-        //{
-        //    UIElement child = new UIElement();
-
-        //    if (!isChild) 
-        //    {
-        //        child = element;
-        //    } else if (isChild) 
-        //    {
-        //        string tempChild = element + "child";
-        //        //child = element.Contains(tempChild);
-        //    }
-
-        //    if (element.Visibility == Visibility.Visible)
-        //    {
-        //        // UnLoad animation
-        //        double targetHeight = child.ActualHeight;
-        //        child.RenderTransform = new TranslateTransform(0, targetHeight);
-
-        //        DoubleAnimation slideAnimation = new DoubleAnimation
-        //        {
-        //            From = 0,
-        //            To = targetHeight,
-        //            Duration = TimeSpan.FromSeconds(0.2),
-        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-        //        };
-        //        DoubleAnimation fadeAnimation = new DoubleAnimation
-        //        {
-        //            From = 1,
-        //            To = 0,
-        //            Duration = TimeSpan.FromSeconds(0.25),
-        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-        //        };
-
-        //        child.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-        //        child.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-        //        await Task.Delay(200);
-        //        element.Visibility = Visibility.Hidden;
-
-        //    }
-        //    else if (element.Visibility == Visibility.Hidden)
-        //    {
-        //        // Load animation
-        //        double targetHeight = child.ActualHeight;
-        //        child.RenderTransform = new TranslateTransform(0, targetHeight);
-
-        //        DoubleAnimation slideAnimation = new DoubleAnimation
-        //        {
-        //            From = targetHeight,
-        //            To = 0,
-        //            Duration = TimeSpan.FromSeconds(0.2),
-        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-        //        };
-        //        DoubleAnimation fadeAnimation = new DoubleAnimation
-        //        {
-        //            From = 0,
-        //            To = 1,
-        //            Duration = TimeSpan.FromSeconds(0.25),
-        //            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-        //        };
-
-        //        element.Visibility = Visibility.Visible;
-        //        child.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-        //        child.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-        //    }
-        //}
 
         private async void updatesButtonClick(object sender, RoutedEventArgs e)
         {
-            if (updateMenu.Visibility == Visibility.Visible)
+            UI_Animations animations = new UI_Animations();
+            switch (updateMenu.Visibility)
             {
-                // UnLoad animation
-                double targetHeight = updateMenuChild.ActualHeight;
-                updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
-
-                DoubleAnimation slideAnimation = new DoubleAnimation
-                {
-                    From = 0,
-                    To = targetHeight,
-                    Duration = TimeSpan.FromSeconds(0.2),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-                };
-                DoubleAnimation fadeAnimation = new DoubleAnimation
-                {
-                    From = 1,
-                    To = 0,
-                    Duration = TimeSpan.FromSeconds(0.25),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-
-                updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-                updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-                await Task.Delay(200);
-                updateMenu.Visibility = Visibility.Hidden;
-
-            }
-            else
-            {
-                if (settingMenu.Visibility == Visibility.Visible)
-                {
-                    settingMenu.Visibility = Visibility.Hidden;
-                }
-
-                // Load animation
-                double targetHeight = updateMenuChild.ActualHeight;
-                updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
-
-                DoubleAnimation slideAnimation = new DoubleAnimation
-                {
-                    From = targetHeight,
-                    To = 0,
-                    Duration = TimeSpan.FromSeconds(0.2),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-                DoubleAnimation fadeAnimation = new DoubleAnimation
-                {
-                    From = 0,
-                    To = 1,
-                    Duration = TimeSpan.FromSeconds(0.25),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-
-                updateMenu.Visibility = Visibility.Visible;
-                updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-                updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+                case Visibility.Visible:
+                    animations.updatesMenuUnload(updateMenuChild, updateMenu);
+                    break;
+                case Visibility.Hidden:
+                    if (settingMenu.Visibility == Visibility.Visible)
+                    {
+                        settingMenu.Visibility = Visibility.Hidden;
+                    }
+                    animations.updatesMenuLoad(updateMenuChild, updateMenu);
+                    break;
             }
         }
 
 
         private async void settingsButtonClick(object sender, RoutedEventArgs e)
         {
-            if (settingMenu.Visibility == Visibility.Visible)
+            UI_Animations animations = new UI_Animations();
+            switch (settingMenu.Visibility)
             {
-                // UnLoad animation
-                double targetHeight = settingMenuChild.ActualHeight;
-                settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
-
-                DoubleAnimation slideAnimation = new DoubleAnimation
-                {
-                    From = 0,
-                    To = targetHeight,
-                    Duration = TimeSpan.FromSeconds(0.2),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-                };
-                DoubleAnimation fadeAnimation = new DoubleAnimation
-                {
-                    From = 1,
-                    To = 0,
-                    Duration = TimeSpan.FromSeconds(0.25),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-
-                settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-                settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-                await Task.Delay(200);
-                settingMenu.Visibility = Visibility.Hidden;
-
-            }
-            else
-            {
-                if (updateMenu.Visibility == Visibility.Visible)
-                {
-                    updateMenu.Visibility = Visibility.Hidden;
-                }
-                // Load animation
-                double targetHeight = settingMenuChild.ActualHeight;
-                settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
-
-                DoubleAnimation slideAnimation = new DoubleAnimation
-                {
-                    From = targetHeight,
-                    To = 0,
-                    Duration = TimeSpan.FromSeconds(0.2),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-                DoubleAnimation fadeAnimation = new DoubleAnimation
-                {
-                    From = 0,
-                    To = 1,
-                    Duration = TimeSpan.FromSeconds(0.25),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-                };
-
-                settingMenu.Visibility = Visibility.Visible;
-                settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-                settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+                case Visibility.Visible:
+                    animations.settingsUnload(settingMenuChild, settingMenu);
+                    break;
+                case Visibility.Hidden:
+                    if (updateMenu.Visibility == Visibility.Visible)
+                    {
+                        updateMenu.Visibility = Visibility.Hidden;
+                    }
+                    animations.settingsLoad(settingMenuChild, settingMenu);
+                    break;
             }
         }
 
@@ -274,7 +124,7 @@ namespace StarGarden.Pages
             var entry = (GameEntry)button.DataContext;
             GetKey getKey = new GetKey();
 
-
+            UI_Animations animations = new UI_Animations();
             checkedGame = entry;
 
             SG_Console.WriteLine($"{entry.Name} has been selected!");
@@ -282,69 +132,16 @@ namespace StarGarden.Pages
             gamePopupTitle.Text = entry.Name;
             gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
 
-            // animation
-            double targetHeight = gamePopup.ActualHeight;
-            gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
-            if (!mainGrid.Children.Contains(gamePopup))
-            {
-                mainGrid.Children.Add(gamePopup);
-            }
-            gamePopup.Visibility = Visibility.Visible;
-            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-
-            DoubleAnimation slideAnimation = new DoubleAnimation
-            {
-                From = targetHeight,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(0.2),
-                EasingFunction = new CubicEase{EasingMode = EasingMode.EaseOut}
-            };
-            DoubleAnimation fadeAnimation = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(0.25),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-
-            gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-
-            await Task.Delay(slideAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
-            playButton.Visibility = Visibility.Visible;
+            animations.gameClick(gamePopup, mainGrid, scrollViewer, playButton);
         }
 
         private async void gamePopUpExit(object sender, RoutedEventArgs e)
         {
-            //gamePopup.Visibility = Visibility.Hidden;
+            UI_Animations animations = new UI_Animations();
             playButton.Visibility = Visibility.Hidden;
             
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-
-            // UnLoad animation
-            double targetHeight = gamePopup.ActualHeight;
-            gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
-
-            DoubleAnimation slideAnimation = new DoubleAnimation
-            {
-                From = 0,
-                To = targetHeight,
-                Duration = TimeSpan.FromSeconds(0.2),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-            };
-            DoubleAnimation fadeAnimation = new DoubleAnimation
-            {
-                From = 1,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(0.25),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-
-            gamePopup.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
-            gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(200);
-            gamePopup.Visibility = Visibility.Hidden;
-            mainGrid.Children.Remove(gamePopup);
+            animations.gamePopUpExit(gamePopup, mainGrid);
         }
     }
 
