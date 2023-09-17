@@ -15,7 +15,7 @@ namespace StarGarden.UI.Animations
     public class UI_Animations
     {
         //MainMenu Animations
-        public async void settingsUnload(Border settingMenuChild,Border settingMenu)
+        public async Task settingsUnload(Border settingMenuChild,Border settingMenu)
         {
             double targetHeight = settingMenuChild.ActualHeight;
             settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
@@ -37,10 +37,10 @@ namespace StarGarden.UI.Animations
 
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(200);
+            await Task.Delay(fadeAnimation.Duration.TimeSpan +TimeSpan.FromSeconds(0.2));
             settingMenu.Visibility = Visibility.Hidden;
         }
-        public async void settingsLoad(Border settingMenuChild, Border settingMenu)
+        public async Task settingsLoad(Border settingMenuChild, Border settingMenu)
         {
             double targetHeight = settingMenuChild.ActualHeight;
             settingMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
@@ -63,8 +63,9 @@ namespace StarGarden.UI.Animations
             settingMenu.Visibility = Visibility.Visible;
             settingMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             settingMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
         }
-        public async void updatesMenuUnload(Border updateMenuChild, Border updateMenu)
+        public async Task updatesMenuUnload(Border updateMenuChild, Border updateMenu)
         {
             double targetHeight = updateMenuChild.ActualHeight;
             updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
@@ -86,11 +87,12 @@ namespace StarGarden.UI.Animations
 
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
-            await Task.Delay(200);
+            await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             updateMenu.Visibility = Visibility.Hidden;
         }
-        public async void updatesMenuLoad(Border updateMenuChild, Border updateMenu)
+        public async Task updatesMenuLoad(Border updateMenuChild, Border updateMenu)
         {
+            
             double targetHeight = updateMenuChild.ActualHeight;
             updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
 
@@ -112,16 +114,14 @@ namespace StarGarden.UI.Animations
             updateMenu.Visibility = Visibility.Visible;
             updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
+            await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+
         }
-        public async void gameClick(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
+        public async Task gameClick(Border gamePopup,ScrollViewer scrollViewer)
         {
             // animation
             double targetHeight = gamePopup.ActualHeight;
             gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
-            if (!mainGrid.Children.Contains(gamePopup))
-            {
-                mainGrid.Children.Add(gamePopup);
-            }
             gamePopup.Visibility = Visibility.Visible;
             
             
@@ -153,11 +153,11 @@ namespace StarGarden.UI.Animations
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
 
-            await Task.Delay(slideAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
+            await Task.Delay(fadeOutAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
 
         }
-        public async void gamePopUpExit(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
+        public async Task gamePopUpExit(Border gamePopup,Grid mainGrid,ScrollViewer scrollViewer)
         {
             double targetHeight = gamePopup.ActualHeight;
             gamePopup.RenderTransform = new TranslateTransform(0, targetHeight);
@@ -188,10 +188,9 @@ namespace StarGarden.UI.Animations
             gamePopup.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             scrollViewer.BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
-            await Task.Delay(200);
+            await Task.Delay(fadeInAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
             
             gamePopup.Visibility = Visibility.Hidden;
-            mainGrid.Children.Remove(gamePopup);
         }
     }
 }

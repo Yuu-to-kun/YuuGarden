@@ -87,14 +87,14 @@ namespace StarGarden.Pages
             switch (updateMenu.Visibility)
             {
                 case Visibility.Visible:
-                    animations.updatesMenuUnload(updateMenuChild, updateMenu);
+                    await animations.updatesMenuUnload(updateMenuChild, updateMenu);
                     break;
                 case Visibility.Hidden:
                     if (settingMenu.Visibility == Visibility.Visible)
                     {
                         settingMenu.Visibility = Visibility.Hidden;
                     }
-                    animations.updatesMenuLoad(updateMenuChild, updateMenu);
+                    await animations.updatesMenuLoad(updateMenuChild, updateMenu);
                     break;
             }
         }
@@ -106,14 +106,14 @@ namespace StarGarden.Pages
             switch (settingMenu.Visibility)
             {
                 case Visibility.Visible:
-                    animations.settingsUnload(settingMenuChild, settingMenu);
+                    await animations.settingsUnload(settingMenuChild, settingMenu);
                     break;
                 case Visibility.Hidden:
                     if (updateMenu.Visibility == Visibility.Visible)
                     {
                         updateMenu.Visibility = Visibility.Hidden;
                     }
-                    animations.settingsLoad(settingMenuChild, settingMenu);
+                    await animations.settingsLoad(settingMenuChild, settingMenu);
                     break;
             }
         }
@@ -132,14 +132,14 @@ namespace StarGarden.Pages
             gamePopupTitle.Text = entry.Name;
             gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
 
-            animations.gameClick(gamePopup, mainGrid, scrollViewer);
+            await animations.gameClick(gamePopup, scrollViewer);
         }
 
         private async void gamePopUpExit(object sender, RoutedEventArgs e)
         {
             UI_Animations animations = new UI_Animations();
             
-            animations.gamePopUpExit(gamePopup, mainGrid, scrollViewer);
+            await animations.gamePopUpExit(gamePopup, mainGrid, scrollViewer);
             scrollViewer.Opacity = 1;
             scrollViewer.Visibility = Visibility.Visible;
         }
