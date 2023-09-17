@@ -178,10 +178,7 @@
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
                     <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
                 </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
-                    <Image Source="/Assets/Images/add.png" Width="30" Height="30"/>
-                </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 405, 3, 8" Padding="2" MouseLeftButtonDown="updatesButtonClick">
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 450, 3, 8" Padding="2" MouseLeftButtonDown="updatesButtonClick">
                     <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
                 </Border>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="settingsButtonClick">
@@ -222,8 +219,16 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-
         </ScrollViewer>
+
+        <Border Width="36" Height="36" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Background="#26272a" CornerRadius="5">
+            <Border.Effect>
+                <DropShadowEffect RenderingBias="Performance" BlurRadius="4" ShadowDepth="2"/>
+            </Border.Effect>
+            <Border Style="{StaticResource HoverBorderStyle}" Padding="2">
+                <Image Source="/Assets/Images/add.png" Width="32" Height="32"/>
+            </Border>
+        </Border>
 
         <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Height="625" Width="940" Margin="38,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Grid>
