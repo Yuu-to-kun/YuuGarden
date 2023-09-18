@@ -61,11 +61,16 @@ namespace StarGarden.Functions.FileWork
                     Cusa = $"{getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()}",
                     ImageSource = $"{System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "icon0.png")}",
                     GamePath = GlobalObjects.gamesList[i],
-                    Pic1 = new System.Windows.Media.Imaging.BitmapImage(new Uri(System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "pic1.png"))),
-                    
                 
                 };
-
+                if (System.IO.File.Exists(System.IO.Path.Combine(gameEntry.GamePath, "sce_sys", "pic1.png")))
+                {
+                    gameEntry.Pic1 = new System.Windows.Media.Imaging.BitmapImage(new Uri(System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "pic1.png")));
+                }
+                else
+                {
+                    gameEntry.Pic1 = null;
+                }
                 GlobalObjects.GamesTemplate.Add(gameEntry);
 
 

@@ -140,7 +140,7 @@ namespace StarGarden.Pages
 
                 gamePopupTitle.Text = entry.Name;
                 gamePopupCode.Text = entry.Cusa;
-                if (System.IO.File.Exists(System.IO.Path.Combine(checkedGame.GamePath, "sce_sys", "pic1.png")))
+                if (entry.Pic1 != null)
                 {
                     gamePopupImageBrush.ImageSource = checkedGame.Pic1;
                 }
