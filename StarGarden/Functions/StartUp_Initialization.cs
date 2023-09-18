@@ -50,6 +50,10 @@ namespace StarGarden.Functions
                         {
                             SG_Console.WriteLine($"[Recognised Game]: {GlobalObjects.GamesTemplate[i].Name}");
                         }
+                        GlobalObjects.SG_Console.Show();
+
+                        GlobalObjects.DiscordRpcClient.Initialize();
+                        GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
                     }
                     // Initialize the Jumplist
                     InitializeJumpList();
@@ -61,11 +65,6 @@ namespace StarGarden.Functions
 
         private void InitializeJumpList()
         {
-            GlobalObjects.SG_Console.Show();
-
-            GlobalObjects.DiscordRpcClient.Initialize();
-            GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
-
             JumpList jumpList = new JumpList();
 
             JumpTask jumpTask1 = new JumpTask
