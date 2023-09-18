@@ -78,6 +78,10 @@ namespace StarGarden
             var handle = GetConsoleWindow();
             ShowWindow(handle, SW_HIDE);
 
+
+            GameDetection gameDetection = new GameDetection();
+            gameDetection.GenerateEntries();
+
             InitializeJumpList();
 
             //Declaring variables

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace StarGarden.Models.Launcher
 {
@@ -16,6 +17,8 @@ namespace StarGarden.Models.Launcher
         private string gamePath;
         private string sfoPath;
         private string elfLoc;
+        private BitmapImage pic1;
+        private string titleId;
 
 
         public string Name { get => name; set => name = value; }
@@ -25,5 +28,7 @@ namespace StarGarden.Models.Launcher
         public string GamePath { get => gamePath; set { gamePath = value; elfLoc = Path.Combine(value, "eboot.bin"); sfoPath = Path.Combine(value, "sce_sys","param.sfo"); } }
         public string ElfLoc { get => elfLoc; set => elfLoc = value; }
         public string SfoPath { get => sfoPath; set => sfoPath = value; }
+        public BitmapImage Pic1 { get => pic1; set => pic1 = value; }
+        public string TitleId { get => titleId; set => titleId = value; }
     }
 }

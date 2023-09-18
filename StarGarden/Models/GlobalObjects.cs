@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DiscordRPC;
 using StarGarden.Functions;
+using StarGarden.Models.Launcher;
 using StarGarden.Pages;
 using Windows.Media.Protection.PlayReady;
 
@@ -39,6 +41,9 @@ namespace StarGarden.Models
 
         public static string downloadPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
 
+        // Game Entries
+        public static ObservableCollection<GameEntry> GamesTemplate { get; set; } = new ObservableCollection<GameEntry>();
+        public static List<string> gamesList { get; set; } = new List<string>();
 
         //Running Games
         public static List<(Process, ConsoleWindow, DataReceivedEventHandler, DataReceivedEventHandler,string)> runningGames { get; set; }

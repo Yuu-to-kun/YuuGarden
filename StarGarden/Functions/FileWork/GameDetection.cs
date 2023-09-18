@@ -1,4 +1,7 @@
-﻿using System;
+﻿using StarGarden.Functions.FileWork.SFO;
+using StarGarden.Models;
+using StarGarden.Models.Launcher;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,6 +45,31 @@ namespace StarGarden.Functions.FileWork
         {
             var result = Path.Combine(gameDir,"sce_sys","param.sfo");
             return result;
+        }
+
+        public void GenerateEntries()
+        {
+            GlobalObjects.gamesList = Scan();
+
+
+            GetKey getKey = new GetKey();
+            for (int i = 0; i < GlobalObjects.gamesList.Count; i++)
+            {
+                GameEntry gameEntry = new GameEntry
+                {
+                    Name = $"{getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE")}",
+                    Cusa = $"{getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()}",
+                    ImageSource = $"{System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "icon0.png")}",
+                    GamePath = GlobalObjects.gamesList[i],
+                    Pic1 = new System.Windows.Media.Imaging.BitmapImage(new Uri(System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "pic1.png"))),
+                    
+                
+                };
+
+                GlobalObjects.GamesTemplate.Add(gameEntry);
+
+
+            }
         }
     }
 }

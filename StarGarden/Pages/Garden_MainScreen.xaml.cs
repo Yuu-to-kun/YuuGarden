@@ -30,43 +30,22 @@ namespace StarGarden.Pages
     public partial class Garden_MainScreen : Page
     {
 
-        private List<string> games = new List<string>();
-        public ObservableCollection<GameEntry> GamesTemplate { get; } = new ObservableCollection<GameEntry>();
-        
+        public ObservableCollection<GameEntry> GamesTemplate { get; } = GlobalObjects.GamesTemplate;
+
+
         public GameEntry checkedGame = null;
         
         public Garden_MainScreen()
         {
-            GameDetection detection = new GameDetection();
-            games = detection.Scan();
-            
-
-            GetKey getKey = new GetKey();
-            for (int i = 0; i < games.Count; i++)
-            {
-                GameEntry gameEntry = new GameEntry
-                {
-                    Name = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE")}",
-                    Cusa = $"{getKey.GetSpecificKeyData(detection.sfoPath(games[i]), "TITLE_ID").ToString()}",
-                    ImageSource = $"{System.IO.Path.Combine(games[i],"sce_sys","icon0.png")}",
-                    GamePath= games[i],
-                    
-                };
-
-                GamesTemplate.Add(gameEntry);
-                
-
-            }
-
             InitializeComponent();
             DataContext = this;
 
             // fix game being centerd when less then 4 games are displayed
-            if (games.Count < 4) 
+            if (GlobalObjects.gamesList.Count < 4) 
             {
                 ItemsControl.HorizontalAlignment = HorizontalAlignment.Left;
 
-            } else if (games.Count > 4 || games.Count == 4)
+            } else if (GlobalObjects.gamesList.Count > 4 || GlobalObjects.gamesList.Count == 4)
             {
                 ItemsControl.HorizontalAlignment = HorizontalAlignment.Center;
             }
@@ -153,7 +132,6 @@ namespace StarGarden.Pages
             {
                 var button = (Button)sender;
                 var entry = (GameEntry)button.DataContext;
-                GetKey getKey = new GetKey();
 
                 UI_Animations animations = new UI_Animations();
                 checkedGame = entry;
@@ -161,10 +139,10 @@ namespace StarGarden.Pages
                 SG_Console.WriteLine($"{entry.Name} has been selected!");
 
                 gamePopupTitle.Text = entry.Name;
-                gamePopupCode.Text = getKey.GetSpecificKeyData(entry.SfoPath, "TITLE_ID").ToString();
+                gamePopupCode.Text = entry.Cusa;
                 if (System.IO.File.Exists(System.IO.Path.Combine(checkedGame.GamePath, "sce_sys", "pic1.png")))
                 {
-                    gamePopupImageBrush.ImageSource = new BitmapImage(new Uri($"{System.IO.Path.Combine(checkedGame.GamePath, "sce_sys", "pic1.png")}", UriKind.Relative));
+                    gamePopupImageBrush.ImageSource = checkedGame.Pic1;
                 }
 
                 await animations.gameClick(gamePopup, scrollViewer);
