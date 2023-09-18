@@ -24,6 +24,7 @@
     <None Remove="Assets\Images\search.png" />
     <None Remove="Assets\Images\settings.png" />
     <None Remove="Assets\Images\square.png" />
+    <None Remove="Assets\Images\Terminal.png" />
     <None Remove="Assets\Images\update.png" />
     <None Remove="Assets\Images\updateDisabled.png" />
   </ItemGroup>
@@ -65,6 +66,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\square.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Terminal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\update.png">

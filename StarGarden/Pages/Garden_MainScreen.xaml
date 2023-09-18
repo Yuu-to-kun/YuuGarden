@@ -182,11 +182,14 @@
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2">
                     <Image Source="/Assets/Images/search.png" Width="30" Height="30"/>
                 </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 450, 3, 8" Padding="2" MouseLeftButtonDown="updatesButtonClick">
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 400, 3, 8" Padding="2" MouseLeftButtonDown="updatesButtonClick">
                     <Image Source="/Assets/Images/update.png" Width="30" Height="30"/>
                 </Border>
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="settingsButtonClick">
                     <Image Source="/Assets/Images/settings.png"  Width="30" Height="30"/>
+                </Border>
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="terminalButtonClick">
+                    <Image Source="/Assets/Images/terminal.png"  Width="30" Height="30"/>
                 </Border>
             </StackPanel>
         </Border>
