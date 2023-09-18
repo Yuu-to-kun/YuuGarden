@@ -29,26 +29,20 @@ namespace StarGarden
     {
         public MainWindow()
         {
+            
             InitializeComponent();
 
-            GameDetection detection = new GameDetection();
-            GetKey getKey = new GetKey();
-            ConfigFunctions configFunctions = new ConfigFunctions();
-            var config = configFunctions.OpenConfig();
+            
 
             //Fresh Install or Launcher
-            if (config.installPath.Equals("") || config.installPath.Equals(null))
+            if (GlobalObjects.isFreshInstall == true)
             {
                 MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
             }
             else
             {
                 MainFrame.Navigate(new Uri("/pages/Garden_MainScreen.xaml", UriKind.Relative));
-                List<string> games = detection.Scan();
-                for (int i = 0; i < games.Count; i++)
-                {
-                    SG_Console.WriteLine($"[Recognised Game]: {getKey.GetSpecificKeyData(detection.sfoPath(games[i]),"TITLE")}");
-                }
+                
             }
                 
         }
@@ -75,7 +69,7 @@ namespace StarGarden
 
                 if (wpfResult == MessageBoxResult.Yes)
                 {
-                    StartCleaning start = new StartCleaning();
+                    bg_CheckClean start = new bg_CheckClean();
                     start.Clean();
                 }
                 else if (wpfResult == MessageBoxResult.No)

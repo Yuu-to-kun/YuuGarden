@@ -30,7 +30,7 @@ namespace StarGarden.Pages
     public partial class Garden_MainScreen : Page
     {
 
-        public ObservableCollection<GameEntry> GamesTemplate { get; } = GlobalObjects.GamesTemplate;
+        public ObservableCollection<GameEntry> GamesTemplate { get; set;     } = new ObservableCollection<GameEntry>(GlobalObjects.GamesTemplate);
 
 
         public GameEntry checkedGame = null;

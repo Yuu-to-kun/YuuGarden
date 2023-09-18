@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -36,11 +37,15 @@ namespace StarGarden.Models
 
         //Main Console
         public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
-        
+
+        //Mutex
+        public static bool aIsNewInstance = false;
+        public static Mutex myMutex { get; set; } = new Mutex(true, "StarGarden", out aIsNewInstance);
+
         //Misc
-
-        public static string downloadPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
-
+        public static string downloadPath { get; set; } = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
+        public static string localDataPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden");
+        public static bool isFreshInstall { get; set; }
         // Game Entries
         public static ObservableCollection<GameEntry> GamesTemplate { get; set; } = new ObservableCollection<GameEntry>();
         public static List<string> gamesList { get; set; } = new List<string>();

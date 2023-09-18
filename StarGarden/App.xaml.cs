@@ -29,81 +29,50 @@ namespace StarGarden
     /// 
     public partial class App : Application
     {
+        // Gitea Console Imports
         [DllImport("kernel32.dll")]
         static extern IntPtr GetConsoleWindow();
-
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
+
+        // Gitea Console Options
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
         const int SW_SHOWMINIMIZED = 2;
 
 
-        Mutex myMutex;
-        private void InitializeJumpList()
-        {
-            GlobalObjects.SG_Console.Show();
-
-            GlobalObjects.DiscordRpcClient.Initialize();
-            GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
-
-            JumpList jumpList = new JumpList();
-
-            JumpTask jumpTask1 = new JumpTask
-            {
-                Title = "Game Compatibility List",
-                Arguments = "https://fpps4.net/compatibility/",
-                CustomCategory = "Links",
-                IconResourcePath = "",
-                ApplicationPath = "https://fpps4.net/compatibility/",
-                Description = "Opens the game compatibility list."
-            };
-
-            jumpList.JumpItems.Add(jumpTask1);
-
-            // Apply changes to the JumpList
-            jumpList.Apply();
-        }
+        // Jumplist (when right click on icon on taskbar)
         
-        private void Application_Startup(object sender, StartupEventArgs e)
+        
+
+        private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            bool aIsNewInstance = false;
-            myMutex = new Mutex(true, "StarGarden", out aIsNewInstance);
-            if (!aIsNewInstance)
+            StartUp_Initialization initialization = new StartUp_Initialization();
+            Window loadingWindow = new Window();
+            loadingWindow.Show();
+            await initialization.Initialize();
+            loadingWindow.Close();
+
+            // Mutex for detecting multiple sessions
+            if (!GlobalObjects.aIsNewInstance)
             {
                 MessageBox.Show("There is an instance is already running...");
                 App.Current.Shutdown();
             }
+
+            //For Gitea Artifact
             var handle = GetConsoleWindow();
             ShowWindow(handle, SW_HIDE);
-
-
-            GameDetection gameDetection = new GameDetection();
-            gameDetection.GenerateEntries();
-
-            InitializeJumpList();
-
-            //Declaring variables
-            string LocalDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden");
-            ConfigFunctions configFunctions = new ConfigFunctions();
-
-            //Creating AppData Folder and config
-            if (!Directory.Exists(LocalDataFolder))
-            {
-                Directory.CreateDirectory(LocalDataFolder);
-               
-            }
-            if (!File.Exists(Path.Combine(LocalDataFolder, "config.json")))
-            {
-                configFunctions.CreateConfig();
-            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            StartCleaning start = new StartCleaning();
+            //Run bg.exe to clean up left over processes
+            bg_CheckClean start = new bg_CheckClean();
             start.Clean();
+
+            // Dispose of the Discord Rpc
             GlobalObjects.DiscordRpcClient.Dispose();
         }
 

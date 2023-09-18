@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StarGarden.Functions
 {
-    public class StartCleaning
+    public class bg_CheckClean
     {
         public void Clean()
         {
