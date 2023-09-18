@@ -237,15 +237,6 @@
             </Border>
         </Border>
 
-        <Border Width="200" Height="40" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#44464c" Margin="10" Background="#26272a" CornerRadius="10" VerticalAlignment="Top">
-            <Border.Effect>
-                <DropShadowEffect RenderingBias="Performance" BlurRadius="4" ShadowDepth="2"/>
-            </Border.Effect>
-            <!--<Border Style="{StaticResource HoverBorderStyle}" Padding="2">
-                <Image Source="/Assets/Images/add.png" Width="38" Height="38"/>
-            </Border>-->
-        </Border>
-
         <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Height="625" Width="940" Margin="38,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Grid>
                 <Border x:Name="gamePopupImage" Margin="0,0,0,418" CornerRadius="10" OpacityMask="#72000000">

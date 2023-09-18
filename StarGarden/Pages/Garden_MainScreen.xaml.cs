@@ -125,11 +125,6 @@ namespace StarGarden.Pages
            
         }
 
-        private void terminalButtonClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private async void gameClick(object sender, RoutedEventArgs e)
         {
             if (!GlobalObjects.isAnimating)
