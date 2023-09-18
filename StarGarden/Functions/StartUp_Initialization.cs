@@ -23,24 +23,7 @@ namespace StarGarden.Functions
                 {
                     // Generate data for Games
                     GameDetection gameDetection = new GameDetection();
-                    gameDetection.GenerateEntries();
-
                     ConfigFunctions configFunctions = new ConfigFunctions();
-                    var config = configFunctions.OpenConfig();
-
-                    if (config.installPath.Equals("") || config.installPath.Equals(null))
-                    {
-                        GlobalObjects.isFreshInstall = true;
-                    }
-                    else
-                    {
-                        GlobalObjects.isFreshInstall = false;
-                    }
-
-                    for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
-                    {
-                        SG_Console.WriteLine($"[Recognised Game]: {GlobalObjects.GamesTemplate[i].Name}");
-                    }
 
                     //Creating AppData Folder and config
                     if (!Directory.Exists(GlobalObjects.localDataPath))
@@ -50,19 +33,27 @@ namespace StarGarden.Functions
                     }
                     if (!File.Exists(Path.Combine(GlobalObjects.localDataPath, "config.json")))
                     {
-                        try
-                        {
-                            configFunctions.CreateConfig();
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Oopsie");
-                        }
-                        
+                        configFunctions.CreateConfig();
                     }
 
+                    var config = configFunctions.OpenConfig();
+
+                    if (config.installPath.Equals("") || config.installPath.Equals(null))
+                    {
+                        GlobalObjects.isFreshInstall = true;
+                    }
+                    else
+                    {
+                        GlobalObjects.isFreshInstall = false;
+                        gameDetection.GenerateEntries();
+                        for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
+                        {
+                            SG_Console.WriteLine($"[Recognised Game]: {GlobalObjects.GamesTemplate[i].Name}");
+                        }
+                    }
                     // Initialize the Jumplist
                     InitializeJumpList();
+                    GlobalObjects.canLoad = true;
                 });
             });
             

@@ -29,22 +29,38 @@ namespace StarGarden
     {
         public MainWindow()
         {
-            
-            InitializeComponent();
 
-            
+            InitializeComponent();
+            LoadASync();
+
+        }
+        private async void LoadASync()
+        {   
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    while (true)
+                    {
+
+                        if (GlobalObjects.canLoad == true)
+                        {
+                            break;
+                        }
+                    }
+                });
+                
+            });
 
             //Fresh Install or Launcher
             if (GlobalObjects.isFreshInstall == true)
             {
                 MainFrame.Navigate(new Uri("/pages/Freshinstall/InstallMainPage.xaml", UriKind.Relative));
             }
-            else
+            else if (GlobalObjects.isFreshInstall == false)
             {
                 MainFrame.Navigate(new Uri("/pages/Garden_MainScreen.xaml", UriKind.Relative));
-                
             }
-                
         }
 
         // Custom Top Bar Stuff

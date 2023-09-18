@@ -46,6 +46,7 @@ namespace StarGarden.Models
         public static string downloadPath { get; set; } = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
         public static string localDataPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden");
         public static bool isFreshInstall { get; set; }
+        public static bool canLoad { get; set; } = false;
         // Game Entries
         public static ObservableCollection<GameEntry> GamesTemplate { get; set; } = new ObservableCollection<GameEntry>();
         public static List<string> gamesList { get; set; } = new List<string>();
