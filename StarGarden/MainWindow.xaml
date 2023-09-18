@@ -41,8 +41,11 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border  Width="200" Height="30" HorizontalAlignment="Center" BorderThickness="1.5" BorderBrush="#44464c"  Background="#26272a" CornerRadius="5" VerticalAlignment="Center" Margin="39,0,0,0">
-                        <TextBox Width="190" Height="30" FontSize="16" FontFamily="/Assets/Fonts/#Rubik" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#0000" BorderThickness="0" BorderBrush="#0000" Name="MysearchBox" HorizontalAlignment="Center" Foreground="White"/>
+                    <Border Width="200" Height="30" HorizontalAlignment="Center" BorderThickness="1.5" BorderBrush="#44464c"  Background="#26272a" CornerRadius="5" VerticalAlignment="Center" Margin="39,0,0,0">
+                        <!--<Grid>-->
+                        <TextBox Text="" Width="190" Height="30" FontSize="14" FontFamily="/Assets/Fonts/#Rubik" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#0000" BorderThickness="0" BorderBrush="#0000" x:Name="searchBar" HorizontalAlignment="Center" Foreground="White" TextChanged="SearchTextChanged"  />
+                            <!--<Image Source="/Assets/Images/search.png" Height="25" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+                        <!--</Grid>-->
                     </Border>
 
                     <Button Content="Button" Grid.Column="2" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand" HorizontalAlignment="Center">

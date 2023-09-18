@@ -74,6 +74,15 @@ namespace StarGarden
             WindowState = WindowState.Minimized;
         }
 
+        private void SearchTextChanged(object sender, RoutedEventArgs e)
+        {
+            //if (searchBar.Text == "Search TITLE / CUSA")
+            //{
+            //    searchBar.Text = "";
+            //}
+            SG_Console.WriteLine("Searchbar updated to: " + searchBar.Text);
+        }
+
         private async void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             if (GlobalObjects.runningGames.Count > 0)
