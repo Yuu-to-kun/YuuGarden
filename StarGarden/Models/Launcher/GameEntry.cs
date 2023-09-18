@@ -18,7 +18,6 @@ namespace StarGarden.Models.Launcher
         private string sfoPath;
         private string elfLoc;
         private BitmapImage pic1;
-        private string titleId;
 
 
         public string Name { get => name; set => name = value; }
@@ -29,6 +28,5 @@ namespace StarGarden.Models.Launcher
         public string ElfLoc { get => elfLoc; set => elfLoc = value; }
         public string SfoPath { get => sfoPath; set => sfoPath = value; }
         public BitmapImage Pic1 { get => pic1; set => pic1 = value; }
-        public string TitleId { get => titleId; set => titleId = value; }
     }
 }
