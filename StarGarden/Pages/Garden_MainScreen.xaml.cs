@@ -166,5 +166,12 @@ namespace StarGarden.Pages
             }
         }
 
+        private void ConsoleButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!GlobalObjects.SG_Console.IsActive)
+            {
+                GlobalObjects.SG_Console.Show();
+            }
+        }
     }
 }

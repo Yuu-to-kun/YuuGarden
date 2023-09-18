@@ -188,7 +188,7 @@
                 <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="settingsButtonClick">
                     <Image Source="/Assets/Images/settings.png"  Width="30" Height="30"/>
                 </Border>
-                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="terminalButtonClick">
+                <Border Style="{StaticResource HoverBorderStyle}" Margin="3, 8" Padding="2" MouseLeftButtonDown="ConsoleButtonClick">
                     <Image Source="/Assets/Images/terminal.png"  Width="30" Height="30"/>
                 </Border>
             </StackPanel>
