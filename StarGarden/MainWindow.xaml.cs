@@ -116,7 +116,7 @@ namespace StarGarden
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            GlobalObjects.SG_Console.Close();
+            GlobalObjects.shutDown = true;
         }
     }
 }

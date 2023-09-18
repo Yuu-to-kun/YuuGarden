@@ -1,4 +1,5 @@
 ﻿using StarGarden.Functions;
+using StarGarden.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,12 @@ namespace StarGarden.Pages
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
-            this.Hide();
+            if (GlobalObjects.shutDown == false)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+            
         }
     }
 }
