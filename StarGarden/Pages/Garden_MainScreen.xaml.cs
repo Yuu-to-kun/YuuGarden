@@ -30,15 +30,14 @@ namespace StarGarden.Pages
     public partial class Garden_MainScreen : Page
     {
 
-        public ObservableCollection<GameEntry> GamesTemplate { get; set;     } = new ObservableCollection<GameEntry>(GlobalObjects.GamesTemplate);
-
-
+        public ObservableCollection<GameEntry> GamesTemplate { get { return GlobalObjects.GamesTemplate; }}
         public GameEntry checkedGame = null;
         
         public Garden_MainScreen()
         {
-            InitializeComponent();
             DataContext = this;
+
+            InitializeComponent();
 
             // fix game being centerd when less then 4 games are displayed
             if (GlobalObjects.gamesList.Count < 4) 
