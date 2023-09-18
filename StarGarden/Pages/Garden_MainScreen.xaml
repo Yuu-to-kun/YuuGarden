@@ -195,24 +195,24 @@
             <ItemsControl x:Name="ItemsControl" Padding="0,30,0,30" ItemsSource="{Binding GamesTemplate}" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10">
+                        <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10" Panel.ZIndex="1">
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="1" BlurRadius="15" RenderingBias="Performance"/>
                             </Border.Effect>
                             <Button Cursor="Hand" Click="gameClick" Style="{StaticResource GameButtonStyling}" Height="260" Width="200">
-                                <StackPanel Height="260" Width="200">
-                                    <Grid>
-                                        <Border Name="imageMask" Background="White" BorderThickness="0.5" CornerRadius="10,10,6,6"/>
-                                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                                            <Image Source="{Binding ImageSource}" Width="200" Height="200"/>
-                                            <StackPanel.OpacityMask>
-                                                <VisualBrush Visual="{Binding ElementName=imageMask}" />
-                                            </StackPanel.OpacityMask>
-                                        </StackPanel>
-                                    </Grid>
-                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="16" Margin="5,10,5,0" Foreground="White" FontFamily="/Assets/Fonts/#Rubik"/>
-                                    <TextBlock Text="{Binding Cusa}" FontSize="14" Margin="5,4,5,0" Foreground="White" FontFamily="/Assets/Fonts/#Rubik"/>
-                                </StackPanel>
+                                <Grid Height="260" Width="200">
+                                    <Border Name="imageMask" Background="White" Width="200" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="0.5" CornerRadius="10,10,6,6"/>
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                                        <Image Source="{Binding ImageSource}" Width="200" Height="200"/>
+                                        <StackPanel.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=imageMask}" />
+                                        </StackPanel.OpacityMask>
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" Width="190" FontSize="16" FontWeight="Bold" Margin="5,0,5,32" Foreground="White" FontFamily="/Assets/Fonts/#Rubik" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="{Binding Cusa}" Width="90" FontSize="14" Margin="5,0,0,10"  Foreground="White" FontFamily="/Assets/Fonts/#Rubik" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="{Binding Status}" Width="90" FontSize="14" Margin="0,0,10,10" Foreground="{Binding Colour}"  FontFamily="/Assets/Fonts/#Rubik" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Right" FontWeight="Bold"/>
+                                </Grid>
                             </Button>
                         </Border>
                     </DataTemplate>
@@ -232,6 +232,15 @@
             <Border Style="{StaticResource HoverBorderStyle}" Padding="2">
                 <Image Source="/Assets/Images/add.png" Width="38" Height="38"/>
             </Border>
+        </Border>
+
+        <Border Width="200" Height="40" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#44464c" Margin="10" Background="#26272a" CornerRadius="10" VerticalAlignment="Top">
+            <Border.Effect>
+                <DropShadowEffect RenderingBias="Performance" BlurRadius="4" ShadowDepth="2"/>
+            </Border.Effect>
+            <!--<Border Style="{StaticResource HoverBorderStyle}" Padding="2">
+                <Image Source="/Assets/Images/add.png" Width="38" Height="38"/>
+            </Border>-->
         </Border>
 
         <Border x:Name="gamePopup" Background="#222427" Visibility="Hidden" CornerRadius="10" Panel.ZIndex="5" Height="625" Width="940" Margin="38,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">

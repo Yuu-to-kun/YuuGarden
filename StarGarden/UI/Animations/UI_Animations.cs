@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using StarGarden.Pages;
 using StarGarden.Pages.freshInstall;
 using StarGarden.Models;
+using StarGarden.Functions;
 
 namespace StarGarden.UI.Animations
 {
@@ -32,7 +33,7 @@ namespace StarGarden.UI.Animations
             {
                 From = 1,
                 To = 0,
-                Duration = TimeSpan.FromSeconds(0.25),
+                Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
             if (GlobalObjects.isAnimating == true)
@@ -64,7 +65,7 @@ namespace StarGarden.UI.Animations
             {
                 From = 0,
                 To = 1,
-                Duration = TimeSpan.FromSeconds(0.25),
+                Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
             if (GlobalObjects.isAnimating == true)
@@ -96,7 +97,7 @@ namespace StarGarden.UI.Animations
             {
                 From = 1,
                 To = 0,
-                Duration = TimeSpan.FromSeconds(0.25),
+                Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
             if (GlobalObjects.isAnimating == true)
@@ -115,21 +116,21 @@ namespace StarGarden.UI.Animations
         public async Task updatesMenuLoad(Border updateMenuChild, Border updateMenu)
         {
             
-            double targetHeight = updateMenuChild.ActualHeight;
-            updateMenuChild.RenderTransform = new TranslateTransform(0, targetHeight);
+            double targetHeight = updateMenuChild.ActualWidth;
+            updateMenuChild.RenderTransform = new TranslateTransform(targetHeight, 0);
 
             DoubleAnimation slideAnimation = new DoubleAnimation
             {
-                From = targetHeight,
+                From = -targetHeight,
                 To = 0,
-                Duration = TimeSpan.FromSeconds(0.2),
+                Duration = TimeSpan.FromSeconds(0.15),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
             DoubleAnimation fadeAnimation = new DoubleAnimation
             {
                 From = 0,
                 To = 1,
-                Duration = TimeSpan.FromSeconds(0.25),
+                Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
             };
 
@@ -141,7 +142,7 @@ namespace StarGarden.UI.Animations
             GlobalObjects.isAnimating = true;
 
             updateMenu.Visibility = Visibility.Visible;
-            updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideAnimation);
+            updateMenuChild.RenderTransform.BeginAnimation(TranslateTransform.XProperty, slideAnimation);
             updateMenuChild.BeginAnimation(UIElement.OpacityProperty, fadeAnimation);
 
             await Task.Delay(fadeAnimation.Duration.TimeSpan + TimeSpan.FromSeconds(0.2));
