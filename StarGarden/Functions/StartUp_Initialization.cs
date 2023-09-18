@@ -50,7 +50,15 @@ namespace StarGarden.Functions
                     }
                     if (!File.Exists(Path.Combine(GlobalObjects.localDataPath, "config.json")))
                     {
-                        configFunctions.CreateConfig();
+                        try
+                        {
+                            configFunctions.CreateConfig();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Oopsie");
+                        }
+                        
                     }
 
                     // Initialize the Jumplist
