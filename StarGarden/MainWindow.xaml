@@ -27,11 +27,11 @@
     <Border>
 
         <Border BorderBrush="#44464c" Height="682" Width="1000" BorderThickness="1" CornerRadius="9" ClipToBounds="True">
-        <Grid>
-            <Grid.OpacityMask>
-                <VisualBrush Visual="{Binding ElementName=Border1}" />
-            </Grid.OpacityMask>
-            <Border x:Name="Border1" CornerRadius="8" Background="#101112"/>
+            <Grid>
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=Border1}" />
+                </Grid.OpacityMask>
+                <Border x:Name="Border1" CornerRadius="8" Background="#101112"/>
 
                 <!-- top bar styling -->
                 <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Height="32" Width="998" VerticalAlignment="Top" Background="#26272a">
@@ -41,13 +41,12 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Width="200" Height="30" HorizontalAlignment="Center" BorderThickness="1.5" BorderBrush="#44464c"  Background="#26272a" CornerRadius="5" VerticalAlignment="Center" Margin="39,0,0,0">
+                    <Border Visibility="Visible" Width="200" Height="30" HorizontalAlignment="Left" BorderThickness="1.5" BorderBrush="#44464c"  Background="#26272a" CornerRadius="5" VerticalAlignment="Center" Margin="399,0,0,0">
                         <!--<Grid>-->
                         <TextBox Text="" Width="190" Height="30" FontSize="14" FontFamily="/Assets/Fonts/#Rubik" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#0000" BorderThickness="0" BorderBrush="#0000" x:Name="searchBar" HorizontalAlignment="Center" Foreground="White" TextChanged="SearchTextChanged"  />
-                            <!--<Image Source="/Assets/Images/search.png" Height="25" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+                        <!--<Image Source="/Assets/Images/search.png" Height="25" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
                         <!--</Grid>-->
                     </Border>
-
                     <Button Content="Button" Grid.Column="2" Panel.ZIndex="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="33" Click="ExitButtonClick" Height="32" Cursor="Hand" HorizontalAlignment="Center">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
@@ -98,7 +97,7 @@
                 </Grid>
 
                 <!-- Frame for content-->
-                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652"/>
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,32,0,0" Width="1000" Height="652" ContentRendered="MainFrame_ContentRendered"/>
             </Grid>
         </Border>
     </Border>

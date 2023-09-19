@@ -1,8 +1,10 @@
 ﻿using StarGarden.Functions;
 using StarGarden.Functions.FileWork;
 using StarGarden.Functions.FileWork.SFO;
+using StarGarden.Functions.NetworkWork;
 using StarGarden.Models;
 using StarGarden.Pages;
+using StarGarden.UI.Animations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,10 +37,11 @@ namespace StarGarden
 
         }
         private async void LoadASync()
-        {   
+        {
+            this.Hide();
             await Task.Run(() =>
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.Invoke(async() =>
                 {
                     while (true)
                     {
@@ -50,6 +53,21 @@ namespace StarGarden
                     }
                 });
                 
+            });
+
+            await Task.Run(async () =>
+            {
+                await Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    UI_Animations animations = new UI_Animations();
+                    await Task.Delay(TimeSpan.FromSeconds(1.5));
+                    GlobalObjects.loadingWindow.Close();
+                    //await animations.mainWindowAppear(this);
+
+                    this.Show();
+                    GlobalObjects.SG_Console.Show();
+                });
+
             });
 
             //Fresh Install or Launcher
@@ -81,6 +99,15 @@ namespace StarGarden
             //    searchBar.Text = "";
             //}
             SG_Console.WriteLine("Searchbar updated to: " + searchBar.Text);
+
+            //if (GlobalObjects.GardenPage.scrollViewer.Visibility == Visibility.Hidden)
+            //{
+            //    GlobalObjects.GardenPage.scrollViewer.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    GlobalObjects.GardenPage.scrollViewer.Visibility = Visibility.Hidden;
+            //}
         }
 
         private async void ExitButtonClick(object sender, RoutedEventArgs e)
@@ -126,6 +153,12 @@ namespace StarGarden
         private void Window_Closed(object sender, EventArgs e)
         {
             GlobalObjects.shutDown = true;
+        }
+
+        private void MainFrame_ContentRendered(object sender, EventArgs e)
+        {
+            GlobalObjects.GardenPage = MainFrame.Content as Garden_MainScreen;
+            
         }
     }
 }

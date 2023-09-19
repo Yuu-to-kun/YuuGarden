@@ -1,4 +1,5 @@
 ﻿using StarGarden.Functions.FileWork;
+using StarGarden.Functions.NetworkWork;
 using StarGarden.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using System.Windows.Threading;
 
 namespace StarGarden.Functions
 {
@@ -50,17 +52,20 @@ namespace StarGarden.Functions
                         {
                             SG_Console.WriteLine($"[Recognised Game]: {GlobalObjects.GamesTemplate[i].Name}");
                         }
-                        GlobalObjects.SG_Console.Show();
 
                         GlobalObjects.DiscordRpcClient.Initialize();
                         GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
+
                     }
+                    
                     // Initialize the Jumplist
                     InitializeJumpList();
                     GlobalObjects.canLoad = true;
+
+
                 });
+                
             });
-            
         }
 
         private void InitializeJumpList()

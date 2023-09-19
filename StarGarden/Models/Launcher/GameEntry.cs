@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Media;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,8 @@ namespace StarGarden.Models.Launcher
         private string sfoPath;
         private string elfLoc;
         private BitmapImage pic1;
+        private string gameStatus;
+        private SolidColorBrush statusColor;
 
 
         public string Name { get => name; set => name = value; }
@@ -28,5 +31,7 @@ namespace StarGarden.Models.Launcher
         public string ElfLoc { get => elfLoc; set => elfLoc = value; }
         public string SfoPath { get => sfoPath; set => sfoPath = value; }
         public BitmapImage Pic1 { get => pic1; set => pic1 = value; }
+        public string GameStatus { get => gameStatus; set => gameStatus = value; }
+        public SolidColorBrush StatusColor { get => statusColor; set => statusColor = value; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using StarGarden.Functions.FileWork.SFO;
+using StarGarden.Functions.NetworkWork;
 using StarGarden.Models;
 using StarGarden.Models.Launcher;
 using System;
@@ -53,6 +54,8 @@ namespace StarGarden.Functions.FileWork
 
 
             GetKey getKey = new GetKey();
+            GetGameStatus getGameStatus = new GetGameStatus();
+            GetStatusColor color = new GetStatusColor();
             for (int i = 0; i < GlobalObjects.gamesList.Count; i++)
             {
                 GameEntry gameEntry = new GameEntry
@@ -61,7 +64,9 @@ namespace StarGarden.Functions.FileWork
                     Cusa = $"{getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()}",
                     ImageSource = $"{System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "icon0.png")}",
                     GamePath = GlobalObjects.gamesList[i],
-                
+                    GameStatus = $"{getGameStatus.parseNormalGame(getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()).cusacode[0].tag}",
+                    StatusColor = color.getColor($"{getGameStatus.parseNormalGame(getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()).cusacode[0].tag}")
+                    
                 };
                 if (System.IO.File.Exists(System.IO.Path.Combine(gameEntry.GamePath, "sce_sys", "pic1.png")))
                 {
@@ -76,5 +81,6 @@ namespace StarGarden.Functions.FileWork
 
             }
         }
+
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using DiscordRPC;
 using StarGarden.Functions;
 using StarGarden.Models.Launcher;
@@ -37,6 +38,11 @@ namespace StarGarden.Models
 
         //Main Console
         public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
+        //Loading Window
+        public static Window loadingWindow { get; set; } = new LoadingWindow();
+
+        //GardenPage
+        public static Garden_MainScreen GardenPage { get; set; }
 
         //Mutex
         public static bool aIsNewInstance = false;

@@ -40,19 +40,15 @@ namespace StarGarden
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
         const int SW_SHOWMINIMIZED = 2;
-
-
-        // Jumplist (when right click on icon on taskbar)
-        
         
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
             StartUp_Initialization initialization = new StartUp_Initialization();
-            Window loadingWindow = new Window();
-            loadingWindow.Show();
+            
+            GlobalObjects.loadingWindow.Show();
             await initialization.Initialize();
-            loadingWindow.Close();
+            
 
             // Mutex for detecting multiple sessions
             if (!GlobalObjects.aIsNewInstance)

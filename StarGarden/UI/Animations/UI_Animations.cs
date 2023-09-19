@@ -17,6 +17,23 @@ namespace StarGarden.UI.Animations
     public class UI_Animations
     {
         //MainMenu Animations
+        public async Task mainWindowAppear(Window mainWindow)
+        {
+            DoubleAnimation windowOppacity = new DoubleAnimation { 
+                From = 0.0, 
+                To = 1.0, 
+                Duration = TimeSpan.FromSeconds(2), 
+                FillBehavior = FillBehavior.Stop };
+            if (GlobalObjects.isAnimating == true)
+            {
+                return;
+            }
+            GlobalObjects.isAnimating = true;
+            mainWindow.BeginAnimation(UIElement.OpacityProperty, windowOppacity);
+            await Task.Delay(windowOppacity.Duration.TimeSpan);
+            GlobalObjects.isAnimating = false;
+
+        }
         public async Task settingsUnload(Border settingMenuChild,Border settingMenu)
         {
             double targetHeight = settingMenuChild.ActualHeight;
