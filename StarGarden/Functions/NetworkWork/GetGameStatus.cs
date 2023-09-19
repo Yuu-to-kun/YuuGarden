@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using StarGarden.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,25 +22,11 @@ namespace StarGarden.Functions.NetworkWork
     }
     public class GetGameStatus
     {
-        public Snowy_Root parseNormalGame()
+        public Snowy_Root parseNormalGame(string cusa)
         {
             using (var client = new HttpClient())
             {
-                string url = "https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD&";
-                for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
-                {
-                    if (i == 0)
-                    {
-                        url = $"{url}" + $"cusa={GlobalObjects.GamesTemplate[i].Cusa}";
-
-                    }
-                    else
-                    {
-                    url = $"{url}" + $",{GlobalObjects.GamesTemplate[i].Cusa}";
-
-                    }
-                }
-                Uri endpoint = new Uri(url);
+                Uri endpoint = new Uri($"https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD&cusa={cusa}");
                 var responseMsg = client.GetAsync(endpoint).Result;
                 string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
                 Snowy_Root result = JsonConvert.DeserializeObject<Snowy_Root>(responseBody);
