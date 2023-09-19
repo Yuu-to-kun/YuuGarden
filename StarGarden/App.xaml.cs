@@ -67,7 +67,6 @@ namespace StarGarden
             //Run bg.exe to clean up left over processes
             bg_CheckClean start = new bg_CheckClean();
             start.Clean();
-
             // Dispose of the Discord Rpc
             GlobalObjects.DiscordRpcClient.Dispose();
         }
