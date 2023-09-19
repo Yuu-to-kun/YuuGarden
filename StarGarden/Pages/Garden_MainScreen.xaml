@@ -233,8 +233,8 @@
             <Border.Effect>
                 <DropShadowEffect RenderingBias="Performance" BlurRadius="4" ShadowDepth="2"/>
             </Border.Effect>
-            <Border Style="{StaticResource HoverBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/Assets/Images/add.png" Width="40" Height="40"/>
+            <Border Style="{StaticResource HoverBorderStyle}" Padding="2">
+                <Image Source="/Assets/Images/add.png" Width="38" Height="38"/>
             </Border>
         </Border>
 
@@ -254,12 +254,6 @@
                 </Button>
             </Grid>
         </Border>
-
-        <!--<Border Width="1000" Height="652">
-            <Border.Background>
-                <SolidColorBrush Color="#FF101112" Opacity="0.7"/>
-            </Border.Background>
-        </Border>-->
 
         <Border x:Name="inputStealer" Visibility="Hidden" Height="652" Width="960" Panel.ZIndex="6" Margin="40,0,0,0" MouseLeftButtonDown="InputStealerClick">
             <Border.Background>
