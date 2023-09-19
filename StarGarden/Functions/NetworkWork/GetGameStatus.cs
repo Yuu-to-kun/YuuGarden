@@ -27,24 +27,27 @@ namespace StarGarden.Functions.NetworkWork
         {
             using (var client = new HttpClient())
             {
-                string url = "https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD&";
+                string url = "https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD";
+                string cusaUrl = "";
+                string homebrewUrl = "";
                 for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
                 {
-                    if (i == 0)
+                    if (GlobalObjects.GamesTemplate[i].Cusa.StartsWith("CUSA"))
                     {
-                        url = $"{url}" + $"cusa={GlobalObjects.GamesTemplate[i].Cusa}";
-
-                    }
-                    else
+                        cusaUrl = $"{cusaUrl}" + $"{GlobalObjects.GamesTemplate[i].Cusa},";
+                    } else
                     {
-                    url = $"{url}" + $",{GlobalObjects.GamesTemplate[i].Cusa}";
-
+                        homebrewUrl = $"{homebrewUrl}" + $"{GlobalObjects.GamesTemplate[i].Name},";
                     }
                 }
+
+                url = $"{url}&cusacode={cusaUrl}&homebrew={homebrewUrl}";
                 Uri endpoint = new Uri(url);
                 var responseMsg = client.GetAsync(endpoint).Result;
                 string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
                 Snowy_Root result = JsonConvert.DeserializeObject<Snowy_Root>(responseBody);
+                SG_Console.WriteLine(endpoint.ToString());
+                SG_Console.WriteLine(url);
                 return result;
             }
         }
