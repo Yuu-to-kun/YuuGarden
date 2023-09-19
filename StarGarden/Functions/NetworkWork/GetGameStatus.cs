@@ -26,7 +26,21 @@ namespace StarGarden.Functions.NetworkWork
         {
             using (var client = new HttpClient())
             {
-                Uri endpoint = new Uri($"https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD&cusa={cusa}");
+                string url = "https://fpps4.net/scripts/api.php?token=3g4YNf7XvchD&";
+                for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        url = $"{url}" + $"cusa={GlobalObjects.GamesTemplate[i].Cusa}";
+
+                    }
+                    else
+                    {
+                    url = $"{url}" + $",{GlobalObjects.GamesTemplate[i].Cusa}";
+
+                    }
+                }
+                Uri endpoint = new Uri(url);
                 var responseMsg = client.GetAsync(endpoint).Result;
                 string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
                 Snowy_Root result = JsonConvert.DeserializeObject<Snowy_Root>(responseBody);
