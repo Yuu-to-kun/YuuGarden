@@ -153,6 +153,7 @@ namespace StarGarden
         private void Window_Closed(object sender, EventArgs e)
         {
             GlobalObjects.shutDown = true;
+            Application.Current.Shutdown();
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
