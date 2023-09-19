@@ -64,9 +64,6 @@ namespace StarGarden.Functions.FileWork
                     Cusa = $"{getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()}",
                     ImageSource = $"{System.IO.Path.Combine(GlobalObjects.gamesList[i], "sce_sys", "icon0.png")}",
                     GamePath = GlobalObjects.gamesList[i],
-                    GameStatus = $"{getGameStatus.parseNormalGame(getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()).cusacode[0].tag}",
-                    StatusColor = color.getColor($"{getGameStatus.parseNormalGame(getKey.GetSpecificKeyData(sfoPath(GlobalObjects.gamesList[i]), "TITLE_ID").ToString()).cusacode[0].tag}")
-
                 };
                 if (System.IO.File.Exists(System.IO.Path.Combine(gameEntry.GamePath, "sce_sys", "pic1.png")))
                 {
@@ -78,6 +75,23 @@ namespace StarGarden.Functions.FileWork
                 }
                 GlobalObjects.GamesTemplate.Add(gameEntry);
 
+
+            }
+            var json = getGameStatus.parseNormalGame();
+            for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
+            {
+                int homebrew = 0;
+                var entry = GlobalObjects.GamesTemplate[i];
+                if (entry.Cusa.StartsWith("CUSA"))
+                {
+                    entry.GameStatus = json.cusacode[i].tag;
+                }
+                else
+                {
+                    entry.GameStatus = json.homebrew[homebrew].tag;
+                    homebrew++;
+                }
+                entry.StatusColor = color.getColor(entry.GameStatus);
 
             }
         }
