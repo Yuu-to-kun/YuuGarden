@@ -7,6 +7,7 @@ using StarGarden.Pages;
 using StarGarden.UI.Animations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
@@ -99,7 +100,8 @@ namespace StarGarden
             //    searchBar.Text = "";
             //}
             SG_Console.WriteLine("Searchbar updated to: " + searchBar.Text);
-
+            GlobalObjects.SearchQuery = searchBar.Text;
+            GlobalObjects.GardenPage.collectionViewSource.View.Refresh();
             //if (GlobalObjects.GardenPage.scrollViewer.Visibility == Visibility.Hidden)
             //{
             //    GlobalObjects.GardenPage.scrollViewer.Visibility = Visibility.Visible;

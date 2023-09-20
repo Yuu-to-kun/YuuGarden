@@ -21,23 +21,61 @@ using StarGarden.Functions;
 using System.Windows.Media.Animation;
 using StarGarden.UI.Animations;
 using StarGarden.Models;
+using System.Runtime.CompilerServices;
 
 namespace StarGarden.Pages
 {
     /// <summary>
     /// Interaction logic for Garden_MainScreen.xaml
     /// </summary>
-    public partial class Garden_MainScreen : Page
+    public partial class Garden_MainScreen : Page, INotifyPropertyChanged
     {
-
-        public ObservableCollection<GameEntry> GamesTemplate { get { return GlobalObjects.GamesTemplate; }}
+        //Observable Collection of Games
+        public ObservableCollection<GameEntry> GamesTemplate
+        {
+            get { return GlobalObjects.GamesTemplate; }
+            set
+            {
+                if (GamesTemplate != GlobalObjects.GamesTemplate)
+                {
+                    GamesTemplate = GlobalObjects.GamesTemplate;
+                    OnPropertyChanged();
+                }
+            } 
+        }
+        // Other objects
+        public CollectionViewSource collectionViewSource;
         public GameEntry checkedGame = null;
-        
+
+        //Events
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public Garden_MainScreen()
         {
             DataContext = this;
 
             InitializeComponent();
+
+            // Sorting
+            collectionViewSource = (CollectionViewSource)FindResource("GameCollectionViewSource");
+            collectionViewSource.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            collectionViewSource.Filter += (sender, e) =>
+            {
+                if (e.Item is GameEntry gameEntry)
+                {
+                    // Check if the query is empty or the game name contains the query
+                    e.Accepted = string.IsNullOrEmpty(GlobalObjects.SearchQuery) || 
+                    gameEntry.Name.StartsWith(GlobalObjects.SearchQuery, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    e.Accepted = false; // Handle non-GameEntry items (if any)
+                }
+            };
 
             // fix game being centerd when less then 4 games are displayed
             if (GlobalObjects.gamesList.Count < 4) 

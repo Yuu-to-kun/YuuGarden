@@ -9,6 +9,8 @@
       Title="Garden_MainScreen" Height="652" Width="1000">
 
     <Page.Resources>
+        
+        <CollectionViewSource x:Key="GameCollectionViewSource" Source="{Binding GamesTemplate}" />
         <Style x:Key="HoverBorderStyle" TargetType="Border">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="CornerRadius" Value="5"/>
@@ -196,7 +198,7 @@
 
         
         <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="40,0,0,0" Background="#101112" Width="960" Height="652">
-            <ItemsControl x:Name="ItemsControl" Padding="0,30,0,30" ItemsSource="{Binding GamesTemplate}" HorizontalAlignment="Center">
+            <ItemsControl x:Name="ItemsControl" Padding="0,30,0,30" ItemsSource="{Binding Source={StaticResource GameCollectionViewSource}}" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource GameCardStyling}" Height="260" Width="200" Margin="15,0,15,40" CornerRadius="10" Panel.ZIndex="1">
