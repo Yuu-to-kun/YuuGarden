@@ -16,7 +16,10 @@ namespace StarGarden.Functions
             switch (status)
             {
                 case "N/A":
-                    color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
+                    color = (Color)ColorConverter.ConvertFromString("#eceff4");
+                    break;
+                case "Nothing":
+                    color = (Color)ColorConverter.ConvertFromString("#eceff4");
                     break;
                 case "Boots":
                     color = (Color)ColorConverter.ConvertFromString("#F2766E");
