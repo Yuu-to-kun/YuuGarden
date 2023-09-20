@@ -1,5 +1,6 @@
 ﻿using StarGarden.Functions.FileWork;
 using StarGarden.Functions.NetworkWork;
+using StarGarden.Functions.NetworkWork.Github;
 using StarGarden.Models;
 using System;
 using System.Collections.Generic;
@@ -57,10 +58,10 @@ namespace StarGarden.Functions
                         GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);
 
                     }
-                    
+                    fpPS4_Download fpPS4_Download = new fpPS4_Download();
+                    var workflow = fpPS4_Download.getLatestWorkFlow();
                     // Initialize the Jumplist
                     InitializeJumpList();
-                    GlobalObjects.canLoad = true;
 
 
                 });

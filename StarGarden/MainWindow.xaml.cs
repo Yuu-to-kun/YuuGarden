@@ -40,28 +40,37 @@ namespace StarGarden
         private async void LoadASync()
         {
             this.Hide();
-            await Task.Run(() =>
-            {
-                Application.Current.Dispatcher.Invoke(async() =>
-                {
-                    while (true)
-                    {
-
-                        if (GlobalObjects.canLoad == true)
-                        {
-                            break;
-                        }
-                    }
-                });
-                
-            });
 
             await Task.Run(async () =>
             {
                 await Application.Current.Dispatcher.Invoke(async () =>
                 {
+                    StartUp_Initialization initialization = new StartUp_Initialization();
+                    UpdateCheck updateCheck = new UpdateCheck();
                     UI_Animations animations = new UI_Animations();
+
+                    GlobalObjects.loadingWindow.Show();
+                    GlobalObjects.loadingWindow.LoadingText.Text = "Initializing Data...";
+
+                    await initialization.Initialize();
+
+                    GlobalObjects.loadingWindow.LoadingText.Text = "Checking for updates...";
+
+                    if (await updateCheck.isLatest() == false)
+                    {
+                        GlobalObjects.loadingWindow.LoadingText.Text = "Update found!";
+                        GlobalObjects.loadingWindow.LoadingText.Text = "Updating...";
+                        await updateCheck.Update();
+                        GlobalObjects.loadingWindow.LoadingText.Text = "Done!";
+
+                    }
+                    else
+                    {
+                        GlobalObjects.loadingWindow.LoadingText.Text = "No updates were found...";
+                    }
+
                     await Task.Delay(TimeSpan.FromSeconds(1.5));
+
                     GlobalObjects.loadingWindow.Close();
                     //await animations.mainWindowAppear(this);
 

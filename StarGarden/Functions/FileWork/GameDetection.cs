@@ -78,18 +78,22 @@ namespace StarGarden.Functions.FileWork
 
             }
             var json = getGameStatus.parseNormalGame();
+            int homebrew = 0;
+            int cusa = 0;
             for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
             {
-                int homebrew = 0;
+                
                 var entry = GlobalObjects.GamesTemplate[i];
                 if (entry.Cusa.StartsWith("CUSA"))
                 {
-                    entry.GameStatus = json.cusacode[i].tag;
+                    entry.GameStatus = json.cusacode[cusa].tag;
+                    cusa++;
                 }
                 else
                 {
                     entry.GameStatus = json.homebrew[homebrew].tag;
                     homebrew++;
+                    
                 }
                 entry.StatusColor = color.getColor(entry.GameStatus);
 

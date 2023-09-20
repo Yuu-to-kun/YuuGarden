@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="LoadingWindow" Width = "400" Height = "500" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
-        <TextBlock Text="Loading..." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+        <TextBlock x:Name="LoadingText" Text="Loading..." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
     </Grid>
 </Window>

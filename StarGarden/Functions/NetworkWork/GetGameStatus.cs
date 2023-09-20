@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static StarGarden.Models.fpPS4_Artifact_Json;
 
 namespace StarGarden.Functions.NetworkWork
 {

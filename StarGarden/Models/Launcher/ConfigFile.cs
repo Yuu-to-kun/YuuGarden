@@ -9,6 +9,7 @@ namespace StarGarden.Models.Launcher
     public class ConfigFile
     {
         public string appVer;
+        public string fpVer;
         public string lang;
         public string installPath;
         public List<string> gamesDirPaths;

@@ -44,12 +44,6 @@ namespace StarGarden
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            StartUp_Initialization initialization = new StartUp_Initialization();
-            
-            GlobalObjects.loadingWindow.Show();
-            await initialization.Initialize();
-            
-
             // Mutex for detecting multiple sessions
             if (!GlobalObjects.aIsNewInstance)
             {

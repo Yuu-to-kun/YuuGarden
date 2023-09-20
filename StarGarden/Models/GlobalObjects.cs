@@ -40,7 +40,7 @@ namespace StarGarden.Models
         //Main Console
         public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
         //Loading Window
-        public static Window loadingWindow { get; set; } = new LoadingWindow();
+        public static LoadingWindow loadingWindow { get; set; } = new LoadingWindow();
 
         //GardenPage
         public static Garden_MainScreen GardenPage { get; set; }
@@ -53,7 +53,6 @@ namespace StarGarden.Models
         public static string downloadPath { get; set; } = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "StarGarden");
         public static string localDataPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StarGarden");
         public static bool isFreshInstall { get; set; }
-        public static bool canLoad { get; set; } = false;
         public static bool shutDown { get; set; } = false;
         // Game Entries
         public static ObservableCollection<GameEntry> GamesTemplate { get; set; } = new ObservableCollection<GameEntry>();
@@ -81,5 +80,8 @@ namespace StarGarden.Models
                 consoleWindow.WriteLine(args.Data, System.Windows.Media.Brushes.Red);
             });
         }
+
+        //Installation
+        public static string fpSha { get; set; }
     }
 }

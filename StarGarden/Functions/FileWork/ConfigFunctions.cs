@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static StarGarden.Models.fpPS4_Artifact_Json;
 using StarGarden.Models.Launcher;
 using StarGarden.Models;
 
@@ -23,6 +22,7 @@ namespace StarGarden.Functions.FileWork
         {
             ConfigFile configFile = new ConfigFile();
             configFile.appVer = appVersion;
+            configFile.fpVer = "";
             configFile.lang = "En-Us";
             configFile.installPath = "";
             configFile.gamesDirPaths = new List<string> {$"{Path.Combine(GlobalObjects.downloadPath, "Games")}"};

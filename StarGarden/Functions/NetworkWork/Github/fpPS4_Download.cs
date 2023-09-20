@@ -17,29 +17,32 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static StarGarden.Models.fpPS4_Artifact_Json;
+using static StarGarden.Models.fpPS4_Github_Classes.fpPS4_Artifact_Json;
+using static StarGarden.Models.fpPS4_Github_Classes.fpPS4_Workflow;
 
 namespace StarGarden.Functions.NetworkWork.Github
 {
     class fpPS4_Download
     {
-        public async Task Download(Button PrevButton)
+        public async Task Download(Button PrevButton = null)
         {
-
+            ConfigFunctions configFunctions = new ConfigFunctions();
             string filePath = Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip");
             string fpPS4_Folder = Path.Combine(GlobalObjects.downloadPath, "fpPS4");
+            var config = configFunctions.OpenConfig();
 
             if (!File.Exists(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip")))
             {
-                 await Task.Run(() =>
+                 await Task.Run(async() =>
                  {
                      if (!Directory.Exists(GlobalObjects.downloadPath))
                      {
                          Directory.CreateDirectory(GlobalObjects.downloadPath);
                      }
-                     Download_Latest_Trunk(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
+                     await Download_Latest_Trunk(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
                      Extract_FpPS4(filePath,fpPS4_Folder);
-
+                     config.fpVer = GlobalObjects.fpSha;
+                     configFunctions.SaveConfig(config);
                      File.Delete(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
 
                  });
@@ -54,7 +57,10 @@ namespace StarGarden.Functions.NetworkWork.Github
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            PrevButton.IsEnabled = false;
+                            if (PrevButton != null)
+                            {
+                                PrevButton.IsEnabled = false;
+                            }
                         });
 
                         Thread.Sleep(2500);
@@ -62,7 +68,10 @@ namespace StarGarden.Functions.NetworkWork.Github
                         File.Delete(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            PrevButton.IsEnabled = true;
+                            if (PrevButton != null)
+                            {
+                                PrevButton.IsEnabled = true;
+                            }
                         });
                     });
                     
@@ -93,63 +102,77 @@ namespace StarGarden.Functions.NetworkWork.Github
                 }
             }
         }
-        public void Download_Latest_Trunk(string downloadFilePath)
+        public async Task Download_Latest_Trunk(string downloadFilePath)
         {
             string part0 = "ghp";
             string part1 = "_yB5ynO2r8mjJEr6R";
             string part2 = "61cC5OWK9qwTHk3vIB3u";
             string GToken = part0 + part1 + part2;
 
-            int latestTrunkArtifactId = getLatestTrunkArtifactID(GToken);
-            Uri endpointLatestAction = new Uri("https://api.github.com/repos/red-prig/fpPS4/actions/artifacts/" + $"{latestTrunkArtifactId}" + "/zip");
-            string link = getFpPS4_ActionLink(endpointLatestAction, GToken);
-            DownloadFile dw = new DownloadFile();
-            dw.Downloader(link, downloadFilePath);
+            await Task.Run(async() =>
+            {
+                string link = await getFpPS4_DownloadLink(GToken);
+                DownloadFile dw = new DownloadFile();
+                dw.Downloader(link, downloadFilePath);
+            });
+
+            
         }
 
-        public string getFpPS4_ActionLink(Uri endpoint, string GToken)
+        public async Task<string> getFpPS4_DownloadLink(string GToken)
         {
-            using (var client = new HttpClient())
+            var link = await Task.Run(async() =>
             {
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GToken}");
-                client.DefaultRequestHeaders.Add("User-Agent", "Kimie");
-                var responseMsg = client.GetAsync(endpoint).Result;
-                string link = responseMsg.RequestMessage.RequestUri.ToString();
-                return link;
-            }
-        }
-
-        public int getLatestTrunkArtifactID(string GToken)
-        {
-            Root artifactsJson = getJsonAndParse(GToken);
-            int i = 0;
-            while (true)
-            {
-                if (artifactsJson.artifacts[i].workflow_run.head_branch == "trunk")
+                using (var client = new HttpClient())
                 {
+                    var workflow = await getLatestWorkFlow();
+                    GlobalObjects.fpSha = workflow.head_sha.Substring(0, 7);
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GToken}");
+                    client.DefaultRequestHeaders.Add("User-Agent", "Kimie");
+                    var responseMsg = client.GetAsync(workflow.artifacts_url).Result;
+                    string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
+                    FP_Root artifactsJson = JsonConvert.DeserializeObject<FP_Root>(responseBody);
 
-                    break;
+                    var secondResponseMsg = client.GetAsync(artifactsJson.artifacts[0].archive_download_url).Result;
+                    string link = secondResponseMsg.RequestMessage.RequestUri.ToString();
+                    return link;
                 }
-                i++;
-            }
-
-            int latestArtifactID = artifactsJson.artifacts[i].id;
-            return latestArtifactID;
+            });
+            return link;
+            
         }
-
-        public Root getJsonAndParse(string GToken)
+        public async Task<WorkflowRun> getLatestWorkFlow()
         {
-            using (var client = new HttpClient())
+            string part0 = "ghp";
+            string part1 = "_yB5ynO2r8mjJEr6R";
+            string part2 = "61cC5OWK9qwTHk3vIB3u";
+            string GToken = part0 + part1 + part2;
+            var workflow = await Task.Run(() =>
             {
-                Uri endpointArtifactJson = new Uri("https://api.github.com/repos/red-prig/fpPS4/actions/artifacts");
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GToken}");
-                client.DefaultRequestHeaders.Add("User-Agent", "Kimie");
-                var responseMsg = client.GetAsync(endpointArtifactJson).Result;
-                string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
-                Root artifactsJson = JsonConvert.DeserializeObject<Root>(responseBody);
-                return artifactsJson;
+                using (var client = new HttpClient())
+                {
+                    Uri endpointArtifactJson = new Uri("https://api.github.com/repos/red-prig/fpPS4/actions/runs");
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GToken}");
+                    client.DefaultRequestHeaders.Add("User-Agent", "Kimie");
+                    var responseMsg = client.GetAsync(endpointArtifactJson).Result;
+                    string responseBody = responseMsg.Content.ReadAsStringAsync().Result;
+                    WorkFlow_Root artifactsJson = JsonConvert.DeserializeObject<WorkFlow_Root>(responseBody);
+                    int i = 0;
+                    while (true)
+                    {
+                        if (artifactsJson.workflow_runs[i].head_branch == "trunk")
+                        {
+                            break;
+                        }
+                        i++;
+                    }
 
-            }
+                    var workflow = artifactsJson.workflow_runs[i];
+                    return workflow;
+
+                }
+            });
+            return workflow;
         }
     }
 }
