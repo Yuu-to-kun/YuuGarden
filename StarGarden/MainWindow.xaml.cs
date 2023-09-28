@@ -54,21 +54,24 @@ namespace StarGarden
 
                     await initialization.Initialize();
 
-                    GlobalObjects.loadingWindow.LoadingText.Text = "Checking for updates...";
-
-                    if (await updateCheck.isLatest() == false)
+                    if (GlobalObjects.isFreshInstall == false)
                     {
-                        GlobalObjects.loadingWindow.LoadingText.Text = "Update found!";
-                        GlobalObjects.loadingWindow.LoadingText.Text = "Updating...";
-                        await updateCheck.Update();
-                        GlobalObjects.loadingWindow.LoadingText.Text = "Done!";
+                        GlobalObjects.loadingWindow.LoadingText.Text = "Checking for updates...";
 
-                    }
-                    else
-                    {
-                        GlobalObjects.loadingWindow.LoadingText.Text = "No updates were found...";
-                    }
+                        if (await updateCheck.isLatest() == false)
+                        {
+                            GlobalObjects.loadingWindow.LoadingText.Text = "Update found!";
+                            GlobalObjects.loadingWindow.LoadingText.Text = "Updating...";
+                            await updateCheck.Update();
+                            GlobalObjects.loadingWindow.LoadingText.Text = "Done!";
 
+                        }
+                        else
+                        {
+                            GlobalObjects.loadingWindow.LoadingText.Text = "No updates were found...";
+                        }
+                    }
+                    
                     await Task.Delay(TimeSpan.FromSeconds(1.5));
 
                     GlobalObjects.loadingWindow.Close();

@@ -43,6 +43,7 @@ namespace StarGarden.Functions.NetworkWork.Github
                      Extract_FpPS4(filePath,fpPS4_Folder);
                      config.fpVer = GlobalObjects.fpSha;
                      configFunctions.SaveConfig(config);
+                     GlobalObjects.ConfigFile = config;
                      File.Delete(Path.Combine(GlobalObjects.downloadPath, "fpPS4.zip"));
 
                  });

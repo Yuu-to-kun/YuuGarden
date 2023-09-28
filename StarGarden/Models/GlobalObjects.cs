@@ -37,6 +37,8 @@ namespace StarGarden.Models
         };
         //Search Query
         public static string SearchQuery { get; set; }
+        //Digital Config
+        public static ConfigFile ConfigFile { get; set; }
         //Main Console
         public static ConsoleWindow SG_Console { get; set; } = new ConsoleWindow();
         //Loading Window

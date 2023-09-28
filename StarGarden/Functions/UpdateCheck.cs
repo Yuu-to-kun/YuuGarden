@@ -1,5 +1,6 @@
 ﻿using StarGarden.Functions.FileWork;
 using StarGarden.Functions.NetworkWork.Github;
+using StarGarden.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +14,7 @@ namespace StarGarden.Functions
     {
         public async Task Update()
         {
-            ConfigFunctions configFunctions = new ConfigFunctions();
             fpPS4_Download fpPS4_Download = new fpPS4_Download();
-            var config = configFunctions.OpenConfig();
             await Task.Run(async () =>
             {
                 var check = await isLatest();
@@ -28,14 +27,12 @@ namespace StarGarden.Functions
 
         public async Task<bool> isLatest()
         {
-            ConfigFunctions configFunctions = new ConfigFunctions();
             fpPS4_Download fpPS4_Download = new fpPS4_Download();
             var result = await Task.Run(async () =>
             {
                 var latestWorkFlow = await fpPS4_Download.getLatestWorkFlow();
-                var config = configFunctions.OpenConfig();
                 var result = false;
-                if (config.fpVer == latestWorkFlow.head_sha.Substring(0, 7))
+                if (GlobalObjects.ConfigFile.fpVer == latestWorkFlow.head_sha.Substring(0, 7))
                 {
                     result = true;
                 }

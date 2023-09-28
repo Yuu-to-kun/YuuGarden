@@ -25,10 +25,9 @@ namespace StarGarden.Functions
             ConfigFunctions configFunctions = new ConfigFunctions();
             Presence presence = new Presence();
             Logging log = new Logging();
-            var config = configFunctions.OpenConfig();
 
             // Checks allowed amount of games to run
-            if (config.gamesAllowedToRun == GlobalObjects.runningGames.Count)
+            if (GlobalObjects.ConfigFile.gamesAllowedToRun == GlobalObjects.runningGames.Count)
             {
                 SG_Console.WriteLine("Maximum count of allowed games has already been reached");
                 return;
@@ -43,7 +42,7 @@ namespace StarGarden.Functions
             ProcessStartInfo startInfo = new ProcessStartInfo() { 
             
                 FileName = "cmd.exe",
-                Arguments = $"/c \"{config.fpPS4_ExePath} -e {elfLocation} & pause\"",
+                Arguments = $"/c \"{GlobalObjects.ConfigFile.fpPS4_ExePath} -e {elfLocation} & pause\"",
                 CreateNoWindow = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,

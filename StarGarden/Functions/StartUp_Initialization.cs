@@ -47,12 +47,14 @@ namespace StarGarden.Functions
                     }
                     else
                     {
+                        GlobalObjects.ConfigFile = config;
                         GlobalObjects.isFreshInstall = false;
                         gameDetection.GenerateEntries();
                         for (int i = 0; i < GlobalObjects.GamesTemplate.Count; i++)
                         {
                             SG_Console.WriteLine($"[Recognised Game]: {GlobalObjects.GamesTemplate[i].Name}");
                         }
+
 
                         GlobalObjects.DiscordRpcClient.Initialize();
                         GlobalObjects.DiscordRpcClient.SetPresence(GlobalObjects.RichPresence);

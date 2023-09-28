@@ -15,11 +15,9 @@ namespace StarGarden.Functions.FileWork
     {
         public List<string> Scan()
         {
-            ConfigFunctions configFunc = new ConfigFunctions();
-            var config = configFunc.OpenConfig();
 
             List<string> result = new List<string>();
-            List<string> gamesDirPath = config.gamesDirPaths;
+            List<string> gamesDirPath = GlobalObjects.ConfigFile.gamesDirPaths;
 
             List<string> potentialGames = new List<string>();
             foreach (var item in gamesDirPath)
