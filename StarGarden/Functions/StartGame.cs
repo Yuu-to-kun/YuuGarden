@@ -94,7 +94,6 @@ namespace StarGarden.Functions
 
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    currentGameConsole.Close();
                     SG_Console.WriteLine($"{gameName} started");
                 });
 
@@ -148,7 +147,12 @@ namespace StarGarden.Functions
 
                 // Save logs
                 log.Save(logLoc,gameName);
-                
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    currentGameConsole.Close();
+
+                });
+
 
                 // Checking if the app has not been shutdown and if not it does what it does
                 if (System.Windows.Application.Current != null)
