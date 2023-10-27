@@ -1,4 +1,4 @@
-## StarGarden
+## YuuGarden a fork of StarGarden :D
 StarGarden is an open source fpPS4 launcher that will handle everything for you, so you can play your ps4 games.
 
 StarGarden will inclue:
